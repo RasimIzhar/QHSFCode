@@ -1,0 +1,145 @@
+﻿@model DAL.Model.ViewModels.GetDynamicFieldsValuesResponse
+@{
+    ViewBag.Title = "Index";
+}
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+<div class="row bg-white mt-30">
+    <div class="col-12 text-right mt-40 mb-20">
+        <h3 class="text-left txtstage pull-left mb-0 pt-5">Dynamic Fields</h3>
+        <div class="mb-10">
+            @*<div class="breadcome-heading cstm">
+                    <form role="search" class="">
+                        <input type="text" placeholder="Search..." class="form-control cstmform">
+                        <a href="">
+                            <i class="fa fa-search cstm-align"></i>
+                        </a>
+                    </form>
+                </div>*@
+            <a href="@Url.Action("Index", "DynamicFields")" class="btn btn-primary">Go Back</a>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="panel">
+            <div class="panel-body">
+                <table class="table table-condensed table-striped table-bordered" id="tb">
+                    <thead>
+                        <tr>
+
+                            <th>Field Text</th>
+                            <th>Field Value</th>
+                            <th><a href="javascript:void(0);" style="font-size:18px;" class="btn btn-info" id="addMore" title="Add More Person">Add More</a></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @*<tr>
+                                <td><input type="text" name="DynamicFieldsID" value="" class="form-control"></td>
+                                <td><input type="text" name="FieldText" class="form-control"></td>
+                                <td><input type="text" name="FieldValue" class="form-control"></td>
+                                <td><input type="text" name="IsActive" class="form-control"></td>
+                                <td><a href='javascript:void(0);' class='remove'>Remove</a></td>
+                            </tr>*@
+                        @if (Model.ModelObject != null && Model.ModelObject.Count > 0)
+                        {
+                            int rowCount = 0;
+                            foreach (var items in Model.ModelObject.ToList())
+                            {
+                                <tr class="dynamicrows">
+
+                                    <td>
+                                        <input type="hidden" name="DynamicFieldsID" value="@items.DynamicFieldsID" id="DynamicFieldsID" class="form-control DynamicFieldsID">
+                                        <input type="text" name="FieldText" value="@items.FieldText" id="" class="form-control FieldText">
+                                    </td>
+                                    <td>
+                                        <input type="text" name="FieldValue" value="@items.FieldValue" id="" class="form-control FieldValue">
+                                        <input type="hidden" name="IsActive" value="@items.IsActive" class="form-control IsActive">
+                                    </td>
+                                    <td><a href='javascript:void(0);' class='remove'>Remove</a></td>
+                                </tr>
+                                rowCount++;
+                            }
+                        }
+                        else
+                        {
+                            <tr class="dynamicrows">
+
+                                <td>
+                                    <input type="hidden" name="DynamicFieldsID" value="@ViewBag.ViewID" id="DynamicFieldsID" class="form-control DynamicFieldsID">
+                                    <input type="text" name="FieldText" value="" class="form-control FieldText">
+                                </td>
+                                <td>
+                                    <input type="text" name="FieldValue" value="" class="form-control FieldValue">
+                                    <input type="hidden" name="IsActive" value="" class="form-control IsActive">
+                                </td>
+                                <td><a href='javascript:void(0);' class='remove'>Remove</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <button type="button" class="btn btn-default" id="Update">Update Fields</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('#addMore').on('click', function () {
+            var data = $("#tb tr:eq(1)").clone(true).appendTo("#tb");
+            data.find("input").val('');
+            data.find("input.DynamicFieldsID").val('@ViewBag.ViewID');
+        });
+        $(document).on('click', '.remove', function () {
+            var trIndex = $(this).closest("tr").index();
+            if (trIndex > 0) {
+                $(this).closest("tr").remove();
+            } else {
+                alert("Sorry!! Can't remove first row!");
+            }
+        });
+    });
+</script>
+
+<script>
+    $("#Update").click(function () {
+        $('#waiting-image').css('display', 'block');
+        var Obj = [];
+        debugger
+        $(".dynamicrows").each(function (index, value) {
+            debugger
+            var jElement = $(this);
+            var DynamicFieldsID = jElement.find(".DynamicFieldsID").val();
+            var FieldText = jElement.find(".FieldText").val();
+            var FieldValue = jElement.find(".FieldValue").val();
+            var IsActive = jElement.find(".IsActive").val();
+
+            var Object = {
+
+                DynamicFieldsID: DynamicFieldsID,
+                FieldText: FieldText,
+                FieldValue: FieldValue,
+                IsActive: IsActive,
+            };
+            Obj.push(Object);
+        });
+        // alert(JSON.stringify(Obj));
+        $.ajax({
+            type: "POST",
+            url: "/DynamicFields/FieldsValues",
+            contentType: 'application/json',
+            data: JSON.stringify(Obj),
+            dataType: "json",
+            success: function (response) {
+                $('#waiting-image').css('display', 'none');
+                window.location = "@Url.Action("Index", "DynamicFields")";
+            },
+            error: function (response) {
+                $('#waiting-image').css('display', 'none');
+                window.location = "@Url.Action("Index", "DynamicFields")";
+                //alert("Error");
+            }
+
+        })
+    });
+</script>

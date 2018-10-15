@@ -1,0 +1,198 @@
+﻿@model DAL.Model.ViewModels.GetResponse
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .modal-dialog {
+           width: 63% !important;
+    }
+    .dataTables_length > label{
+        display:none;
+    }
+    .dataTables_info{
+        display:none;
+    }
+    #example_filter{
+      margin-top: -68px;
+    width: 68%;
+    text-align: right;
+    margin-right: 24px;
+    }
+      #example_filter > label > input{
+        height: 24px;
+        color:black;
+    }
+        #example_filter > label {
+              color: white;
+      }
+        .searchIn{
+  background:url(https://cdn0.iconfinder.com/data/icons/basic-website/512/search-website-512.png) no-repeat scroll left center / 15px auto;
+}
+
+        .paginate_button > a {
+    color: white;
+    background: #2f3a4c!;
+    border: #2f3a4c;
+        }
+
+.searchOut{
+background:none; 
+}
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    z-index: 3;
+    color: #fff;
+    cursor: default;
+    background-color: #2f3a4c;
+    border-color: #2f3a4c;
+}
+
+.pagination {
+   display: inherit; 
+    padding-left: 0;
+    margin: 20px 0;
+    border-radius: 4px;
+    float: right;
+    padding-right: 26px;
+}
+
+</style>
+
+
+
+<div class="cstm_container forshadow">
+
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="panel">
+
+                <div class="panel-body">
+
+                    <div class="text-right">
+                        <h3 class="text-left txtstage pull-left mb-0 pt-5">Users</h3>
+                        <div class="mb-10">
+                            <div class="breadcome-heading cstm" style="display:none">
+                                <form role="search" class="">
+                                    <input type="text" placeholder="Search..." class="form-control cstmform">
+                                    <a href="">
+                                        <i class="fa fa-search"></i>
+                                    </a>
+                                </form>
+                            </div>
+                            <button type="button" id="adduser" _id="0" class="btn btn-custon-rounded-four btn-default ads mb-0" value="submit" data-toggle="modal"
+                                    data-target="#myModal">
+                                Add User
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <table class="table table-condensed cstm table-customDark table-hover table-striped" id="example" >
+                            <thead>
+                                <tr>
+                                    <th class="text-center">User ID</th>
+                                    <th>User Name</th>
+                                    <th>Email</th>
+                                    <th>Created On</th>
+                                    <th class="text-center">Is Active</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model != null)
+                                {
+                                    foreach (var items in Model.ModelObject.ToList())
+                                    {
+                                        <tr>
+                                            <td>@items.ID</td>
+                                            <td>@items.FirstName</td>
+                                            <td>@items.Email</td>
+                                            <td>@Convert.ToDateTime(items.CreatedDate).ToString("dd MMM yyyy hh:mm tt")</td>
+                                            <td>
+                                                @if (items.IsActive == true)
+                                                {
+                                                    <span>
+                                                        <span class="glyphicon glyphicon-ok" style="color:green"></span>
+                                                    </span>
+                                                }
+                                                else
+                                                {
+                                                    <span>
+                                                        <span class="glyphicon glyphicon-remove" style="color:red"></span>
+                                                    </span>
+                                                }
+                                            </td>
+                                            <td style="display:inline">
+                                                    @*<button type="button" class="btn btn-custon-rounded-four btn-default mb-0">
+                                                        <span class="glyphicon glyphicon-eye-open"></span>
+                                                    </button>*@
+                                                    <button type="button" id="Edit" onclick="Userid(@items.ID)" _id="0" class="btn btn-custon-rounded-four btn-default mb-0" value="submit" data-toggle="modal" data-target="#myModal">
+                                                        <span class="glyphicon glyphicon-edit"></span>
+                                                    </button>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr><td colspan="6">No Record Found</td></tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Users</h4>
+                <input type="hidden" id="UserID" />
+            </div>
+            <div class="modal-body">
+            </div>
+            @*<div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-default adduser" id="AddUserscls" >Add User</button>
+                <button type="button" class="btn btn-default updateuser" id="UpdateUsersClass" _id="0">Update User</button>
+            </div>*@
+        </div>
+    </div>
+</div>
+
+
+<script>
+  
+
+    $(document).ready(function () {
+        $('#example').DataTable();
+        debugger
+        $('#example_filter').find("input[type=search]").each(function(ev)
+        {debugger
+            if(!$(this).val()) { 
+                $(this).attr("placeholder", "Search");
+            }
+        });
+
+    
+    }); 
+    function Userid(a) {
+        debugger
+        $(".modal-body").load("/Users/UserRolesEdit?id=" + a)
+        $("#UpdateUsersClass").attr("_id", a);
+    }
+
+    $("#adduser").click(function () {
+
+        $(".modal-body").load("/Users/UserRoles")
+
+    });
+
+</script>

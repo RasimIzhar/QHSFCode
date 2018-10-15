@@ -1,0 +1,99 @@
+﻿@model List<DAL.DbEntities.Vt_DynamicFields>
+@{
+    Layout = null;
+}
+
+
+
+<div class="col-md-12 heading-field-section pb-20">
+    <h3>Dynamic Fields</h3>
+    <div class="scroll-wrap">
+        <div class="col-md-12 pt-20">
+            @if (Model != null)
+            {
+                foreach (var item in Model.ToList())
+                {
+                <div class="form-group">
+                    @if (item != null && item.Type == "textbox")
+                    {
+                        <div class="form-group">
+                            <label>@item.Label</label>
+                            <input type="@item.Type" class="@item.CssClass" placeholder="@item.Placeholder" />
+                            <small>@item.Note</small>
+                        </div>
+                    }
+                    @if (item != null && item.Type == "dropdown")
+                    {
+                        <div class="form-group">
+                            <p>@item.Label</p>
+                            @if (item.Vt_DynamicFieldsValues != null && item.Vt_DynamicFieldsValues.Count > 0)
+                            {
+                                <select class="form-control" id="exampleFormControlSelect1">
+                                    @foreach (var itemValue in item.Vt_DynamicFieldsValues)
+                                    {
+                                        <option>@itemValue.FieldValue</option>
+                                    }
+                                </select>
+                            }
+                            else
+                            {
+                                <small>Please add values to this field</small>
+                            }
+                        </div>
+                    }
+
+                    @if (item != null && item.Type == "radio")
+                    {
+                        <div class="form-group">
+                            @if (item.Vt_DynamicFieldsValues != null && item.Vt_DynamicFieldsValues.Count > 0)
+                            {
+
+                                <p>@item.Label</p>
+                                int rowCount = 0;
+                                foreach (var itemValue in item.Vt_DynamicFieldsValues)
+                                {
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="@item.Label" id="@item.Label@rowCount" value="@itemValue.FieldValue">
+                                        <label class="form-check-label" for="@item.Label@rowCount">@itemValue.FieldText</label>
+                                    </div>
+                                    rowCount = rowCount + 1;
+                                }
+                            }
+                            else
+                            {
+                                <small>Please add values to this field</small>
+                            }
+                        </div>
+                    }
+
+                    @if (item != null && item.Type == "checkbox")
+                    {
+                        <div class="form-group">
+                            @if (item.Vt_DynamicFieldsValues != null && item.Vt_DynamicFieldsValues.Count > 0)
+                            {
+
+                                <p>@item.Label</p>
+                                int rowCount = 0;
+                                foreach (var itemValue in item.Vt_DynamicFieldsValues)
+                                {
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="@rowCount" value="@itemValue.FieldValue">
+                                        <label class="form-check-label" for="@rowCount">@itemValue.FieldText</label>
+                                    </div>
+                                    rowCount = rowCount + 1;
+                                }
+
+                            }
+                            else
+                            {
+                                <small>Please add values to this field</small>
+                            }
+                        </div>
+                    }
+                </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+

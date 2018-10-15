@@ -1,0 +1,21 @@
+﻿@{
+    Layout = null;
+}
+ 
+    
+@{ 
+    decimal AnsweredQuestions = Convert.ToInt32(ViewBag.Count_Checklist);
+    decimal TotalQuestions = Convert.ToInt32(ViewBag.Count_Questions);
+    decimal Progress = 0;
+    Progress = (int)Math.Round((AnsweredQuestions / TotalQuestions) * 100);
+
+
+
+    <div class="progress mt-30 progress-back-clr">
+        <div class="progress-bar cstm" role="progressbar" aria-valuenow="@Progress" aria-valuemin="@AnsweredQuestions"
+             aria-valuemax="@TotalQuestions" style="width:@Progress%">
+            @Progress%
+        </div>
+    </div>
+
+    }

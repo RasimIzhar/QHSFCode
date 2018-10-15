@@ -1,0 +1,75 @@
+﻿@model DAL.Model.ViewModels.UserRolesViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="cstm_container forshadow">
+
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3>
+                        <span class="pull-left">Tabs & Permissions</span>
+                        <span class="pull-right">
+                            @Html.ActionLink("Update", "Create", "Users", new { @class = "btn btn-default" })
+                        </span>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <table class="table table-condensed cstm table-customDark table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th colspan="6">Tab Title</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                            <tbody>
+                                @if (Model != null)
+                                {
+                                    bool Flag = false;
+                                    foreach (var itemsTab in @Model.TabName)
+                                    {
+                                        <tr>
+                                            <td>@itemsTab.Title</td>
+                                            @foreach (var itemsRole in Model.Roles)
+                                            {
+                                                foreach (var itemUserRole in Model.UserRoles)
+                                                {
+                                                    if (itemUserRole.UserID == 1 && itemUserRole.RolesID == itemsRole.ID && itemUserRole.TabID == itemsTab.ID)
+                                                    {
+                                                        Flag = true;
+                                                    }
+                                                    else
+                                                    {
+                                                        Flag = false;
+                                                    }
+                                                    if (Flag)
+                                                    {
+                                                        <td><input type="checkbox" checked="checked" /> @itemsRole.Description</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td><input type="checkbox" /> @itemsRole.Description</td>
+                                                    }
+                                                }
+
+
+                                            }
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr><td colspan="6">No Record Found</td></tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

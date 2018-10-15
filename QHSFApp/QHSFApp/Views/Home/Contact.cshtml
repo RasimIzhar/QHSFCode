@@ -1,0 +1,1374 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@*<div class="jumbotron">
+        <h1>ASP.NET</h1>
+        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+        <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Getting started</h2>
+            <p>
+                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+                enables a clean separation of concerns and gives you full control over markup
+                for enjoyable, agile development.
+            </p>
+            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Get more libraries</h2>
+            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Web Hosting</h2>
+            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        </div>
+    </div>*@
+
+<div class="mobile-menu-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="mobile-menu">
+                    <nav id="dropdown" style="display: block;">
+                        <ul class="mobile-menu-nav">
+                            <!-- <li><a data-toggle="collapse" data-target="#Charts" href="#">Home <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a> -->
+                            <!-- <ul class="collapse dropdown-header-top"> -->
+                            <!-- <li><a href="dashboard.html">Dashboard v.1</a> -->
+                            <!-- </li> -->
+                            <!-- <li><a href="dashboard-2.html">Dashboard v.2</a> -->
+                            <!-- </li> -->
+                            <!-- <li><a href="analytics.html">Analytics</a> -->
+                            <!-- </li> -->
+                            <!-- <li><a href="widgets.html">Widgets</a> -->
+                            <!-- </li> -->
+                            <!-- </ul> -->
+                            <!-- </li> -->
+                            <li>
+                                <a data-toggle="collapse" data-target="#demo" href="#">
+                                    New Estimate
+                                    <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a data-toggle="collapse" data-target="#others" href="#">
+                                    New Engineering Schedule
+                                    <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a data-toggle="collapse" data-target="#Miscellaneousmob" href="#">
+                                    View Manufacture Schedule
+                                    <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a data-toggle="collapse" data-target="#Chartsmob" href="#">
+                                    View Installation Schedule
+                                    <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span>
+                                </a>
+                                <!-- <ul id="Chartsmob" class="collapse dropdown-header-top"> -->
+                                <!-- <li><a href="bar-charts.html">Bar Charts</a> -->
+                                <!-- </li> -->
+                                <!-- <li><a href="line-charts.html">Line Charts</a> -->
+                                <!-- </li> -->
+                                <!-- <li><a href="area-charts.html">Area Charts</a> -->
+                                <!-- </li> -->
+                                <!-- <li><a href="rounded-chart.html">Rounded Charts</a> -->
+                                <!-- </li> -->
+                                <!-- <li><a href="c3.html">C3 Charts</a> -->
+                                <!-- </li> -->
+                                <!-- <li><a href="sparkline.html">Sparkline Charts</a> -->
+                                <!-- </li> -->
+                                <!-- <li><a href="peity.html">Peity Charts</a> -->
+                                <!-- </li> -->
+                                <!-- </ul> -->
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="breadcome-area mg-b-30 des-none">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="breadcome-list map-mg-t-40-gl shadow-reset">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="breadcome-heading">
+                                <form role="search" class="">
+                                    <input type="text" placeholder="Search..." class="form-control">
+                                    <a href="">
+                                        <i class="fa fa-search"></i>
+                                    </a>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <ul class="breadcome-menu">
+                                <li>
+                                    <a href="#">Home</a>
+                                    <span class="bread-slash">/</span>
+                                </li>
+                                <li>
+                                    <span class="bread-blod">Dashboard</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="cstm_container forshadow">
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <div class="panel">
+                <div class="panel-body">
+
+                    <div class="text-right">
+                        <h3 class="text-left txtstage pull-left mb-0 pt-5">Users</h3>
+                        <div class="mb-10">
+                            <div class="breadcome-heading cstm">
+                                <form role="search" class="">
+                                    <input type="text" placeholder="Search..." class="form-control cstmform">
+                                    <a href="">
+                                        <i class="fa fa-search"></i>
+                                    </a>
+                                </form>
+                            </div>
+                            <button type="button" id="adduser" _id="0" class="btn btn-custon-rounded-four btn-default ads mb-0" value="submit" data-toggle="modal"
+                                    data-target="#myModal">
+                                Add User
+                            </button>
+                        </div>
+                    </div>
+
+                    <table class="table table-condensed cstm table-customDark table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>User ID</th>
+                                <th>User Name</th>
+                                <th>Email</th>
+                                <th>Created on</th>
+                                <th>Is Admin</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>545</td>
+                                <td>admin</td>
+                                <td> admin@abc.com </td>
+                                <td>3/25/2018 11:51:11 PM</td>
+                                <td>True</td>
+
+                                <td width="10%" class="ws-nowrap">
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <a href="/Users/UserPermission/18" title="Permissions" class="btngrid">
+                                            <i class="fa fa-file-text-o cstmfont" aria-hidden="true"></i>
+                                        </a>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Edit" title="Edit" class="btngrid" _id="18"
+                                                style="width:30%">
+                                            <i class="fa fa-pencil-square-o cstmfont" aria-hidden="true"></i>
+                                        </button>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Delete" title="Delete" class="Delete btngrid"
+                                                _id="18">
+                                            <i class="fa fa-trash-o cstmfont"></i>
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>545</td>
+                                <td>Dean</td>
+                                <td> abc@abc.com </td>
+                                <td>3/26/2018 1:08:25 AM</td>
+                                <td>True</td>
+
+                                <td width="10%" class="ws-nowrap">
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <a href="/Users/UserPermission/20" title="Permissions" class="btngrid">
+                                            <i class="fa fa-file-text-o cstmfont" aria-hidden="true"></i>
+                                        </a>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Edit" title="Edit" class="btngrid" _id="20"
+                                                style="width:30%">
+                                            <i class="fa fa-pencil-square-o cstmfont" aria-hidden="true"></i>
+                                        </button>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Delete" title="Delete" class="Delete btngrid"
+                                                _id="20">
+                                            <i class="fa fa-trash-o cstmfont"></i>
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>545</td>
+                                <td>User</td>
+                                <td> user@user.com </td>
+                                <td>3/26/2018 1:09:02 AM</td>
+                                <td>False</td>
+
+                                <td width="10%" class="ws-nowrap">
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <a href="/Users/UserPermission/21" title="Permissions" class="btngrid">
+                                            <i class="fa fa-file-text-o cstmfont" aria-hidden="true"></i>
+                                        </a>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Edit" title="Edit" class="btngrid" _id="21"
+                                                style="width:30%">
+                                            <i class="fa fa-pencil-square-o cstmfont" aria-hidden="true"></i>
+                                        </button>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Delete" title="Delete" class="Delete btngrid"
+                                                _id="21">
+                                            <i class="fa fa-trash-o cstmfont"></i>
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>545</td>
+                                <td>test</td>
+                                <td> dean@qshf.com </td>
+                                <td>3/26/2018 1:50:56 AM</td>
+                                <td>True</td>
+
+                                <td width="10%" class="ws-nowrap">
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <a href="/Users/UserPermission/22" title="Permissions" class="btngrid">
+                                            <i class="fa fa-file-text-o cstmfont" aria-hidden="true"></i>
+                                        </a>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Edit" title="Edit" class="btngrid" _id="22"
+                                                style="width:30%">
+                                            <i class="fa fa-pencil-square-o cstmfont" aria-hidden="true"></i>
+                                        </button>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Delete" title="Delete" class="Delete btngrid"
+                                                _id="22">
+                                            <i class="fa fa-trash-o cstmfont"></i>
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>5445</td>
+                                <td>noman</td>
+                                <td> noman@gmail.com </td>
+                                <td>5/3/2018 4:16:50 PM</td>
+                                <td>True</td>
+
+                                <td width="10%" class="ws-nowrap">
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <a href="/Users/UserPermission/25" title="Permissions" class="btngrid">
+                                            <i class="fa fa-file-text-o cstmfont" aria-hidden="true"></i>
+                                        </a>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Edit" title="Edit" class="btngrid" _id="25"
+                                                style="width:30%">
+                                            <i class="fa fa-pencil-square-o cstmfont" aria-hidden="true"></i>
+                                        </button>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Delete" title="Delete" class="Delete btngrid"
+                                                _id="25">
+                                            <i class="fa fa-trash-o cstmfont"></i>
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>1555</td>
+                                <td>testuser1</td>
+                                <td> testuser1@gmail.com </td>
+                                <td>5/3/2018 4:30:26 PM</td>
+                                <td>False</td>
+
+                                <td width="10%" class="ws-nowrap">
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <a href="/Users/UserPermission/26" title="Permissions" class="btngrid">
+                                            <i class="fa fa-file-text-o cstmfont" aria-hidden="true"></i>
+                                        </a>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Edit" title="Edit" class="btngrid" _id="26"
+                                                style="width:30%">
+                                            <i class="fa fa-pencil-square-o cstmfont" aria-hidden="true"></i>
+                                        </button>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Delete" title="Delete" class="Delete btngrid"
+                                                _id="26">
+                                            <i class="fa fa-trash-o cstmfont"></i>
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>5157</td>
+                                <td>test1</td>
+                                <td> test1@gmail.com </td>
+                                <td>5/7/2018 11:00:26 AM</td>
+                                <td>False</td>
+
+                                <td width="10%" class="ws-nowrap">
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <a href="/Users/UserPermission/27" title="Permissions" class="btngrid">
+                                            <i class="fa fa-file-text-o cstmfont" aria-hidden="true"></i>
+                                        </a>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Edit" title="Edit" class="btngrid" _id="27"
+                                                style="width:30%">
+                                            <i class="fa fa-pencil-square-o cstmfont" aria-hidden="true"></i>
+                                        </button>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Delete" title="Delete" class="Delete btngrid"
+                                                _id="27">
+                                            <i class="fa fa-trash-o cstmfont"></i>
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>51555</td>
+                                <td>Rasim </td>
+                                <td> rasim@gmail.com </td>
+                                <td>5/7/2018 7:02:56 AM</td>
+                                <td>False</td>
+
+                                <td width="10%" class="ws-nowrap">
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <a href="/Users/UserPermission/28" title="Permissions" class="btngrid">
+                                            <i class="fa fa-file-text-o cstmfont" aria-hidden="true"></i>
+                                        </a>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Edit" title="Edit" class="btngrid" _id="28"
+                                                style="width:30%">
+                                            <i class="fa fa-pencil-square-o cstmfont" aria-hidden="true"></i>
+                                        </button>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Delete" title="Delete" class="Delete btngrid"
+                                                _id="28">
+                                            <i class="fa fa-trash-o cstmfont"></i>
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>4428</td>
+                                <td>Noman</td>
+                                <td> noman@gmail.com </td>
+                                <td>5/7/2018 7:04:27 AM</td>
+                                <td>False</td>
+
+                                <td width="10%" class="ws-nowrap">
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <a href="/Users/UserPermission/29" title="Permissions" class="btngrid">
+                                            <i class="fa fa-file-text-o cstmfont" aria-hidden="true"></i>
+                                        </a>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Edit" title="Edit" class="btngrid" _id="29"
+                                                style="width:30%">
+                                            <i class="fa fa-pencil-square-o cstmfont" aria-hidden="true"></i>
+                                        </button>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Delete" title="Delete" class="Delete btngrid"
+                                                _id="29">
+                                            <i class="fa fa-trash-o cstmfont"></i>
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>4545</td>
+                                <td>Test3</td>
+                                <td> test3@gmail.com </td>
+                                <td>5/7/2018 7:05:21 AM</td>
+                                <td>False</td>
+
+                                <td width="10%" class="ws-nowrap">
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <a href="/Users/UserPermission/30" title="Permissions" class="btngrid">
+                                            <i class="fa fa-file-text-o cstmfont" aria-hidden="true"></i>
+                                        </a>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Edit" title="Edit" class="btngrid" _id="30"
+                                                style="width:30%">
+                                            <i class="fa fa-pencil-square-o cstmfont" aria-hidden="true"></i>
+                                        </button>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Delete" title="Delete" class="Delete btngrid"
+                                                _id="30">
+                                            <i class="fa fa-trash-o cstmfont"></i>
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>5415</td>
+                                <td>Testflight</td>
+                                <td> testflight@gmail.com </td>
+                                <td>5/7/2018 7:09:38 AM</td>
+                                <td>False</td>
+
+                                <td width="10%" class="ws-nowrap">
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <a href="/Users/UserPermission/31" title="Permissions" class="btngrid">
+                                            <i class="fa fa-file-text-o cstmfont" aria-hidden="true"></i>
+                                        </a>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Edit" title="Edit" class="btngrid" _id="31"
+                                                style="width:30%">
+                                            <i class="fa fa-pencil-square-o cstmfont" aria-hidden="true"></i>
+                                        </button>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Delete" title="Delete" class="Delete btngrid"
+                                                _id="31">
+                                            <i class="fa fa-trash-o cstmfont"></i>
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>45415</td>
+                                <td>AdminUser</td>
+                                <td> admin@gmail.com </td>
+                                <td>5/8/2018 1:11:37 AM</td>
+                                <td>False</td>
+
+                                <td width="10%" class="ws-nowrap">
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <a href="/Users/UserPermission/32" title="Permissions" class="btngrid">
+                                            <i class="fa fa-file-text-o cstmfont" aria-hidden="true"></i>
+                                        </a>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Edit" title="Edit" class="btngrid" _id="32"
+                                                style="width:30%">
+                                            <i class="fa fa-pencil-square-o cstmfont" aria-hidden="true"></i>
+                                        </button>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Delete" title="Delete" class="Delete btngrid"
+                                                _id="32">
+                                            <i class="fa fa-trash-o cstmfont"></i>
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>5415</td>
+                                <td>Test4</td>
+                                <td> test4@gmail.com </td>
+                                <td>5/14/2018 12:50:54 AM</td>
+                                <td>False</td>
+
+                                <td width="10%" class="ws-nowrap">
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <a href="/Users/UserPermission/33" title="Permissions" class="btngrid">
+                                            <i class="fa fa-file-text-o cstmfont" aria-hidden="true"></i>
+                                        </a>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Edit" title="Edit" class="btngrid" _id="33"
+                                                style="width:30%">
+                                            <i class="fa fa-pencil-square-o cstmfont" aria-hidden="true"></i>
+                                        </button>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Delete" title="Delete" class="Delete btngrid"
+                                                _id="33">
+                                            <i class="fa fa-trash-o cstmfont"></i>
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>54454</td>
+                                <td>Rasim</td>
+                                <td> rasim@rasim.com </td>
+                                <td>6/14/2018 3:24:16 AM</td>
+                                <td>True</td>
+
+                                <td width="10%" class="ws-nowrap">
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <a href="/Users/UserPermission/34" title="Permissions" class="btngrid">
+                                            <i class="fa fa-file-text-o cstmfont" aria-hidden="true"></i>
+                                        </a>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Edit" title="Edit" class="btngrid" _id="34"
+                                                style="width:30%">
+                                            <i class="fa fa-pencil-square-o cstmfont" aria-hidden="true"></i>
+                                        </button>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Delete" title="Delete" class="Delete btngrid"
+                                                _id="34">
+                                            <i class="fa fa-trash-o cstmfont"></i>
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>544545</td>
+                                <td>Noman</td>
+                                <td> noman@noman.com </td>
+                                <td>6/14/2018 7:06:18 AM</td>
+                                <td>False</td>
+
+                                <td width="10%" class="ws-nowrap">
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <a href="/Users/UserPermission/35" title="Permissions" class="btngrid">
+                                            <i class="fa fa-file-text-o cstmfont" aria-hidden="true"></i>
+                                        </a>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Edit" title="Edit" class="btngrid" _id="35"
+                                                style="width:30%">
+                                            <i class="fa fa-pencil-square-o cstmfont" aria-hidden="true"></i>
+                                        </button>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Delete" title="Delete" class="Delete btngrid"
+                                                _id="35">
+                                            <i class="fa fa-trash-o cstmfont"></i>
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>5444545</td>
+                                <td>Dean</td>
+                                <td> dean@dean.com </td>
+                                <td>6/14/2018 10:12:31 AM</td>
+                                <td>False</td>
+
+                                <td width="10%" class="ws-nowrap">
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <a href="/Users/UserPermission/36" title="Permissions" class="btngrid">
+                                            <i class="fa fa-file-text-o cstmfont" aria-hidden="true"></i>
+                                        </a>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Edit" title="Edit" class="btngrid" _id="36"
+                                                style="width:30%">
+                                            <i class="fa fa-pencil-square-o cstmfont" aria-hidden="true"></i>
+                                        </button>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Delete" title="Delete" class="Delete btngrid"
+                                                _id="36">
+                                            <i class="fa fa-trash-o cstmfont"></i>
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>45</td>
+                                <td>Taha</td>
+                                <td> taha@viftech.com </td>
+                                <td>6/19/2018 6:34:28 AM</td>
+                                <td>False</td>
+
+                                <td width="10%" class="ws-nowrap">
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <a href="/Users/UserPermission/37" title="Permissions" class="btngrid">
+                                            <i class="fa fa-file-text-o cstmfont" aria-hidden="true"></i>
+                                        </a>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Edit" title="Edit" class="btngrid" _id="37"
+                                                style="width:30%">
+                                            <i class="fa fa-pencil-square-o cstmfont" aria-hidden="true"></i>
+                                        </button>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Delete" title="Delete" class="Delete btngrid"
+                                                _id="37">
+                                            <i class="fa fa-trash-o cstmfont"></i>
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>565</td>
+                                <td>Hilal</td>
+                                <td> hilal@viftech.com.pk </td>
+                                <td>6/25/2018 2:44:26 AM</td>
+                                <td>False</td>
+
+                                <td width="10%" class="ws-nowrap">
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <a href="/Users/UserPermission/38" title="Permissions" class="btngrid">
+                                            <i class="fa fa-file-text-o cstmfont" aria-hidden="true"></i>
+                                        </a>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Edit" title="Edit" class="btngrid" _id="38"
+                                                style="width:30%">
+                                            <i class="fa fa-pencil-square-o cstmfont" aria-hidden="true"></i>
+                                        </button>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Delete" title="Delete" class="Delete btngrid"
+                                                _id="38">
+                                            <i class="fa fa-trash-o cstmfont"></i>
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>545</td>
+                                <td>Rasim </td>
+                                <td> rasim@gmail.com </td>
+                                <td>6/30/2018 5:54:33 AM</td>
+                                <td>False</td>
+
+                                <td width="10%" class="ws-nowrap">
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <a href="/Users/UserPermission/40" title="Permissions" class="btngrid">
+                                            <i class="fa fa-file-text-o cstmfont" aria-hidden="true"></i>
+                                        </a>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Edit" title="Edit" class="btngrid" _id="40"
+                                                style="width:30%">
+                                            <i class="fa fa-pencil-square-o cstmfont" aria-hidden="true"></i>
+                                        </button>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Delete" title="Delete" class="Delete btngrid"
+                                                _id="40">
+                                            <i class="fa fa-trash-o cstmfont"></i>
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>545</td>
+                                <td>Amar</td>
+                                <td> amar.ali@viftech.com.pk </td>
+                                <td>6/30/2018 7:13:29 AM</td>
+                                <td>False</td>
+
+                                <td width="10%" class="ws-nowrap">
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <a href="/Users/UserPermission/42" title="Permissions" class="btngrid">
+                                            <i class="fa fa-file-text-o cstmfont" aria-hidden="true"></i>
+                                        </a>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Edit" title="Edit" class="btngrid" _id="42"
+                                                style="width:30%">
+                                            <i class="fa fa-pencil-square-o cstmfont" aria-hidden="true"></i>
+                                        </button>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Delete" title="Delete" class="Delete btngrid"
+                                                _id="42">
+                                            <i class="fa fa-trash-o cstmfont"></i>
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>545</td>
+                                <td>Razak</td>
+                                <td> razak@abc.com </td>
+                                <td>6/30/2018 7:26:09 AM</td>
+                                <td>False</td>
+
+                                <td width="10%" class="ws-nowrap">
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <a href="/Users/UserPermission/44" title="Permissions" class="btngrid">
+                                            <i class="fa fa-file-text-o cstmfont" aria-hidden="true"></i>
+                                        </a>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Edit" title="Edit" class="btngrid" _id="44"
+                                                style="width:30%">
+                                            <i class="fa fa-pencil-square-o cstmfont" aria-hidden="true"></i>
+                                        </button>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Delete" title="Delete" class="Delete btngrid"
+                                                _id="44">
+                                            <i class="fa fa-trash-o cstmfont"></i>
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>545</td>
+                                <td>Testing User</td>
+                                <td> testinguser@gmail.com </td>
+                                <td>7/4/2018 2:08:52 AM</td>
+                                <td>False</td>
+
+                                <td width="10%" class="ws-nowrap">
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <a href="/Users/UserPermission/45" title="Permissions" class="btngrid">
+                                            <i class="fa fa-file-text-o cstmfont" aria-hidden="true"></i>
+                                        </a>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Edit" title="Edit" class="btngrid" _id="45"
+                                                style="width:30%">
+                                            <i class="fa fa-pencil-square-o cstmfont" aria-hidden="true"></i>
+                                        </button>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Delete" title="Delete" class="Delete btngrid"
+                                                _id="45">
+                                            <i class="fa fa-trash-o cstmfont"></i>
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>545</td>
+                                <td>boss</td>
+                                <td> boss@qhsf.com </td>
+                                <td>7/4/2018 2:44:32 AM</td>
+                                <td>False</td>
+
+                                <td width="10%" class="ws-nowrap">
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <a href="/Users/UserPermission/46" title="Permissions" class="btngrid">
+                                            <i class="fa fa-file-text-o cstmfont" aria-hidden="true"></i>
+                                        </a>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Edit" title="Edit" class="btngrid" _id="46"
+                                                style="width:30%">
+                                            <i class="fa fa-pencil-square-o cstmfont" aria-hidden="true"></i>
+                                        </button>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Delete" title="Delete" class="Delete btngrid"
+                                                _id="46">
+                                            <i class="fa fa-trash-o cstmfont"></i>
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>545</td>
+                                <td>Not Admin</td>
+                                <td> notadmin@qhsf.com </td>
+                                <td>7/5/2018 1:50:04 AM</td>
+                                <td>False</td>
+
+                                <td width="10%" class="ws-nowrap">
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <a href="/Users/UserPermission/47" title="Permissions" class="btngrid">
+                                            <i class="fa fa-file-text-o cstmfont" aria-hidden="true"></i>
+                                        </a>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Edit" title="Edit" class="btngrid" _id="47"
+                                                style="width:30%">
+                                            <i class="fa fa-pencil-square-o cstmfont" aria-hidden="true"></i>
+                                        </button>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Delete" title="Delete" class="Delete btngrid"
+                                                _id="47">
+                                            <i class="fa fa-trash-o cstmfont"></i>
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>545</td>
+                                <td>Pilot testing</td>
+                                <td> pilot@gmail.com </td>
+                                <td>7/9/2018 7:21:38 AM</td>
+                                <td>False</td>
+
+                                <td width="10%" class="ws-nowrap">
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <a href="/Users/UserPermission/48" title="Permissions" class="btngrid">
+                                            <i class="fa fa-file-text-o cstmfont" aria-hidden="true"></i>
+                                        </a>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Edit" title="Edit" class="btngrid" _id="48"
+                                                style="width:30%">
+                                            <i class="fa fa-pencil-square-o cstmfont" aria-hidden="true"></i>
+                                        </button>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Delete" title="Delete" class="Delete btngrid"
+                                                _id="48">
+                                            <i class="fa fa-trash-o cstmfont"></i>
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>545</td>
+                                <td>Lachlan</td>
+                                <td> lachlan@gmail.com </td>
+                                <td>7/10/2018 3:08:24 AM</td>
+                                <td>False</td>
+
+                                <td width="10%" class="ws-nowrap">
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <a href="/Users/UserPermission/49" title="Permissions" class="btngrid">
+                                            <i class="fa fa-file-text-o cstmfont" aria-hidden="true"></i>
+                                        </a>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Edit" title="Edit" class="btngrid" _id="49"
+                                                style="width:30%">
+                                            <i class="fa fa-pencil-square-o cstmfont" aria-hidden="true"></i>
+                                        </button>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Delete" title="Delete" class="Delete btngrid"
+                                                _id="49">
+                                            <i class="fa fa-trash-o cstmfont"></i>
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>545</td>
+                                <td>Lachlan Maguire</td>
+                                <td> lachie@crofti.com.au </td>
+                                <td>7/18/2018 6:00:47 PM</td>
+                                <td>True</td>
+
+                                <td width="10%" class="ws-nowrap">
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <a href="/Users/UserPermission/50" title="Permissions" class="btngrid">
+                                            <i class="fa fa-file-text-o cstmfont" aria-hidden="true"></i>
+                                        </a>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Edit" title="Edit" class="btngrid" _id="50"
+                                                style="width:30%">
+                                            <i class="fa fa-pencil-square-o cstmfont" aria-hidden="true"></i>
+                                        </button>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Delete" title="Delete" class="Delete btngrid"
+                                                _id="50">
+                                            <i class="fa fa-trash-o cstmfont"></i>
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>545</td>
+                                <td>Tony</td>
+                                <td> tony@qldsteelhouseframes.com.au </td>
+                                <td>7/18/2018 6:10:31 PM</td>
+                                <td>True</td>
+
+                                <td width="10%" class="ws-nowrap">
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <a href="/Users/UserPermission/51" title="Permissions" class="btngrid">
+                                            <i class="fa fa-file-text-o cstmfont" aria-hidden="true"></i>
+                                        </a>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Edit" title="Edit" class="btngrid" _id="51"
+                                                style="width:30%">
+                                            <i class="fa fa-pencil-square-o cstmfont" aria-hidden="true"></i>
+                                        </button>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Delete" title="Delete" class="Delete btngrid"
+                                                _id="51">
+                                            <i class="fa fa-trash-o cstmfont"></i>
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>545</td>
+                                <td>Craig</td>
+                                <td> craig@qldsteelhouseframes.com.au </td>
+                                <td>7/18/2018 6:11:22 PM</td>
+                                <td>True</td>
+
+                                <td width="10%" class="ws-nowrap">
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <a href="/Users/UserPermission/52" title="Permissions" class="btngrid">
+                                            <i class="fa fa-file-text-o cstmfont" aria-hidden="true"></i>
+                                        </a>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Edit" title="Edit" class="btngrid" _id="52"
+                                                style="width:30%">
+                                            <i class="fa fa-pencil-square-o cstmfont" aria-hidden="true"></i>
+                                        </button>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Delete" title="Delete" class="Delete btngrid"
+                                                _id="52">
+                                            <i class="fa fa-trash-o cstmfont"></i>
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>545</td>
+                                <td>Brett</td>
+                                <td> brett@qldsteelhouseframes.com.au </td>
+                                <td>7/18/2018 6:12:01 PM</td>
+                                <td>True</td>
+
+                                <td width="10%" class="ws-nowrap">
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <a href="/Users/UserPermission/53" title="Permissions" class="btngrid">
+                                            <i class="fa fa-file-text-o cstmfont" aria-hidden="true"></i>
+                                        </a>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Edit" title="Edit" class="btngrid" _id="53"
+                                                style="width:30%">
+                                            <i class="fa fa-pencil-square-o cstmfont" aria-hidden="true"></i>
+                                        </button>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Delete" title="Delete" class="Delete btngrid"
+                                                _id="53">
+                                            <i class="fa fa-trash-o cstmfont"></i>
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>56565</td>
+                                <td>Tiana</td>
+                                <td> tiana@qldsteelhouseframes.com.au </td>
+                                <td>7/18/2018 6:12:25 PM</td>
+                                <td>True</td>
+
+                                <td width="10%" class="ws-nowrap">
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <a href="/Users/UserPermission/54" title="Permissions" class="btngrid">
+                                            <i class="fa fa-file-text-o cstmfont" aria-hidden="true"></i>
+                                        </a>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Edit" title="Edit" class="btngrid" _id="54"
+                                                style="width:30%">
+                                            <i class="fa fa-pencil-square-o cstmfont" aria-hidden="true"></i>
+                                        </button>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Delete" title="Delete" class="Delete btngrid"
+                                                _id="54">
+                                            <i class="fa fa-trash-o cstmfont"></i>
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>55455</td>
+                                <td>Jesse</td>
+                                <td> jesse@qldsteelhouseframes.com.au </td>
+                                <td>7/18/2018 6:12:45 PM</td>
+                                <td>True</td>
+
+                                <td width="10%" class="ws-nowrap">
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <a href="/Users/UserPermission/55" title="Permissions" class="btngrid">
+                                            <i class="fa fa-file-text-o cstmfont" aria-hidden="true"></i>
+                                        </a>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Edit" title="Edit" class="btngrid" _id="55"
+                                                style="width:30%">
+                                            <i class="fa fa-pencil-square-o cstmfont" aria-hidden="true"></i>
+                                        </button>
+                                    </span>
+                                    <span class="sparkline9-collapse-close cstmfont">
+                                        <button type="button" id="Delete" title="Delete" class="Delete btngrid"
+                                                _id="55">
+                                            <i class="fa fa-trash-o cstmfont"></i>
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Opening Modal-->
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Users</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row mb-10">
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" placeholder="User Name" id="usr">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" placeholder="Emial Address" id="usr">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-10">
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" placeholder="password" id="usr">
+                        </div>
+                        <div class="col-md-6 mt-10">
+                            <span class="displayText cstm">Is Active</span>
+                            <label class="checkboxDesign ml-10 mr-10 mb-0">
+                                <input type="checkbox" name="chkWindRating_Carport">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-left">
+                    <h4>Roles</h4>
+                </div>
+                <div class="row mt-10 labels-row-cstm">
+                    <div class="col-md-3 cstmlabels">
+                        <label class="labeltxts">
+                            Overview
+                        </label>
+                    </div>
+                    <div class="col-md-3 cstmchecks">
+                        <label class="checkboxDesign ml-10 mr-10">
+                            <input type="checkbox" name="chkWindRating_Carport">
+                            <span class="checkmark"></span>
+                            <span class="displayText">Admin</span>
+                        </label>
+                    </div>
+                    <div class="col-md-3 cstmchecks">
+                        <label class="checkboxDesign ml-10 mr-10">
+                            <input type="checkbox" name="chkWindRating_Carport">
+                            <span class="checkmark"></span>
+                            <span class="displayText">Carport</span>
+                        </label>
+                    </div>
+                    <div class="col-md-3 cstmchecks">
+                        <label class="checkboxDesign ml-10 mr-10">
+                            <input type="checkbox" name="chkWindRating_Carport">
+                            <span class="checkmark"></span>
+                            <span class="displayText">Carport</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="row mt-10 labels-row-cstm">
+                    <div class="col-md-3 cstmlabels">
+                        <label class="labeltxts">
+                            Requirements
+                        </label>
+                    </div>
+                    <div class="col-md-3 cstmchecks">
+                        <label class="checkboxDesign ml-10 mr-10">
+                            <input type="checkbox" name="chkWindRating_Carport">
+                            <span class="checkmark"></span>
+                            <span class="displayText">Admin</span>
+                        </label>
+                    </div>
+                    <div class="col-md-3 cstmchecks">
+                        <label class="checkboxDesign ml-10 mr-10">
+                            <input type="checkbox" name="chkWindRating_Carport">
+                            <span class="checkmark"></span>
+                            <span class="displayText">Carport</span>
+                        </label>
+                    </div>
+                    <div class="col-md-3 cstmchecks">
+                        <label class="checkboxDesign ml-10 mr-10">
+                            <input type="checkbox" name="chkWindRating_Carport">
+                            <span class="checkmark"></span>
+                            <span class="displayText">Carport</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="row mt-10 labels-row-cstm">
+                    <div class="col-md-3 cstmlabels">
+                        <label class="labeltxts">
+                            Estimate
+                        </label>
+                    </div>
+                    <div class="col-md-3 cstmchecks">
+                        <label class="checkboxDesign ml-10 mr-10">
+                            <input type="checkbox" name="chkWindRating_Carport">
+                            <span class="checkmark"></span>
+                            <span class="displayText">Admin</span>
+                        </label>
+                    </div>
+                    <div class="col-md-3 cstmchecks">
+                        <label class="checkboxDesign ml-10 mr-10">
+                            <input type="checkbox" name="chkWindRating_Carport">
+                            <span class="checkmark"></span>
+                            <span class="displayText">Carport</span>
+                        </label>
+                    </div>
+                    <div class="col-md-3 cstmchecks">
+                        <label class="checkboxDesign ml-10 mr-10">
+                            <input type="checkbox" name="chkWindRating_Carport">
+                            <span class="checkmark"></span>
+                            <span class="displayText">Carport</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="row mt-10 labels-row-cstm">
+                    <div class="col-md-3 cstmlabels">
+                        <label class="labeltxts">
+                            Drafting
+                        </label>
+                    </div>
+                    <div class="col-md-3 cstmchecks">
+                        <label class="checkboxDesign ml-10 mr-10">
+                            <input type="checkbox" name="chkWindRating_Carport">
+                            <span class="checkmark"></span>
+                            <span class="displayText">Admin</span>
+                        </label>
+                    </div>
+                    <div class="col-md-3 cstmchecks">
+                        <label class="checkboxDesign ml-10 mr-10">
+                            <input type="checkbox" name="chkWindRating_Carport">
+                            <span class="checkmark"></span>
+                            <span class="displayText">Carport</span>
+                        </label>
+                    </div>
+                    <div class="col-md-3 cstmchecks">
+                        <label class="checkboxDesign ml-10 mr-10">
+                            <input type="checkbox" name="chkWindRating_Carport">
+                            <span class="checkmark"></span>
+                            <span class="displayText">Carport</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="row mt-10 labels-row-cstm">
+                    <div class="col-md-3 cstmlabels">
+                        <label class="labeltxts">
+                            Manufacture
+                        </label>
+                    </div>
+                    <div class="col-md-3 cstmchecks">
+                        <label class="checkboxDesign ml-10 mr-10">
+                            <input type="checkbox" name="chkWindRating_Carport">
+                            <span class="checkmark"></span>
+                            <span class="displayText">Admin</span>
+                        </label>
+                    </div>
+                    <div class="col-md-3 cstmchecks">
+                        <label class="checkboxDesign ml-10 mr-10">
+                            <input type="checkbox" name="chkWindRating_Carport">
+                            <span class="checkmark"></span>
+                            <span class="displayText">Carport</span>
+                        </label>
+                    </div>
+                    <div class="col-md-3 cstmchecks">
+                        <label class="checkboxDesign ml-10 mr-10">
+                            <input type="checkbox" name="chkWindRating_Carport">
+                            <span class="checkmark"></span>
+                            <span class="displayText">Carport</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="row mt-10 labels-row-cstm">
+                    <div class="col-md-3 cstmlabels">
+                        <label class="labeltxts">
+                            Installation
+                        </label>
+                    </div>
+                    <div class="col-md-3 cstmchecks">
+                        <label class="checkboxDesign ml-10 mr-10">
+                            <input type="checkbox" name="chkWindRating_Carport">
+                            <span class="checkmark"></span>
+                            <span class="displayText">Admin</span>
+                        </label>
+                    </div>
+                    <div class="col-md-3 cstmchecks">
+                        <label class="checkboxDesign ml-10 mr-10">
+                            <input type="checkbox" name="chkWindRating_Carport">
+                            <span class="checkmark"></span>
+                            <span class="displayText">Carport</span>
+                        </label>
+                    </div>
+                    <div class="col-md-3 cstmchecks">
+                        <label class="checkboxDesign ml-10 mr-10">
+                            <input type="checkbox" name="chkWindRating_Carport">
+                            <span class="checkmark"></span>
+                            <span class="displayText">Carport</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="row mt-10 labels-row-cstm">
+                    <div class="col-md-3 cstmlabels">
+                        <label class="labeltxts">
+                            Variations
+                        </label>
+                    </div>
+                    <div class="col-md-3 cstmchecks">
+                        <label class="checkboxDesign ml-10 mr-10">
+                            <input type="checkbox" name="chkWindRating_Carport">
+                            <span class="checkmark"></span>
+                            <span class="displayText">Admin</span>
+                        </label>
+                    </div>
+                    <div class="col-md-3 cstmchecks">
+                        <label class="checkboxDesign ml-10 mr-10">
+                            <input type="checkbox" name="chkWindRating_Carport">
+                            <span class="checkmark"></span>
+                            <span class="displayText">Carport</span>
+                        </label>
+                    </div>
+                    <div class="col-md-3 cstmchecks">
+                        <label class="checkboxDesign ml-10 mr-10">
+                            <input type="checkbox" name="chkWindRating_Carport">
+                            <span class="checkmark"></span>
+                            <span class="displayText">Carport</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="row mt-10 labels-row-cstm">
+                    <div class="col-md-3 cstmlabels">
+                        <label class="labeltxts">
+                            Delivery
+                        </label>
+                    </div>
+                    <div class="col-md-3 cstmchecks">
+                        <label class="checkboxDesign ml-10 mr-10">
+                            <input type="checkbox" name="chkWindRating_Carport">
+                            <span class="checkmark"></span>
+                            <span class="displayText">Admin</span>
+                        </label>
+                    </div>
+                    <div class="col-md-3 cstmchecks">
+                        <label class="checkboxDesign ml-10 mr-10">
+                            <input type="checkbox" name="chkWindRating_Carport">
+                            <span class="checkmark"></span>
+                            <span class="displayText">Carport</span>
+                        </label>
+                    </div>
+                    <div class="col-md-3 cstmchecks">
+                        <label class="checkboxDesign ml-10 mr-10">
+                            <input type="checkbox" name="chkWindRating_Carport">
+                            <span class="checkmark"></span>
+                            <span class="displayText">Carport</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="row mt-10 labels-row-cstm">
+                    <div class="col-md-3 cstmlabels">
+                        <label class="labeltxts">
+                            Finance
+                        </label>
+                    </div>
+                    <div class="col-md-3 cstmchecks">
+                        <label class="checkboxDesign ml-10 mr-10">
+                            <input type="checkbox" name="chkWindRating_Carport">
+                            <span class="checkmark"></span>
+                            <span class="displayText">Admin</span>
+                        </label>
+                    </div>
+                    <div class="col-md-3 cstmchecks">
+                        <label class="checkboxDesign ml-10 mr-10">
+                            <input type="checkbox" name="chkWindRating_Carport">
+                            <span class="checkmark"></span>
+                            <span class="displayText">Carport</span>
+                        </label>
+                    </div>
+                    <div class="col-md-3 cstmchecks">
+                        <label class="checkboxDesign ml-10 mr-10">
+                            <input type="checkbox" name="chkWindRating_Carport">
+                            <span class="checkmark"></span>
+                            <span class="displayText">Carport</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="row mt-10 labels-row-cstm">
+                    <div class="col-md-3 cstmlabels">
+                        <label class="labeltxts">
+                            Quote Checker
+                        </label>
+                    </div>
+                    <div class="col-md-3 cstmchecks">
+                        <label class="checkboxDesign ml-10 mr-10">
+                            <input type="checkbox" name="chkWindRating_Carport">
+                            <span class="checkmark"></span>
+                            <span class="displayText">Admin</span>
+                        </label>
+                    </div>
+                    <div class="col-md-3 cstmchecks">
+                        <label class="checkboxDesign ml-10 mr-10">
+                            <input type="checkbox" name="chkWindRating_Carport">
+                            <span class="checkmark"></span>
+                            <span class="displayText">Carport</span>
+                        </label>
+                    </div>
+                    <div class="col-md-3 cstmchecks">
+                        <label class="checkboxDesign ml-10 mr-10">
+                            <input type="checkbox" name="chkWindRating_Carport">
+                            <span class="checkmark"></span>
+                            <span class="displayText">Carport</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-default adduser">Add User</button>
+            </div>
+        </div>
+    </div>
+</div>

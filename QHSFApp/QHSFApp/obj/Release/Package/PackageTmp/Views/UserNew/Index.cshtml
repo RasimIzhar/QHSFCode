@@ -1,0 +1,124 @@
+﻿@model DAL.Model.ViewModels.GetResponse
+@{
+    ViewBag.Title = "Index";
+}
+<script src="~/assets/js/jquery-1.12.4.min.js"></script>
+<div class="row bg-white mt-30">
+    <div class="col-12 text-right mt-40 mb-20">
+        <h3 class="text-left txtstage pull-left mb-0 pt-5">Users</h3>
+        <div class="mb-10">
+            @*<div class="breadcome-heading cstm">
+                <form role="search" class="">
+                    <input type="text" placeholder="Search..." class="form-control cstmform">
+                    <a href="">
+                        <i class="fa fa-search cstm-align"></i>
+                    </a>
+                </form>
+            </div>*@
+            <button type="button" id="adduser" _id="0" class="btn btn-custon-rounded-four btn-default ads mb-0" value="submit" data-toggle="modal" data-target="#myModal">Add User</button>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="panel">
+            <div class="panel-body">
+                <table id="myTable" class="table table-condensed table-striped table-bordered" data-role="datatable"  data-info="false">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Created on</th>
+                            <th>Active</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                         @if (Model != null)
+                                {
+                                    foreach (var items in Model.ModelObject.ToList())
+                                    {
+                                        <tr>
+                                            <td>@items.ID</td>
+                                            <td>@items.FirstName</td>
+                                            <td>@items.Email</td>
+                                            <td>@Convert.ToDateTime(items.CreatedDate).ToString("dd/MMM/yyyy")</td>
+                                            <td>
+                                                @if (items.IsActive == true)
+                                                {
+                                                    <img src="~/assets/images/Forma 1.png">
+                                                }
+                                                else
+                                                {
+                                                    <img src="~/assets/images/Forma 2.png">
+                                                }
+                                            </td>
+                                            <td width="15%" class="ws-nowrap">
+                                                    @*<button type="button" class="btn btn-custon-rounded-four btn-default mb-0">
+                                                        <span class="glyphicon glyphicon-eye-open"></span>
+                                                    </button>*@
+                                                @*<span class="sparkline9-collapse-close cstmfont">
+                                                    <button class="btngrid" title="Details" type="button" id="Details" onclick="Userid(@items.ID)">
+                                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                                    </button>
+                                                </span>*@
+                                                <span class="sparkline9-collapse-close cstmfont">
+                                                    <button class="btngrid" title="Permissions" type="button" id="Edit" onclick="Userid(@items.ID)" _id="0" value="submit" data-toggle="modal" data-target="#myModal">
+                                                        <i class="fa fa-file-text-o cstmfont" aria-hidden="true"></i>
+                                                    </button>
+                                                </span>
+                                                @*<span class="sparkline9-collapse-close cstmfont">
+                                                    <button class="btngrid" title="Delete User" type="button" id="Delete" onclick="Userid(@items.ID)">
+                                                        <i class="fa fa-ban cstmfont" aria-hidden="true"></i>
+                                                    </button>
+                                                </span>*@
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr><td colspan="6">No Record Found</td></tr>
+                                }
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Users</h4>
+                <input type="hidden" id="UserID" />
+            </div>
+            <div class="modal-body">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+   
+
+    function Userid(a) {
+        $(".modal-body").load("/UserNew/UserRolesEdit?id=" + a)
+        $("#UpdateUsersClass").attr("_id", a);
+    }
+
+    $("#adduser").click(function () {
+        $(".modal-body").load("/UserNew/UserRoles")
+
+    });
+
+</script>

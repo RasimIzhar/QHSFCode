@@ -1,0 +1,248 @@
+﻿@{
+    Layout = null;
+}
+@model DAL.Model.ViewModels.Checker_Response
+<h3 class="mt-20">Checker CheckList</h3>
+<div class="panel-group position-relative">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title back-clr-grey">
+                <a data-toggle="collapse" href="#collapse1">
+                    <i class="fa fa-minus cstm-accordin-icon"
+                       aria-hidden="true"></i>
+                </a>
+            </h4>
+        </div>
+        <div id="collapse1" class="panel-collapse collapse show">
+            <div class="text-center">
+                <label class="back-clr-green label-acordin">Final Check of plans</label>
+                <label class="back-clr-grey label-acordin">@Model.CheckList.Count/@Model.Questions.Count</label>
+            </div>
+            @if (Model != null)
+            {
+                <div id="carouselCheckListForChecker" class="carousel slide" data-ride="carousel" data-interval="false">
+                    <div class="carousel-inner" role="listbox">
+                        @if (Model.Questions.Count > 0)
+                        {
+                            var CarouselActive = "";
+                            int ActiveCaousel = 0;
+                            if (Model.CheckList.Count > 0)
+                            {
+                                ActiveCaousel = Model.CheckList.Max(x => x.Drafting_Checker_QuestionID).Value;
+                            }
+
+                            foreach (var item in Model.Questions.ToList())
+                            {
+
+                                if (ActiveCaousel > 0)
+                                {
+                                    //This condition is for CSS
+                                    if (item.CheckerQuestionID == ActiveCaousel)
+                                    {
+                                        CarouselActive = "carousel-item active";
+                                    }
+                                    else
+                                    {
+                                        CarouselActive = "carousel-item";
+                                    }
+                                }
+                                else
+                                {
+                                    if (item.CheckerQuestionID == 1)
+                                    {
+                                        CarouselActive = "carousel-item active";
+                                    }
+                                    else
+                                    {
+                                        CarouselActive = "carousel-item";
+                                    }
+                                }
+
+                                //FOR CHECKER AND UNCHECKED ITEMS STYLING
+                                var StatusChecked = false;
+                                var StatusFixUp = false;
+                                var StatusFixUpConfirmed = false;
+                                foreach (var itemCheckList in Model.CheckList)
+                                {
+                                    if (item.CheckerQuestionID == itemCheckList.Drafting_Checker_QuestionID)
+                                    {
+                                        if (itemCheckList.Status == "Checked")
+                                        {
+                                            StatusChecked = true;
+                                        }
+                                        if (itemCheckList.Status == "FixUp")
+                                        {
+                                            StatusFixUp = true;
+                                        }
+                                        if (itemCheckList.Status == "FixUpConfirmed")
+                                        {
+                                            StatusFixUpConfirmed = true;
+                                        }
+                                    }
+                                }
+
+                                <div class="@CarouselActive">
+                                    <div class="hide-area mt-10">
+                                        <h5 class="Sub-heading">@item.Heading</h5>
+                                        <div class="back-clr-grey border-radius-4 pb-30">
+                                            <div class="row">
+                                                <div class="col-md-7">
+                                                    @*<input type="checkbox" class="check" id="minimal-checkbox-2">
+                                                    <label for="minimal-checkbox-1" class="check-area">@item.CheckerQuestion</label>*@
+                                                    <p class="checklist">
+                                                        @item.CheckerQuestion</p>
+                                                        <br />
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <ul class="filters">
+                                                        <li>
+                                                            <label>
+                                                                <input type="radio" id="flat-radio-1" checked="@StatusChecked" onchange="CheckUpdate_Checker(this,@item.ID)" name="flat-radio">
+                                                                <span class="icon"><i class="fa fa-check cstm"></i></span>
+                                                            </label>
+                                                        </li>
+                                                        <li>
+                                                            <label>
+                                                                <input type="radio" id="@item.ID" checked="@StatusFixUp" onchange="FixUp(this,@item.ID)" name="flat-radio">
+                                                                <span class="icon"><i class="fa fa-times cstm"></i></span>
+                                                            </label>
+                                                        </li>
+                                                        <li>
+                                                            <input type="radio" class="check" id="flat-radio-2"  name="flat-radio"
+                                                                   checked="@StatusFixUpConfirmed" data-radio="iradio_flat-red">
+                                                            <label for="flat-radio-2"></label>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 reasonclass" id="reason-@item.ID">
+                                                <input type="text" class="form-control" id="txtReason-@item.ID" />
+                                                <input type="button" class="btn btn-primary greenback mt-10" value="Submit" onclick="CheckUpdate_FixUpList('#txtReason-@item.ID',@item.ID)"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                    <div class="text-center"></div>
+                    <a class="carousel-control-prev" href="#carouselCheckListForChecker" role="button" data-slide="prev">
+                        <button type="button" class="button back-clr-grey mt-20" value="submit">Back</button>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselCheckListForChecker" role="button" data-slide="next">
+                        <button type="button" class="button back-clr-green mt-20" value="submit">Next</button>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    //For Status : FixUp List
+    function CheckUpdate_FixUpList(Notes, QuestionID) {
+        var Obj = {
+            //JobDraftingID: 2,
+            JobDraftingID: $('#jobDraftingID').val(),
+            //CheckerID: 50,
+            CheckerID :  $('#userID').val(),
+            Drafting_Checker_QuestionID: QuestionID,
+            Status: 'FixUp',
+            Notes: 'Checker: ' + $(Notes).val()
+        };
+
+        $.blockUI({
+            css: {
+                border: 'none',
+                padding: '15px',
+                backgroundColor: '#000',
+                '-webkit-border-radius': '10px',
+                '-moz-border-radius': '10px',
+                opacity: .5,
+                color: '#fff'
+            }
+        })
+
+        //alert(JSON.stringify(Obj));
+        $.ajax({
+            type: "POST",
+            url: "/Drafting/CheckUpdate_FixUpList",
+            contentType: 'application/json',
+            data: JSON.stringify(Obj),
+            dataType: "json",
+            success: function (response) {
+                AlertToast('success', 'Data Added Successfully');
+                ReloadPage();
+            },
+            error: function (response) {
+
+                AlertToast('success', 'Data Added Successfully');
+                ReloadPage();
+                setTimeout($.unblockUI,5000);
+                
+            }
+        })
+    }
+    //For Status : Checked
+    function CheckUpdate_Checker(isChecked, QuestionID) {
+        var Obj = {
+            //JobDraftingID: 2,
+            JobDraftingID: $('#jobDraftingID').val(),
+            //CheckerID: 50,
+            CheckerID :  $('#userID').val(),
+            Drafting_Checker_QuestionID: QuestionID,
+            Status: 'Checked'
+        };
+
+        $.blockUI({
+            css: {
+                border: 'none',
+                padding: '15px',
+                backgroundColor: '#000',
+                '-webkit-border-radius': '10px',
+                '-moz-border-radius': '10px',
+                opacity: .5,
+                color: '#fff'
+            }
+        })
+        //alert(JSON.stringify(Obj));
+        $.ajax({
+            type: "POST",
+            url: "/Drafting/CheckUpdate_Checker",
+            contentType: 'application/json',
+            data: JSON.stringify(Obj),
+            dataType: "json",
+            success: function (response) {
+                AlertToast('success', 'Data Added Successfully');
+                ReloadPage();
+            },
+            error: function (response) {
+
+                AlertToast('success', 'Data Added Successfully');
+                ReloadPage();
+                setTimeout($.unblockUI,5000);
+            }
+        })
+    }
+
+    function FixUp(isChecked,id) {
+        if (isChecked.checked) {
+            $('#reason-' + id).show();
+            $('#txtReason-' + id).show();
+        }
+        else {
+            $('#reason-' + id).hide();
+            $('#txtReason-' + id).hide();
+        }
+    }
+
+    $(document).ready(function () {
+        $('.reasonclass').hide();
+    });
+
+
+</script>
+

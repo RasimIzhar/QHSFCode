@@ -1,0 +1,80 @@
+﻿@{
+    Layout = null;
+}
+@model DAL.Model.ViewModels.Drafter_Response
+<h3 class="mt-20">Drafter Checklist for Checker</h3>
+<div class="panel-group position-relative">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title back-clr-grey">
+                <a data-toggle="collapse" href="#collapse4">
+                    <i class="fa fa-minus cstm-accordin-icon"
+                       aria-hidden="true"></i>
+                </a>
+            </h4>
+        </div>
+        <div id="collapse4" class="panel-collapse collapse show">
+            <div class="text-center">
+                <label class="back-clr-green label-acordin">Procedure for detailing of job</label>
+                <label class="back-clr-grey label-acordin">@ViewBag.Count_Drafter_Questions_Checklist/@Model.Questions.Count</label>
+            </div>
+            <ul class="list-group">
+                @if (Model != null)
+                {                    
+                    foreach (var item in Model.Questions.ToList())
+                    {
+
+                        var QuestionCheckClass = "draftingUncheck";
+                        foreach (var itemCheckList in Model.CheckList)
+                        {
+                            if (item.DrafterQuestionID == itemCheckList.QuestionID)
+                            {
+                                if (itemCheckList.Status == true)
+                                {
+                                    QuestionCheckClass = "draftingCheck";
+                                    break;
+                                }
+                            }
+                            else
+                            {
+                                QuestionCheckClass = "draftingUncheck";
+                            }
+                        }
+                        <li class="list-group-item @QuestionCheckClass">@item.DrafterQuestion</li>
+
+                        var subItem = Model.SubQuestions.Where(x => x.Drafting_Drafter_QuestionID == item.DrafterQuestionID).ToList();
+                        if (subItem != null)
+                        {
+                            <li>
+                                <ul class="list-group" style="margin-left:15px !important">
+
+                                    @foreach (var subQuestion in subItem)
+                                    {
+                                        var SubQuestionCheckClass = "";
+                                        foreach (var itemCheckList in Model.CheckList)
+                                        {
+                                            if (subQuestion.Drafter_SubQuestionID == itemCheckList.SubQuestionID)
+                                            {
+                                                if (itemCheckList.Status == true)
+                                                {
+                                                    SubQuestionCheckClass = "draftingCheck";
+                                                    break;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                SubQuestionCheckClass = "draftingUncheck";
+                                            }
+                                        }
+                                        <li class="list-group-item @SubQuestionCheckClass">@subQuestion.DrafterSubQuestion</li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                    }
+                }
+                </ul>
+        </div>
+    </div>
+</div>
+

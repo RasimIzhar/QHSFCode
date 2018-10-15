@@ -1,0 +1,152 @@
+﻿@model DAL.DbEntities.Vt_Customers
+@{
+    Layout = null;
+    ViewBag.Title = "Create";
+}
+
+<script src="~/Scripts/jquery.form.min.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.form.min.js"></script>
+
+<div class="row bg-white mt-30">
+    <div class="col-12">
+        <div class="panel">
+
+            <div class="panel-body">
+                <div class="">
+                    @using (Html.BeginForm("Create", "Customers", FormMethod.Post, new { @class = "frm_full" }))
+                    {
+                        @Html.ValidationSummary(true)
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="pwd">Customer Name</label>
+                                    <div class="">
+                                        @Html.TextBoxFor(m => m.CustomerName, null, new { @class = "form-control", required = "required" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="pwd">Business Name</label>
+                                    <div class="">
+                                        @Html.TextBoxFor(m => m.BusinessName, null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="pwd">Trading As</label>
+                                    <div class="">
+                                        @Html.TextBoxFor(m => m.TradingAs, null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="pwd">Address</label>
+                                    <div class="">
+                                        @Html.TextBoxFor(m => m.Address, null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="pwd">Phone</label>
+                                    <div class="">
+                                        @Html.TextBoxFor(m => m.Phone, null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="pwd">Email</label>
+                                    <div class="">
+                                        @Html.TextBoxFor(m => m.Email, null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="pwd">ABN Number</label>
+                                    <div class="">
+                                        @Html.TextBoxFor(m => m.ABN, null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            @*<div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label" for="pwd">Xero Reference</label>
+                                        <div class="">
+                                            @Html.TextBoxFor(m => m.XeroReference, null, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                </div>*@
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="pwd">Account Type</label>
+                                    <div class="">
+                                        @Html.DropDownListFor(m => m.AccountType,
+                                   new[]{
+                                            new SelectListItem(){ Text = "Account", Value = "Account"},
+                                            new SelectListItem(){ Text = "Cash", Value = "Cash"}
+                                            },
+                                            "Select Field Type",
+                                            new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="">
+
+                            <div class="form-group">
+                                <div class="text-right">
+                                    <input type="submit" value="Create" class="btn btn-default" />
+                                    @*<button id="btnCreate" type="button" class="btn btn-default">Create</button>*@
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btnCreate').on("click", function (e) {
+            Create();
+        });
+    });
+    function Create() {
+        var options = {
+
+            // other available options:
+            type: "POST",
+            url: '@Url.Content("~/Customers/Create")',
+            dataType: null,        // 'xml', 'script', or 'json' (expected server response type)
+            clearForm: false,       // clear all form fields after successful submit
+            resetForm: false,        // reset the form after successful submit
+
+            success: function (response) {
+                AlertToast('success', 'Data Added Successfully'),
+                window.location = "@Url.Action("Index", "Customers")";
+            },
+
+            error: function (response) {
+                AlertToast('error', 'Error Occured ! Something goes wrong')
+            }
+        };
+        $('#User').ajaxSubmit(options);
+    }
+</script>

@@ -1,0 +1,300 @@
+﻿@{
+    Layout = null;
+}
+@model DAL.Model.ViewModels.GetTabsResponse
+
+<style>
+    .tabrows {
+        background: #f4f6f8 !important;
+        border: 1px solid #bbbbbbb3 !important;
+    }
+
+    .cstmchecks {
+        padding-top: 13px !important;
+        border-top: 13px !important;
+        border-bottom: none !important;
+    }
+
+    .tabrows.cstmlabels:nth-child(4) {
+        padding-bottom: 144px;
+    }
+</style>
+
+<div class="row mb-10">
+
+    <div class="col-md-6">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="User Name" id="username">
+            <span class="usernameval" style="color:#8e2323"></span>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+
+            <input type="text" class="form-control" placeholder="Email Address" id="useremail">
+            <span class="useremailval " style="color:#8e2323"></span>
+        </div>
+    </div>
+</div>
+<div class="row mb-10">
+
+    <div class="col-md-6">
+        <div class="form-group">
+            <input type="password" class="form-control" placeholder="password" id="userpassword">
+            <span class="userpassval" style="color:#8e2323"></span>
+        </div>
+    </div>
+    <div class="col-md-6 mt-10">
+        <span class="displayText cstm">Is Active</span>
+        <label class="checkboxDesign ml-10 mr-10 mb-0">
+            <input type="checkbox" id="isactive" name="inputCheckboxesBook">
+            <label for="isactive" class="isactive-label"></label>
+        </label>
+    </div>
+</div>
+<div class="text-left">
+    <h4>Roles</h4>
+</div>
+
+@*<div class="row mt-10 labels-row-cstm">
+        <div class="col-md-3 cstmlabels">
+            <label class="labeltxts">
+                Overview
+            </label>
+        </div>
+        <div class="col-md-3 cstmchecks">
+            <label class="checkboxDesign ml-10 mr-10">
+                <input type="checkbox" name="chkWindRating_Carport">
+                <span class="checkmark"></span>
+                <span class="displayText">Admin</span>
+            </label>
+        </div>
+        <div class="col-md-3 cstmchecks">
+            <div class="checkbox checkbox-info">
+                <input type="checkbox" id="inputBook" name="inputCheckboxesBook">
+                <label for="inputBook" class=""> <span>Contributor</span> </label>
+            </div>
+        </div>
+        <div class="col-md-3 cstmchecks">
+            <label class="checkboxDesign ml-10 mr-10">
+                <input type="checkbox" name="chkWindRating_Carport">
+                <span class="checkmark"></span>
+                <span class="displayText">Carport</span>
+            </label>
+        </div>
+    </div>*@
+
+@{var data = 100; }
+@foreach (var item in Model.ModelObject)
+{
+    data++;
+    var DraftingRow = "";
+    var NotDraftingRow = "";
+    var Admin = "Admin" + @item.ID;
+    var Contributor = "Contributor" + @item.ID;
+    var ContributorDrafter = "ContributorDrafter" + @item.ID;
+    var ContributorChecker = "ContributorChecker" + @item.ID;
+    <span style="display:none">
+        @(item.Title == "Drafting" ? DraftingRow = "display:none" : DraftingRow = "display:inline");
+        @(item.Title != "Drafting" ? NotDraftingRow = "display:none" : NotDraftingRow = "display:inline");
+    </span>
+    <div class="row mt-10 labels-row-cstm tabrows  @item.ID">
+        <input type="hidden" value="@item.ID" class="hidden tabId" />
+        <div class="col-md-3 cstmlabels">
+            <label class="labeltxts">
+                @item.Title
+            </label>
+        </div>
+        <div class="col-md-3 cstmchecks">
+            <div class="checkbox checkbox-info">
+                <input type="radio" class="Admin" id="@Admin" name="@item.ID">
+                <label for="@Admin" class=""> <span>Admin</span> </label>
+            </div>
+        </div>
+        @*<div class="col-md-3 cstmchecks">
+                <label class="checkboxDesign ml-10 mr-10">
+                    <input type="radio" class="Admin" name="@item.ID">
+                    <span class="checkmark"></span>
+                    <span class="displayText">Admin</span>
+                </label>
+            </div>*@
+        @if (item.Title == "Variations" || item.Title == "Finance" || item.Title == "QuoteChecker")
+        {
+            @*<div style="display:none">
+                    <div class="col-md-3 cstmchecks" style="@DraftingRow">
+                        <label class="checkboxDesign ml-10 mr-10">
+                            <input type="radio" class="Contributor" name="@item.ID">
+
+                            <input type="checkbox" id="activea" name="inputCheckboxesBook">
+                            <span class="checkmark"></span>
+                            <span class="displayText">Contributor</span>
+                        </label>
+                    </div>
+
+                    <div class="col-md-3 cstmchecks" style="@NotDraftingRow">
+                        <label class="checkboxDesign ml-10 mr-10">
+
+                           <input type="radio" class="ContributorChecker" name="@item.ID">
+                            <span class="checkmark"></span>
+                            <span class="displayText">Contributor Checker</span>
+                        </label>
+                    </div>
+
+                    <div class="col-md-3 cstmchecks" style="@NotDraftingRow">
+                        <label class="checkboxDesign ml-10 mr-10">
+                            <input type="radio" class="ContributorDrafter" name="@item.ID">
+
+                            <span class="checkmark"></span>
+                            <span class="displayText">Contributor Drafter</span>
+                        </label>
+                    </div>
+                </div>*@
+        }
+        else
+        {
+            <div class="col-md-3 cstmchecks" style="@DraftingRow">
+                <div class="checkbox checkbox-info">
+                    <input type="radio" class="Contributor" id="@Contributor" name="@item.ID">
+                    <label for="@Contributor" class=""> <span>Contributor</span> </label>
+                </div>
+            </div>
+
+            @*<div class="col-md-3 cstmchecks" style="@DraftingRow">
+                    <label class="checkboxDesign ml-10 mr-10">
+                        <input type="radio" class="Contributor" name="@item.ID">
+
+                        <span class="checkmark"></span>
+                        <span class="displayText">Contributor</span>
+                    </label>
+                </div>*@
+
+            <div class="col-md-3 cstmchecks" style="@NotDraftingRow">
+                <div class="checkbox checkbox-info">
+                    <input type="radio" class="ContributorChecker" id="@ContributorChecker" name="@item.ID">
+                    <label for="@ContributorChecker" class=""> <span>Contributor (Checker)</span> </label>
+                </div>
+            </div>
+
+            @*<div class="col-md-3 cstmchecks" style="@NotDraftingRow">
+                    <label class="checkboxDesign ml-10 mr-10">
+                        <input type="radio" class="ContributorChecker" name="@item.ID">
+                        <span class="checkmark"></span>
+                        <span class="displayText">Contributor(Checker)</span>
+                    </label>
+                </div>*@
+
+            <div class="col-md-3 cstmchecks" style="@NotDraftingRow">
+                <div class="checkbox checkbox-info">
+                    <input type="radio" class="ContributorDrafter" id="@ContributorDrafter" name="@item.ID">
+                    <label for="@ContributorDrafter" class=""> <span>Contributor (Drafter)</span> </label>
+                </div>
+            </div>
+
+            @*<div class="col-md-3 cstmchecks" style="@NotDraftingRow">
+                    <label class="checkboxDesign ml-10 mr-10">
+                        <input type="radio" class="ContributorDrafter" name="@item.ID">
+
+                        <span class="checkmark"></span>
+                        <span class="displayText">Contributor (Drafter)</span>
+                    </label>
+                </div>*@
+        }
+    </div>
+}
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+    <button type="button" class="btn btn-default adduser" data-dismiss="modal" id="AddUserscls">Add User</button>
+</div>
+<script>
+    $("#AddUserscls").click(function () {
+
+        var uname = $("#username").val();
+        var useremail = $("#useremail").val();
+        var userpassword = $("#userpassword").val();
+
+        if (uname == "") {
+            $(".usernameval").text("User Name is required");
+            return false
+        }
+        if (useremail == "") {
+            $(".useremailval").text("User Email is required");
+
+            return false
+        }
+        if (userpassword == "") {
+            $(".userpassval").text("Password is required");
+
+            return false
+        }
+
+        //$('#waiting-image').css('display', 'inherit');
+        var TabsCheck = [];
+        var obj = {};
+        var mainObj = {};
+
+        var username = $("#username").val();
+        var useremail = $("#useremail").val();
+        var password = $("#userpassword").val();
+        var isactive = $("#isactive").prop("checked");
+
+        var User = {
+            UserName: username,
+            UserEmail: useremail,
+            Password: password,
+            IsActive: isactive,
+            CreatedDate: null,
+            ModifiedDate: null,
+            IsDelete: null
+
+        };
+
+        obj.TabUser = User;
+
+        $(".tabrows").each(function (index, value) {
+
+            var jElement = $(this);
+            var tabid = jElement.find(".tabId").val();
+            //var superadmin = jElement.find(".superadmin").prop("checked");
+            var admin = jElement.find(".Admin").prop("checked");
+            var contributor = jElement.find(".Contributor").prop("checked");
+            var contributorDrafter = jElement.find(".ContributorDrafter").prop("checked");
+            var contributorChecker = jElement.find(".ContributorChecker").prop("checked");
+
+            var object = {
+                tabid: tabid,
+                Admin: admin,
+                Contributor: contributor,
+                ContributorChecker: contributorChecker,
+                ContributorDrafter: contributorDrafter
+            };
+
+            TabsCheck.push(object);
+        });
+
+        obj.Tabs = TabsCheck;
+
+        debugger
+
+        $.ajax({
+            type: "POST",
+            url: "/Users/UserRoles",
+            contentType: 'application/json',
+            data: JSON.stringify(obj),
+            dataType: "json",
+
+            success: function (response) {
+                AlertToast('success', 'Data Added Successfully'),
+
+                setTimeout(function () {
+                    window.location.href = "@Url.Action("Index", "UserNew")";
+                }, 3000);
+            },
+
+            error: function (response) {
+                AlertToast('error', 'Error Occured ! Something goes wrong')
+            }
+
+        })
+
+    });
+</script>

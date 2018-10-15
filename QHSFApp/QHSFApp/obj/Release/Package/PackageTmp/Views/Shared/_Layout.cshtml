@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="~/assets/images/favicon.png">
+    <title>QSHF</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="~/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="~/assets/plugins/bootstrap/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="~/assets/plugins/bootstrap-switch/bootstrap-switch.min.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link href="~/assets/css/mystyle.css" rel="stylesheet">
+    <link href="~/assets/css/style.css" rel="stylesheet">
+    <!-- You can change the theme colors from here -->
+    <link href="~/assets/css/colors/blue.css" id="theme" rel="stylesheet">
+    <link href="~/assets/css/jquery.toast.css" rel="stylesheet" />
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="fix-header card-no-border mini-sidebar">
+    <div id="waiting-image">
+        <img id="loading-img" src="~/assets/images/spinner.gif" alt="Downloading..." />
+    </div>
+    <div id="main-wrapper">
+        @Html.Partial("_Navbar_Top")
+        <div class="page-wrapper" style="min-height: 506px;">
+            <div class="container-fluid">
+                <div class="row bg-white">
+                </div>
+
+                @RenderBody()
+
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
+                <!-- ============================================================== -->
+            </div>
+            <footer class="footer"> © Copyrights</footer>
+        </div>
+    </div>
+    <!--Close Modal-->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+
+    <script src="~/assets/plugins/jquery/jquery.min.js"></script>
+
+    <!-- <script src="~/assets/plugins/bootstrap/jquery.min.js"></script> -->
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="~/assets/plugins/bootstrap/js/popper.min.js"></script>
+    <script src="~/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!-- <script src="~/assets/plugins/bootstrap/bootstrap.min.js"></script> -->
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="~/assets/js/jquery.slimscroll.js"></script>
+    <!--Wave Effects -->
+    <script src="~/assets/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="~/assets/js/sidebarmenu.js"></script>
+    <!--stickey kit -->
+    <script src="~/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+    <script src="~/assets/plugins/sparkline/jquery.sparkline.min.js"></script>
+    <script src="~/assets/js/jquery-ui-1.12.1.js"></script>
+    <script src="~/assets/js/jquery-ui.js"></script>
+    <script src="~/assets/js/jquery-ui.min.js"></script>
+    <script src="~/assets/js/jquery.blockUI.js"></script>
+    <!--Custom JavaScript -->
+    <script src="~/assets/js/custom.min.js"></script>
+    <script src="~/assets/js/jquery.toast.js"></script>
+    <script src="~/assets/js/toastNotifications.js"></script>
+
+    <script src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+
+    <!-- This is data table -->
+    <!-- start - This is for export functionality only -->
+    <!-- <script src="../../../../cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script> -->
+    <!-- <script src="../../../../cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script> -->
+    <!-- <script src="../../../../cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script> -->
+    <!-- <script src="../../../../cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script> -->
+    <!-- <script src="../../../../cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script> -->
+    <!-- <script src="../../../../cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script> -->
+    <!-- <script src="../../../../cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script> -->
+    <!-- end - This is for export functionality only -->
+    <!-- ============================================================== -->
+    <!-- Style switcher -->
+    <!-- ============================================================== -->
+    <!-- Mirrored from themedesigner.in/demo/admin-press/main/table-data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 27 Sep 2017 06:19:37 GMT -->
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+           
+            //Sidebar Toggle Code
+            $('.sidebartoggler').on('click', function () {
+                $("body").toggleClass("mini-navbar");
+            });
+
+            //DataTable Code
+            $('#myTable').DataTable({
+                order: [[0, "asc"]],
+
+                "ordering": true,
+                "info": false
+            });
+
+            //Datepicker Code
+            $('.jqueryui-marker-datepicker').datepicker({
+                dateFormat: 'yy-mm-dd',
+                changeYear: true,
+                showOn: 'button'
+            }).css('display', 'inline-block').next('button').button({
+                icons: { primary: "ui-icon-calendar" },
+                label: 'Select a date',
+                text: false
+
+            });
+
+        });
+    </script>
+</body>
+</html>

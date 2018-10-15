@@ -1,0 +1,206 @@
+﻿@model DAL.DbEntities.Vt_JobDetails
+@{
+    ViewBag.Title = "Index";
+}
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+<div class="row job-detail-section-one pb-20">
+    <div class="col-md-4">
+        <div class="row">
+            <div class="col-md-4 job-img-wrap"><img src="~/assets/images/users/job.png" width="100%"></div>
+            <div class="col-md-7 job-content">
+                <h4 class="job-heading-1">JOB NO</h4>
+                <h4 class="job-heading-2">@Model.JobID</h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="row">
+            <div class="col-md-4 job-img-wrap"><img src="~/assets/images/users/builder-name.png" width="100%"></div>
+            <div class="col-md-7 job-content">
+                <h4 class="job-heading-1">JOB TITLE</h4>
+                <h4 class="job-heading-2">@Model.Vt_Jobs.JobTitle</h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="row">
+            <div class="col-md-4 job-img-wrap"><img src="~/assets/images/users/calender.png" width="100%"></div>
+            <div class="col-md-7 job-content">
+                <h4 class="job-heading-1">JOB END DATE</h4>
+                <h4 class="job-heading-2">@Convert.ToDateTime(Model.Vt_Jobs.EndDate).ToString("dd/MMM/yyyy")</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row bg-white">
+</div>
+
+<div class="row bg-white ">
+    <div class="col-md-12 heading-field-section pb-20 padd-0">
+        <div class="col-md-12 estimation">
+            <h3>Heading Feilds</h3>
+        </div>
+        <div class="col-md-12 ">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-md-12 bold">
+                        <label>Customer</label>
+                    </div>
+                    <div class="col-md-12">
+                        @Html.DropDownListFor(x => x.CustomerID, new SelectList(ViewBag.Customers, "ID", "CustomerName"), new { @class = "form-control", disabled = "disabled" })
+                    </div>
+                </div>
+                @{
+                    var EstDate = "";
+                    var QuoteNumber = "";
+                    var RevisionNumber = "";
+                    if (ViewBag.EstDate != null)
+                    {
+                        EstDate = Convert.ToString(ViewBag.EstDate);
+                    }
+                    if (ViewBag.QuoteNumber != null)
+                    {
+                        QuoteNumber = ViewBag.QuoteNumber;
+                    }
+                    if (ViewBag.RevisionNumber != null)
+                    {
+                        RevisionNumber = ViewBag.RevisionNumber;
+                    }
+                }
+                <div class="col-md-6">
+                    <div class="col-md-12  bold">
+                        <label>Date</label>
+                    </div>
+                    <div class="col-md-12">
+                        <input type="text" id="assiging_date" class="form-control mdatepicker" value="@EstDate" placeholder="@DateTime.Now.ToString("yyyy-MM-dd")">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-12 pt-10 bold">
+                        <label>Quote Number</label>
+                    </div>
+                    <div class="col-md-12">
+                        <input type="number" min="0" id="quote_number" class="customer-sreach job-deatail-page-input-1" value="@QuoteNumber">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-12 pt-10 bold">
+                        <label>Revision Number</label>
+                    </div>
+                    <div class="col-md-12">
+                        <input type="number" min="0" id="revesion_number" class="customer-sreach job-deatail-page-input-1" value="@RevisionNumber">
+                    </div>
+                </div>
+                <div class="col-md-6 pt-10">
+                    <div class="form-group">
+                        <div class="col-md-12 bold">
+                            <label for="Stage">Stage</label>
+                        </div>
+                        <div class="col-md-12">
+                            @Html.DropDownList("Stage", (SelectList)ViewBag.Stage, "Select Stage", new { @class = "customer-sreach job-deatail-page-input-1 pl-10" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="dvProducts"></div>
+    <div class="col-md-12 pr-30">
+        <button id="btnApprove" type="button" class="btn btn-primary btn-value pull-right" style="margin-bottom: 10px;" data-toggle="modal" data-target="#myModal">Approve Estimation</button>
+    </div>
+</div>
+
+<!-- column -->
+<!-- column -->
+<!--JOB APPROVAL MODAL-->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Approve Estimation For Drafting</h4>
+                <input type="hidden" id="UserID" />
+            </div>
+            <div class="modal-body">
+            </div>
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-default adduser" id="AddUserscls" >Add User</button>
+                    <button type="button" class="btn btn-default updateuser" id="UpdateUsersClass" _id="0">Update User</button>
+                </div>*@
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function GetProductByStages() {
+        debugger;
+        var ID = document.getElementById("Stage").value;
+        var JobID = @Model.JobID;
+
+        $.ajax({
+            type: "GET",
+            url: "/Estimate/GetProductByStages",
+            data: { JobID: JobID, ID: ID, CustomerID: CustomerID },
+            datatype: "string",
+            contentType: "text/plain",
+
+            success: function (result) {
+
+            },
+
+            error: function (result) {
+                alert("error");
+            }
+        });
+    }
+    function GetProductDetails(stageid) {
+
+        debugger;
+        $('#dvProducts').html('');
+        var CustomerID = $('#CustomerID').val();
+        var JobID = @Model.JobID;
+        $('#SelectType').val($('#selectedType').val());
+        $.ajax({
+            type: "GET",
+            url: "/Estimate/GetProductByStages",
+            contentType: "html",
+            data: { "JobID": JobID, "StageID": stageid, "CustomerID": CustomerID },
+            datatype: "json",
+            success: function (response) {
+
+                $('#dvProducts').html(response);
+                $('#btnAddEstimate').show();
+
+            },
+            error: function (response, er) {
+                console.log(er);
+            }
+        });
+    }
+
+    $(document).ready(function () {
+
+        //GetProductByStages();
+
+        $("#btnApprove").click(function () {
+            $(".modal-body").load("/Estimate/_ApproveJob?JobID="+@Model.JobID+"&CustomerID="+$('#CustomerID').val()+"")
+
+        });
+
+        $("#Stage").change(function () {
+
+            GetProductDetails($('#Stage').val());
+            //Calculation
+        });
+
+    });
+</script>

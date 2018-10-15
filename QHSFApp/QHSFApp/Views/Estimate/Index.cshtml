@@ -1,0 +1,298 @@
+﻿@model List<DAL.DbEntities.Vt_JobDetails>
+<script src="~/assets/js/jquery-1.12.4.min.js"></script>
+@if (User.IsInRole("Admin"))
+{
+    <div class="row bg-white mt-30">
+        <div class="col-12 text-right mt-40 mb-20">
+          @if (!string.IsNullOrEmpty(ViewBag.OperationType))
+          {
+              string Success = "";
+              if (ViewBag.Success == true)
+              {
+                  Success = "Success";
+              }
+              else
+              {
+                  Success = "Warning";
+              }
+              if (ViewBag.OperationType == "Insert")
+              {
+                <div class="alert alert-success alert-dismissible" style="width:100% !important">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>@Success !</strong> @ViewBag.Message
+                </div>
+              }
+              else if (ViewBag.OperationType == "Update")
+              {
+                <div class="alert alert-info alert-dismissible" style="width:100% !important">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>@Success !</strong> @ViewBag.Message
+                </div>
+              }
+          }
+                
+                    <h3 class="text-left txtstage pull-left mb-0 pt-5">Estimation</h3>
+                    
+                    <div class="mb-10">
+                        @*<div class="breadcome-heading cstm">
+                    <form role="search" class="">
+                        <input type="text" placeholder="Search..." class="form-control cstmform">
+                        <a href="">
+                            <i class="fa fa-search cstm-align"></i>
+                        </a>
+                    </form>
+                </div>*@
+                   
+                </div>
+        </div>
+        <div class="col-12">
+            <div class="panel">
+                <div class="panel-body">
+                    <div id="divAdminJob"></div>
+                    @*<table id="myTable" class="table table-condensed table-striped" data-role="datatable" data-info="false">
+                        <thead>
+                            <tr>
+                                <th>Job No</th>
+                                <th>Job Title</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Estimate</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @if (Model != null)
+                            {
+                                foreach (var items in Model.ToList())
+                                {
+                                    <tr>
+                                        <td>@items.Vt_Jobs.JobNo</td>
+                                        <td>@items.Vt_Jobs.JobTitle</td>
+                                        <td>@items.Vt_Jobs.StartDate</td>
+                                        <td>@items.Vt_Jobs.EndDate</td>
+                                        <td>
+                                            <a href="@Url.Action("EstimateApprove", "Estimate", new { JobDetailID = items.ID })">Approve</a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr><td colspan="5">No Record Found</td></tr>
+                            }
+                        </tbody>
+                    </table>*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+        divAdminJob();
+    });
+
+    function divAdminJob() {
+        $.ajax({
+            url: '@Url.Action("GetJobs_List", "Estimate")',
+            contentType: 'application/json; charset=utf-8',
+            type: 'GET',
+            dataType: 'json',
+            data: {},
+            success: function (result) {
+
+                $.each(result.List, function (key, value) {
+                    if (value.Vt_Jobs.StartDate.startsWith("/Date")) {
+                        result.List[key].Vt_Jobs.StartDate = new Date(parseInt(value.Vt_Jobs.StartDate.substr(6)))
+                    }
+                    if (value.Vt_Jobs.EndDate.startsWith("/Date")) {
+                        result.List[key].Vt_Jobs.EndDate = new Date(parseInt(value.Vt_Jobs.EndDate.substr(6)))
+                    }
+                });
+
+                $("#divAdminJob").dxDataGrid({
+                    dataSource: result.List,
+                    columnsAutoWidth: true,
+                    paging: {
+                        pageSize: 10
+                    },
+                    filterRow: {
+                        visible: true,
+                        applyFilter: "auto"
+                    },
+                    searchPanel: {
+                        visible: true,
+                        width: 240,
+                        placeholder: "Search..."
+                    },
+                    headerFilter: {
+                        visible: true
+                    },
+                    searchPanel: { visible: true },
+                    columns: ["Vt_Jobs.JobNo", "Vt_Jobs.JobTitle"
+                                , {
+                                    dataField: "Vt_Jobs.StartDate",
+                                    caption: 'Start Date',
+                                    format: 'yyyy-MM-dd',
+                                    dataType: "date"
+                                }
+                                , {
+                                    dataField: "Vt_Jobs.EndDate",
+                                    caption: 'End Date',
+                                    format: 'yyyy-MM-dd',
+                                    dataType: "date"
+                                }
+
+                                , {
+                                    dataField: "ID",
+                                    caption: 'Preview',
+                                    cellTemplate: function (container, options) {
+                                        container.append("<a class='btn btn-info btn-sm' href='/Estimate/EstimateApprove?JobDetailID=" + options.value + "'>Approve</a>")
+                                    }
+                                }],
+                    showBorders: true
+                });
+
+            },
+            error: function (result) {
+            }
+        });
+    }
+    </script>
+}
+else
+{
+
+<div class="row bg-white mt-30">
+    <div class="col-12 text-right mt-40 mb-20">
+        <h3 class="text-left txtstage pull-left mb-0 pt-5">Estimation</h3>
+        <div class="mb-10">
+            @*<div class="breadcome-heading cstm">
+                    <form role="search" class="">
+                        <input type="text" placeholder="Search..." class="form-control cstmform">
+                        <a href="">
+                            <i class="fa fa-search cstm-align"></i>
+                        </a>
+                    </form>
+                </div>*@
+
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="panel">
+            <div class="panel-body">
+
+                <div id="divContirbutorJob"></div>
+                @*<table id="myTable" class="table table-condensed table-striped" data-role="datatable" data-info="false">
+                    <thead>
+                        <tr>
+                            <th>Job No</th>
+                            <th>Job Title</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Estimate</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            foreach (var items in Model.ToList())
+                            {
+                                <tr>
+                                    <td>@items.Vt_Jobs.JobNo</td>
+                                    <td>@items.Vt_Jobs.JobTitle</td>
+                                    <td>@items.Vt_Jobs.StartDate</td>
+                                    <td>@items.Vt_Jobs.EndDate</td>
+                                    <td>
+                                        <a href="@Url.Action("EstimateDetails", "Estimate", new { JobDetailID = items.ID })">Estimate</a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr><td colspan="5">No Record Found</td></tr>
+                        }
+                    </tbody>
+                </table>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        divContirbutorJob();
+    });
+
+    function divContirbutorJob() {
+        $.ajax({
+            url: '@Url.Action("GetJobs_List", "Estimate")',
+            contentType: 'application/json; charset=utf-8',
+            type: 'GET',
+            dataType: 'json',
+            data: {},
+            success: function (result) {
+
+                $.each(result.List, function (key, value) {
+                    if (value.Vt_Jobs.StartDate.startsWith("/Date")) {
+                        result.List[key].Vt_Jobs.StartDate = new Date(parseInt(value.Vt_Jobs.StartDate.substr(6)))
+                    }
+                    if (value.Vt_Jobs.EndDate.startsWith("/Date")) {
+                        result.List[key].Vt_Jobs.EndDate = new Date(parseInt(value.Vt_Jobs.EndDate.substr(6)))
+                    }
+                });
+
+                $("#divContirbutorJob").dxDataGrid({
+                    dataSource: result.List,
+                    columnsAutoWidth: true,
+                    paging: {
+                        pageSize: 10
+                    },
+                    filterRow: {
+                        visible: true,
+                        applyFilter: "auto"
+                    },
+                    searchPanel: {
+                        visible: true,
+                        width: 240,
+                        placeholder: "Search..."
+                    },
+                    headerFilter: {
+                        visible: true
+                    },
+                    searchPanel: { visible: true },
+                    columns: ["Vt_Jobs.JobNo", "Vt_Jobs.JobTitle"
+                                , {
+                                    dataField: "Vt_Jobs.StartDate",
+                                    caption: 'Start Date',
+                                    format: 'yyyy-MM-dd',
+                                    dataType: "date"
+                                }
+                                , {
+                                    dataField: "Vt_Jobs.EndDate",
+                                    caption: 'End Date',
+                                    format: 'yyyy-MM-dd',
+                                    dataType: "date"
+                                }
+
+                                , {
+                                    dataField: "ID",
+                                    caption: 'Preview',
+                                    cellTemplate: function (container, options) {
+                                        container.append("<a class='btn btn-info btn-sm' href='/Estimate/EstimateDetails?JobDetailID=" + options.value + "'>Estimate</a>")
+                                    }
+                                }],
+                    showBorders: true
+                });
+
+            },
+            error: function (result) {
+            }
+        });
+    }
+</script>
+}

@@ -1,0 +1,125 @@
+﻿@model DAL.Model.ViewModels.Create_JobResponse
+@{
+    Layout = null;
+}
+
+@*<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https:/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script type="text/javascript">
+        $(document).on('focus', '.datepicker', function () {
+                $(this).datepicker({
+                    todayHighlight:true,
+                    format:'yyyy-mm-dd',
+                    autoclose:true
+                })
+            });
+    </script>*@
+
+<div class="row bg-white mt-30">
+    <div class="col-12">
+        <div class="panel">
+            <div class="panel-body">
+                <div class="">
+                    <div class="">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="pwd">Assign Estimation to Drafter</label>
+                                    <div class="">
+                                        @*This Code for User Assigning*@
+                                        @Html.DropDownListFor(m => m.JobDetails.UserAssignedID,
+                                        new SelectList(ViewBag.DropDownDrafter, "ID", "FirstName"),
+                                        new { @class = "select2 form-control custom-select", @style = "width: 100%;", @id = "DdlDrafter" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="pwd">Assign Estimation to Checker</label>
+                                    <div class="">
+                                        @*This Code for User Assigning*@
+                                        @Html.DropDownListFor(m => m.JobDetails.UserAssignedID,
+                                        new SelectList(ViewBag.DropDownChecker, "ID", "FirstName"),
+                                        new { @class = "select2 form-control custom-select", @style = "width: 100%;", @id = "DdlChecker" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="pwd">Drafting Due Date</label>
+                                    <div class="">
+                                        <input type="text" id="txtDraftingDueDate" class="form-control mdatepicker" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="pwd">Checker Due Date</label>
+                                    <div class="">
+                                        <input type="text" id="txtCheckerDueDate" class="form-control mdatepicker" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="">
+
+                            <div class="form-group">
+                                <div class="text-right">
+                                    <button id="btnAssignJob_Drafting" type="button" class="btn btn-default">Assign</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".select2").select2();
+        $('.mdatepicker').bootstrapMaterialDatePicker({ weekStart: 0, time: false });
+    });
+    function Update_JobStatus_Drafting(isApproved){
+
+        var obj = {};
+        obj.JobID = @ViewBag.JobID;
+        obj.TabID = 4;
+        obj.CheckerID = $('#DdlChecker').val();
+        obj.DrafterID = $('#DdlDrafter').val();
+        obj.CheckerDueDate = $('#txtCheckerDueDate').val();
+        obj.DraftingDueDate = $('#txtDraftingDueDate').val();
+
+        $.ajax({
+            type: "POST",
+            url: "/Drafting/UpdateJobDetails_Drafting",
+            contentType: "application/json",
+            data: JSON.stringify(obj),
+            dataType: "json",
+
+            success: function (response) {
+                AlertToast('success', 'Data Added Successfully'),
+                window.location = "@Url.Action("Index", "Drafting")";
+            },
+
+            error: function (response) {
+                AlertToast('success', 'Data Added Successfully'),
+                window.location = "@Url.Action("Index", "Drafting")";
+            }
+        });
+    }
+
+    $('#btnAssignJob_Drafting').click(function () {
+
+        Update_JobStatus_Drafting(true);
+        window.location = "@Url.Action("Index", "Drafting")";
+    });
+</script>

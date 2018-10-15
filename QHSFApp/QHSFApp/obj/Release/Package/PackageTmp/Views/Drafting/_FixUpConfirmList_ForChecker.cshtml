@@ -1,0 +1,200 @@
+﻿@{
+    Layout = null;
+}
+@model DAL.Model.ViewModels.Checker_Response
+
+<h3 class="mt-20">Fixup Confirm Checker</h3>
+<div class="panel-group position-relative">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title back-clr-grey">
+                <a data-toggle="collapse" href="#collapse5">
+                    <i class="fa fa-minus cstm-accordin-icon"
+                       aria-hidden="true"></i>
+                </a>
+            </h4>
+        </div>
+        <div id="collapse5" class="panel-collapse collapse show">
+            <div class="text-center">
+                <label class="back-clr-green label-acordin">Fixup Done</label>
+                <label class="back-clr-grey label-acordin">
+                    @Model.CheckList.Count/@Model.Questions.Count
+                </label>
+            </div>
+            @if (Model != null)
+            {
+                <div id="carouselFixUpConfirmForChecker" class="carousel slide" data-ride="carousel" data-interval="false">
+                    <div class="carousel-inner" role="listbox">
+                        @if (Model.Questions.Count > 0)
+                        {
+                            var CarouselActive = "";
+                            int ActiveCaousel = 0;
+                            if (Model.CheckList.Count > 0)
+                            {
+                                ActiveCaousel = Model.CheckList.Max(x => x.Drafting_Checker_QuestionID).Value;
+                            }
+
+                            foreach (var item in Model.Questions.ToList())
+                            {
+
+                                if (ActiveCaousel > 0)
+                                {
+                                    //This condition is for CSS
+                                    if (item.CheckerQuestionID == ActiveCaousel)
+                                    {
+                                        CarouselActive = "carousel-item active";
+                                    }
+                                    else
+                                    {
+                                        CarouselActive = "carousel-item";
+                                    }
+                                }
+                                else
+                                {
+                                    if (item.CheckerQuestionID == 1)
+                                    {
+                                        CarouselActive = "carousel-item active";
+                                    }
+                                    else
+                                    {
+                                        CarouselActive = "carousel-item";
+                                    }
+                                }
+                                <div class="@CarouselActive">
+                                    <div class="hide-area mt-10">
+                                        <h5 class="Sub-heading">@item.Heading</h5>
+                                        <div class="back-clr-grey border-radius-4 pb-30">
+                                            <div class="row">
+                                                <div class="col-md-7">
+                                                    
+                                                    <p class="checklist">@item.CheckerQuestion</p>
+
+
+                                                    <br />
+                                                    <div class="col-md-12 reasonclassFixUpConfirmed_Checker" id="reasonFixUpConfirmed_Checker-@item.ID">
+                                                        <input type="text" class="form-control" id="txtReasonFixUpConfirmed_Checker-@item.ID" />
+                                                        <input type="button" class="btn btn-primary mt-10 greenback" value="Submit" onclick="CheckUpdate_FixUpConfirmed_Checker('#txtReasonFixUpConfirmed_Checker-@item.ID',@item.ID)" />
+                                                    </div>
+                                                    @{
+                                                        var itemCheckList = Model.CheckList.Where(x => x.Drafting_Checker_QuestionID == item.CheckerQuestionID).FirstOrDefault();
+                                                        var notes = itemCheckList.Notes.Split(',');
+                                                        if (notes.Count() > 0)
+                                                        {
+                                                            foreach (var key in notes)
+                                                            {
+                                                                if (key.Trim() != "")
+                                                                {
+                                                                    <input type="text" placeholder="Reason" class="cstm-input-area-accordin" value="@key" readonly="readonly"><br />
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                    
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <ul class="filters">
+                                                        <li>
+                                                            <label>
+                                                                <input type="radio" onchange="CheckUpdate_Checker(this,@item.ID)">
+                                                                <span class="icon"><i class="fa fa-check cstm"></i></span>
+                                                            </label>
+                                                        </li>
+                                                        <li>
+                                                            <label>
+                                                                <input type="radio" id="@item.ID" onchange="FixUpConfirmed(this,@item.ID)">
+                                                                <span class="icon"><i class="fa fa-times cstm"></i></span>
+                                                            </label>
+                                                        </li>
+                                                        <li>
+                                                            <input type="radio" id="flat-radio-2" name="flat-radio"
+                                                                    data-radio="iradio_flat-red">
+                                                            <label for="flat-radio-2"></label>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                                            }
+                                                        }
+                    </div>
+                    <div class="text-center"></div>
+                    @if (Model.CheckList.Count > 0)
+                    {
+                    <a class="carousel-control-prev" href="#carouselFixUpConfirmForChecker" role="button" data-slide="prev">
+                        <button type="button" class="button back-clr-grey mt-20" value="submit">Back</button>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselFixUpConfirmForChecker" role="button" data-slide="next">
+                        <button type="button" class="button back-clr-green mt-20" value="submit">Next</button>
+                        <span class="sr-only">Next</span>
+                    </a>
+                    }
+                </div>
+                
+                                                        }
+            </div>
+        </div>
+</div>
+<script>
+    //For Status : FixUp List
+    function CheckUpdate_FixUpConfirmed_Checker(Notes, QuestionID) {
+        var Obj = {
+
+            //JobDraftingID: 2,
+            JobDraftingID: $('#jobDraftingID').val(),
+
+            //CheckerID: 50,
+            CheckerID:  $('#userID').val(),
+            Drafting_Checker_QuestionID: QuestionID,
+            Status: 'FixUp',
+            Notes: 'Checker: ' + $(Notes).val()
+        };
+        $.blockUI({
+            css: {
+                border: 'none',
+                padding: '15px',
+                backgroundColor: '#000',
+                '-webkit-border-radius': '10px',
+                '-moz-border-radius': '10px',
+                opacity: .5,
+                color: '#fff'
+            }
+        })
+        $.ajax({
+            type: "POST",
+            url: "/Drafting/CheckUpdate_FixUpList",
+            contentType: 'application/json',
+            data: JSON.stringify(Obj),
+            dataType: "json",
+            success: function (response) {
+                AlertToast('success', 'Data Added Successfully');
+                ReloadPage();
+            },
+            error: function (response) {
+
+                AlertToast('success', 'Data Added Successfully');
+                ReloadPage();
+                setTimeout($.unblockUI,5000);
+            }
+        })
+    }
+
+
+    function FixUpConfirmed(isChecked, id) {
+        if (isChecked.checked) {
+            $('#reasonFixUpConfirmed_Checker-' + id).show();
+            $('#txtReasonFixUpConfirmed_Checker-' + id).show();
+        }
+        else {
+            $('#reasonFixUpConfirmed_Checker-' + id).hide();
+            $('#txtReasonFixUpConfirmed_Checker-' + id).hide();
+        }
+    }
+
+    $(document).ready(function () {
+        $('.reasonclassFixUpConfirmed_Checker').hide();
+    });
+</script>

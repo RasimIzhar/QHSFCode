@@ -1,0 +1,13 @@
+D:\Project\QSHF\App\QHSFApp\BAL\bin\Debug\BAL.dll.config
+D:\Project\QSHF\App\QHSFApp\BAL\bin\Debug\BAL.dll
+D:\Project\QSHF\App\QHSFApp\BAL\bin\Debug\BAL.pdb
+D:\Project\QSHF\App\QHSFApp\BAL\bin\Debug\DAL.dll
+D:\Project\QSHF\App\QHSFApp\BAL\bin\Debug\EntityFramework.dll
+D:\Project\QSHF\App\QHSFApp\BAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\Project\QSHF\App\QHSFApp\BAL\bin\Debug\Newtonsoft.Json.dll
+D:\Project\QSHF\App\QHSFApp\BAL\bin\Debug\DAL.pdb
+D:\Project\QSHF\App\QHSFApp\BAL\bin\Debug\EntityFramework.xml
+D:\Project\QSHF\App\QHSFApp\BAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\Project\QSHF\App\QHSFApp\BAL\obj\Debug\BAL.csprojResolveAssemblyReference.cache
+D:\Project\QSHF\App\QHSFApp\BAL\obj\Debug\BAL.dll
+D:\Project\QSHF\App\QHSFApp\BAL\obj\Debug\BAL.pdb

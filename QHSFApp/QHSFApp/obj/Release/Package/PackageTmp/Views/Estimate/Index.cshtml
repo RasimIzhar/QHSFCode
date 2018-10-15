@@ -1,0 +1,122 @@
+﻿@model List<DAL.DbEntities.Vt_JobDetails>
+<script src="~/assets/js/jquery-1.12.4.min.js"></script>
+@if (User.IsInRole("Admin"))
+{
+    <div class="row bg-white mt-30">
+        <div class="col-12 text-right mt-40 mb-20">
+          
+                
+                    <h3 class="text-left txtstage pull-left mb-0 pt-5">Estimation</h3>
+                    
+                    <div class="mb-10">
+                        @*<div class="breadcome-heading cstm">
+                    <form role="search" class="">
+                        <input type="text" placeholder="Search..." class="form-control cstmform">
+                        <a href="">
+                            <i class="fa fa-search cstm-align"></i>
+                        </a>
+                    </form>
+                </div>*@
+                   
+                </div>
+        </div>
+        <div class="col-12">
+            <div class="panel">
+                <div class="panel-body">
+                    <table id="myTable" class="table table-condensed table-striped" data-role="datatable" data-info="false">
+                        <thead>
+                            <tr>
+                                <th>Job No</th>
+                                <th>Job Title</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Estimate</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @if (Model != null)
+                            {
+                                foreach (var items in Model.ToList())
+                                {
+                                    <tr>
+                                        <td>@items.Vt_Jobs.JobNo</td>
+                                        <td>@items.Vt_Jobs.JobTitle</td>
+                                        <td>@items.Vt_Jobs.StartDate</td>
+                                        <td>@items.Vt_Jobs.EndDate</td>
+                                        <td>
+                                            <a href="@Url.Action("EstimateApprove", "Estimate", new { JobDetailID = items.ID })">Approve</a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr><td colspan="5">No Record Found</td></tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+
+<div class="row bg-white mt-30">
+    <div class="col-12 text-right mt-40 mb-20">
+        <h3 class="text-left txtstage pull-left mb-0 pt-5">Estimation</h3>
+        <div class="mb-10">
+            @*<div class="breadcome-heading cstm">
+                    <form role="search" class="">
+                        <input type="text" placeholder="Search..." class="form-control cstmform">
+                        <a href="">
+                            <i class="fa fa-search cstm-align"></i>
+                        </a>
+                    </form>
+                </div>*@
+
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="panel">
+            <div class="panel-body">
+                <table id="myTable" class="table table-condensed table-striped" data-role="datatable" data-info="false">
+                    <thead>
+                        <tr>
+                            <th>Job No</th>
+                            <th>Job Title</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Estimate</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            foreach (var items in Model.ToList())
+                            {
+                                <tr>
+                                    <td>@items.Vt_Jobs.JobNo</td>
+                                    <td>@items.Vt_Jobs.JobTitle</td>
+                                    <td>@items.Vt_Jobs.StartDate</td>
+                                    <td>@items.Vt_Jobs.EndDate</td>
+                                    <td>
+                                        <a href="@Url.Action("EstimateDetails", "Estimate", new { JobDetailID = items.ID })">Estimate</a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr><td colspan="5">No Record Found</td></tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+}

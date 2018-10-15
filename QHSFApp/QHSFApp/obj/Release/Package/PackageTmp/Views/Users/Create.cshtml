@@ -1,0 +1,147 @@
+﻿@model DAL.DbEntities.Vt_Users
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="cstm_container forshadow">
+
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3>
+                        <span class="pull-left">Create User</span>
+                        <span class="pull-right">
+                            @Html.ActionLink("Go Back", "Index", "Users", new { @class = "btn btn-default" })
+                        </span>
+                    </h3>
+                </div>
+
+                <div class="panel-body">
+
+                    <div class="row">
+                        <form id="User">
+                            @Html.ValidationSummary(true)
+                            
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" for="pwd">First Name</label>
+                                    <div class="col-sm-10">
+                                        @Html.TextBoxFor(m => m.FirstName, null, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" for="pwd">Last Name</label>
+                                    <div class="col-sm-10">
+                                        @Html.TextBoxFor(m => m.LastName, null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" for="pwd">Username</label>
+                                    <div class="col-sm-10">
+                                        @Html.TextBoxFor(m => m.UserName, null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" for="pwd">Email</label>
+                                    <div class="col-sm-10">
+                                        @Html.TextBoxFor(m => m.Email, null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" for="pwd">Password</label>
+                                    <div class="col-sm-10">
+                                        @Html.TextBoxFor(m => m.Password, null, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" for="pwd">Gender</label>
+                                    <div class="col-sm-10">
+                                        <label class="radio-inline">@Html.RadioButtonFor(m => m.Gender, "Male", new { @checked = true }) Male </label>
+                                        <label class="radio-inline">@Html.RadioButtonFor(m => m.Gender, "Female") Female </label>
+                                        @*@Html.TextBoxFor(m => m.Gender, null, new { @class = "form-control" })*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" for="pwd">Contact</label>
+                                    <div class="col-sm-10">
+                                        @Html.TextBoxFor(m => m.Contact, null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" for="pwd">Address</label>
+                                    <div class="col-sm-10">
+                                        @Html.TextBoxFor(m => m.Address, null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        @*<input type="submit" value="Create" class="btn btn-default" />*@
+                                        <button id="btnCreateUser" type="button" class="btn btn-default">Create</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btnCreateUser').on("click", function (e) {
+            CreateUser();
+        });
+    });
+    function CreateUser() {
+        var options = {
+
+            // other available options:
+            type: "POST",
+            url: '@Url.Content("~/Users/Create")',
+            dataType: null,        // 'xml', 'script', or 'json' (expected server response type)
+            clearForm: false,       // clear all form fields after successful submit
+            resetForm: false,        // reset the form after successful submit
+
+            success: function (response) {
+                if (response.Success) {
+                    alert('Success');
+                }
+                //else {
+                //    alert('Not Success');
+                //}
+            },
+            failure: function (response) {
+                alert('Failure');
+            },
+            error: function (response) {
+                alert('Error');
+            }
+        };
+        $('#User').ajaxSubmit(options);
+    }
+</script>

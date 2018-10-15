@@ -1,0 +1,151 @@
+﻿@model DAL.DbEntities.Vt_Products
+@{
+    ViewBag.Title = "Create";
+    Layout = null;
+}
+
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.form.min.js"></script>
+
+
+<div class="row bg-white mt-30">
+    <div class="col-12">
+        <div class="panel">
+
+            <div class="panel-body">
+                <div class="frm_full">
+                    @using (Html.BeginForm("Create", "Products", FormMethod.Post, new { @class = "frm_full" }))
+                    {
+                    @Html.ValidationSummary(true)
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="pwd">Product Name</label>
+                                    <div class="">
+                                        @Html.TextBoxFor(m => m.Title, null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="pwd">Unit</label>
+                                    <div class="">
+                                        @Html.DropDownListFor(m => m.Unit,
+                                   new[]{
+                                            new SelectListItem(){ Text = "Pcs", Value = "1"},
+                                            new SelectListItem(){ Text = "Kg", Value = "2"},
+                                            new SelectListItem(){ Text = "Lb", Value = "3"},
+                                            new SelectListItem(){ Text = "mtr", Value = "4"}
+                                            },
+                                            "Select Unit",
+                                            new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="pwd">Size</label>
+                                    <div class="">
+                                        @Html.TextBoxFor(m => m.Size, null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="pwd">Unit Price</label>
+                                    <div class="">
+                                        @Html.TextBoxFor(m => m.UnitPrice, null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="pwd">Description</label>
+                                    <div class="">
+                                        @Html.TextBoxFor(m => m.Description, null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="pwd">Stage</label>
+                                    <div class="">
+                                       @Html.DropDownListFor(m => m.StageID,
+                                   new[]{
+                                            new SelectListItem(){ Text = "Single", Value = "1"},
+                                            new SelectListItem(){ Text = "Double", Value = "2"}
+                                            },
+                                            "Select Stage",
+                                            new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            @*<div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="pwd">Email</label>
+                                    <div class="">
+                                        @Html.TextBoxFor(m => m.Email, null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>*@
+                        </div>
+
+                        <div class="">
+
+                            <div class="form-group">
+                                <div class="text-right">
+                                    <input type="submit" value="Create" class="btn btn-default" />
+                                    @*<button id="btnCreate" type="button" class="btn btn-default">Create</button>*@
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btnCreate').on("click", function (e) {
+            alert();
+            Create();
+        });
+    });
+    function Create() {
+        var options = {
+
+            // other available options:
+            type: "POST",
+            url: '@Url.Content("~/Products/Create")',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            clearForm: false,       // clear all form fields after successful submit
+            resetForm: false,        // reset the form after successful submit
+
+            success: function (response) {
+                if (response.Success) {
+                    AlertToast('success', response.Message);
+                }
+                else {
+                    AlertToast('error', 'Something goes wrong');
+                }
+                @*window.location = "@Url.Action("Index", "Products")";*@
+            },
+
+            error: function (response) {
+                AlertToast('error', response.Message);
+            }
+        };
+        $('#User').ajaxSubmit(options);
+    }
+</script>

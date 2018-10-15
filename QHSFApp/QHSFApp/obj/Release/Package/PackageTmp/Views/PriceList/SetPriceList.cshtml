@@ -1,0 +1,131 @@
+﻿@model DAL.Model.ViewModels.GetCustomerProductPriceRespone
+@{
+    ViewBag.Title = "SetPriceList";
+}
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<div class="row bg-white mt-30">
+    <div class="col-12 text-right mt-40 mb-20">
+        <h3 class="text-left txtstage pull-left mb-0 pt-5">Set Price</h3>
+        @*<div class="mb-10">
+                <button type="button" id="addBtn" _id="0" class="btn btn-default" value="submit" data-toggle="modal" data-target="#myModal">Add Product</button>
+            </div>*@
+    </div>
+    <div class="col-12">
+        <div class="panel">
+            <div class="panel-body">
+                <table id="myTable" class="table table-condensed table-striped" data-role="datatable" data-info="false">
+                    <thead>
+                        <tr>
+                            <th>Product Title</th>
+                            <th>Size</th>
+                            <th>Stage</th>
+                            <th>Unit Price</th>
+                            <th>Add Price</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @if (Model.Products != null)
+                        {
+                            foreach (var item in Model.Products.ToList())
+                            {
+                                <tr class="tabrows">
+                                    <td>@item.Title</td>
+                                    <td>@item.Size</td>
+                                    <td>
+                                        @if (item.StageID == 1)
+                                        {
+                                            <span>Single</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Double</span>
+                                        }
+                                    </td>
+                                    <td>$ @string.Format("{0:#,###0}", item.UnitPrice)</td>
+                                    <td>
+                                        <input type="hidden" value="@Model.Customer.ID" class="customerID" />
+                                        <input type="hidden" value="@item.ID" class="productID" />
+                                        <input type="hidden" class="form-control unitPrice" value="@item.UnitPrice" />
+                                        @{
+                                            decimal SellPrice = 0;
+                                        }
+                                        @if (Model.PriceList.Count > 0)
+                                        {
+                                            foreach (var sellPriceItem in Model.PriceList.Where(x => x.ProductID == item.ID).ToList())
+                                            {
+                                                if (sellPriceItem.ProductID == item.ID)
+                                                {
+                                                    SellPrice = Convert.ToDecimal(sellPriceItem.SellPrice);
+                                                }
+                                                else
+                                                {
+                                                    SellPrice = Convert.ToDecimal(item.UnitPrice);
+                                                }
+                                            }
+                                        }
+                                        <input type="text" class="form-control sellPrice" value="@SellPrice" />
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+                <button class="btn btn-primary" id="btnUpdatePrices">Update Prices</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function setPrices() {
+
+        var priceList = [];
+        var obj = {};
+
+        $(".tabrows").each(function (index, value) {
+            var jElement = $(this);
+            var customerID = jElement.find(".customerID").val();
+            var productID = jElement.find(".productID").val();
+            var unitPrice = jElement.find(".unitPrice").val();
+            var sellPrice = jElement.find(".sellPrice").val();
+
+            var prices = {
+                CustomerID: customerID,
+                ProductID: productID,
+                UnitPrice: unitPrice,
+                SellPrice: sellPrice
+            };
+
+            priceList.push(prices);
+        });
+
+        obj.PriceList = priceList;
+        //alert(JSON.stringify(obj));
+
+        $.ajax({
+            type: "POST",
+            url: "/PriceList/Create",
+            contentType: "application/json",
+            data: JSON.stringify(obj),
+            dataType: "json",
+
+            success: function (response) {
+                AlertToast('success', 'Data Added Successfully'),
+                window.location = "@Url.Action("Index", "PriceList")";
+            },
+
+            error: function (response) {
+                //AlertToast('error', 'Error Occured ! Something goes wrong')
+                AlertToast('success', 'Data Added Successfully')
+            }
+        });
+    }
+</script>
+
+<script>
+    $('#btnUpdatePrices').click(function () {
+        setPrices();
+    });
+</script>

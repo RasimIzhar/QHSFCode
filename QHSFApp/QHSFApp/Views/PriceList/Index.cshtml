@@ -1,0 +1,164 @@
+﻿@model DAL.Model.ViewModels.GetCustomersResponse
+@{
+    ViewBag.Title = "Index";
+}
+
+<script src="~/assets/js/jquery-1.12.4.min.js"></script>
+
+<div class="row bg-white mt-30">
+
+    @if (!string.IsNullOrEmpty(ViewBag.OperationType))
+    {
+        string Success = "";
+        if (ViewBag.Success == true)
+        {
+            Success = "Success";
+        }
+        else
+        {
+            Success = "Warning";
+        }
+        if (ViewBag.OperationType == "Insert")
+        {
+            <div class="alert alert-success alert-dismissible" style="width:100% !important">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>@Success !</strong> @ViewBag.Message
+            </div>
+        }
+    }
+
+    <div class="col-12 text-right mt-40 mb-20">
+        <h3 class="text-left txtstage pull-left mb-0 pt-5">Customers</h3>
+        <div class="mb-10">
+            @*<div class="breadcome-heading cstm">
+                    <form role="search" class="">
+                        <input type="text" placeholder="Search..." class="form-control cstmform">
+                        <a href="">
+                            <i class="fa fa-search cstm-align"></i>
+                        </a>
+                    </form>
+                </div>*@
+            @*<a href="@Url.Action("Create", "Customers")" class="btn btn-primary">Add</a>*@
+            @*<button type="button" id="addBtn" _id="0" class="btn btn-default" value="submit" data-toggle="modal" data-target="#myModal">Add Customer</button>*@
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="panel">
+            <div class="panel-body">
+                <div id="divCustomers"></div>
+                @*<table id="myTable" class="table table-condensed table-striped" data-role="datatable" data-info="false">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Customer Name</th>
+                            <th>Business Name</th>
+                            <th>Set Price</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            foreach (var items in Model.ModelObject.ToList())
+                            {
+
+                                <tr>
+                                    <td>@items.ID</td>
+                                    <td>@items.CustomerName</td>
+                                    <td>@items.BusinessName</td>
+                                    <td><a href="@Url.Action("SetPriceList", "PriceList", new { ID = items.ID })">Set Price</a></td>
+                                   
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr><td colspan="4">No Record Found</td></tr>
+                        }
+                    </tbody>
+                </table>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h2 class="modal-title">Customer</h2>
+            </div>
+            <div class="modal-body">
+            </div>
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-default adduser" id="AddUserscls" >Add User</button>
+                    <button type="button" class="btn btn-default updateuser" id="UpdateUsersClass" _id="0">Update User</button>
+                </div>*@
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        CustomersGrid();
+    });
+
+    function EditModal(a) {
+        $(".modal-body").load("/Customers/Edit?id=" + a)
+    }
+
+    $("#addBtn").click(function () {
+        $(".modal-body").load("/Customers/Create")
+
+    });
+
+
+    function CustomersGrid() {
+        $.ajax({
+            url: '@Url.Action("GetCustomersList", "PriceList")',
+            contentType: 'application/json; charset=utf-8',
+            type: 'GET',
+            dataType: 'json',
+            data: {},
+            success: function (result) {
+
+                $("#divCustomers").dxDataGrid({
+                    dataSource: result.List,
+                    columnsAutoWidth: true,
+                    paging: {
+                        pageSize: 10
+                    },
+                    filterRow: {
+                        visible: true,
+                        applyFilter: "auto"
+                    },
+                    searchPanel: {
+                        visible: true,
+                        width: 240,
+                        placeholder: "Search..."
+                    },
+                    headerFilter: {
+                        visible: true
+                    },
+                    searchPanel: { visible: true },
+                    columns: ["ID", "CustomerName", "BusinessName",
+
+                    {
+                        dataField: "ID",
+                        cellTemplate: function (container, options) {
+                            container.append("<a class='btn btn-info btn-sm' href='/PriceList/SetPriceList?ID="+ options.value +"'>Set Price</a>")
+                        }
+                    }],
+                    showBorders: true
+                });
+
+            },
+            error: function (result) {
+            }
+        });
+    }
+</script>

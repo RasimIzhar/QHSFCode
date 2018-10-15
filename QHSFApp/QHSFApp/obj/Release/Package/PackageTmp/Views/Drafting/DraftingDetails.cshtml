@@ -1,0 +1,311 @@
+﻿@model DAL.DbEntities.Vt_JobDrafting
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="https:/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+@{
+    var Role = "";
+    if (User.IsInRole("ContributorDrafter"))
+    {
+        Role = "Drafter";
+    }
+    else
+    {
+        Role = "Checker";
+    }
+}
+<script type="text/javascript">
+    $(document).on('focus', '.datepicker', function () {
+        $(this).datepicker({
+            todayHighlight:true,
+            format:'yyyy-mm-dd',
+            autoclose:true
+        })
+    });
+</script>
+
+@{
+    int UserID = Convert.ToInt32(Session["LogedInUserID"]);
+}
+<!-- ============================================================== -->
+<!-- Start Page Content -->
+<!-- ============================================================== -->
+@*<div class="row job-detail-section-one pb-20">
+    <div class="col-md-4">
+        <div class="row">
+            <div class="col-md-4 job-img-wrap"><img src="../assets/images/users/dollar.png" width="100%"></div>
+            <div class="col-md-7 job-content">
+                <h4 class="job-heading-1">JOBS</h4>
+                <h4 class="job-heading-2">@Model.Vt_Jobs.JobNo</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="row">
+            <div class="col-md-4 job-img-wrap"><img src="../assets/images/users/status.png" width="100%"></div>
+            <div class="col-md-7 job-content">
+                <h4 class="job-heading-1 color-change">Job Title</h4>
+                <h4 class="job-heading-2">@Model.Vt_Jobs.JobTitle</h4>
+                <input type="hidden" id="jobDraftingID" value="@Model.ID" />
+                <input type="hidden" id="userID" value="@UserID" />
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="row">
+            <div class="col-md-4 job-img-wrap"><img src="../assets/images/users/client.png" width="100%"></div>
+            <div class="col-md-7 job-content">
+                <h4 class="job-heading-1 color-change">Job Description</h4>
+                <h4 class="job-heading-2">@Model.Vt_Jobs.Description</h4>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+<div class="row job-detail-section-one pb-20">
+    <div class="col-md-4">
+        <div class="row">
+            <div class="col-md-4 job-img-wrap"><img src="~/assets/images/users/job.png" width="100%"></div>
+            <div class="col-md-7 job-content">
+                <h4 class="job-heading-1">JOB NO</h4>
+                <h4 class="job-heading-2">@Model.JobID</h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="row">
+            <div class="col-md-4 job-img-wrap"><img src="~/assets/images/users/builder-name.png" width="100%"></div>
+            <div class="col-md-7 job-content">
+                <h4 class="job-heading-1">JOB TITLE</h4>
+                <h4 class="job-heading-2">@Model.Vt_Jobs.JobTitle</h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="row">
+            <div class="col-md-4 job-img-wrap"><img src="~/assets/images/users/calender.png" width="100%"></div>
+            <div class="col-md-7 job-content">
+                <h4 class="job-heading-1">JOB END DATE</h4>
+                <h4 class="job-heading-2">@Convert.ToDateTime(Model.Vt_Jobs.EndDate).ToString("dd/MMM/yyyy")</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="bg-white p-15">
+    <div class="row mr-0 ml-0">
+        <div class="col-md-6 bg-white m-0 p-10">
+            <div class="row back-grey-main">
+                <div class="col-md-6">
+                    <p class="input-para">Drafter</p>
+                    <input type="text" class="cstm-input-area form-control" value="@ViewBag.DrafterName" readonly>
+                </div>
+                <div class="col-md-6">
+                    <p class="input-para">Drafting Due Date</p>
+                    <input type="text" class="cstm-input-area form-control" value="@Convert.ToDateTime(Model.DraftingDueDate).ToString("MM/dd/yyyy")" readonly>
+                </div>
+                <div class="col-md-6">
+                    <p class="input-para">Drafting Completion Date</p>
+                    @{
+                        string DraftCompletionDate = "";
+                        if (Model.DraftingCompletionDate != null)
+                        {
+                            DraftCompletionDate = Convert.ToDateTime(Model.DraftingCompletionDate).ToString("MM/dd/yyyy");
+                        }
+                    }
+                    <input type="text" class="cstm-input-area form-control" value="@DraftCompletionDate" readonly>
+                </div>
+                <div class="col-md-6">
+                    <p class="input-para">Engineering Complete Date</p>
+                    @{
+                        string EnggCompletionDate = "";
+                        if (Model.EngineeringCompletionDate != null)
+                        {
+                            EnggCompletionDate = Convert.ToDateTime(Model.EngineeringCompletionDate).ToString("MM/dd/yyyy");
+                        }
+                    }
+                    <input type="text" class="cstm-input-area form-control datepicker" id="txtEngineeringDate" value="@EnggCompletionDate">
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-6 bg-white m-0 p-10">
+            <div class="row back-grey-main">
+                <div class="col-md-6">
+                    <p class="input-para">Checker</p>
+                    <input type="text" class="cstm-input-area form-control" value="@ViewBag.CheckerName" readonly>
+                </div>
+                <div class="col-md-6">
+                    <p class="input-para">Checker Due Date</p>
+                    <input type="text" class="cstm-input-area form-control" value="@Convert.ToDateTime(Model.CheckerDueDate).ToString("MM/dd/yyyy")" readonly>
+                </div>
+                <div class="col-md-6">
+                    <p class="input-para">Checker Completion Date</p>
+                    @{
+                        string CheckerCompletionDate = "";
+                        if (Model.CheckerCompletionDate != null)
+                        {
+                            CheckerCompletionDate = Convert.ToDateTime(Model.CheckerCompletionDate).ToString("MM/dd/yyyy");
+                        }
+                    }
+                    <input type="text" class="cstm-input-area form-control" value="@CheckerCompletionDate" readonly>
+                </div>
+                <div class="col-md-6">
+                    <p class="input-para">Booklet Sent Date</p>
+                    @{
+                        string BookletSentDate = "";
+                        if (Model.BookletSentDate != null)
+                        {
+                            BookletSentDate = Convert.ToDateTime(Model.BookletSentDate).ToString("MM/dd/yyyy");
+                        }
+                    }
+                    <input type="text" class="cstm-input-area form-control datepicker" id="txtBookletDate" value="@BookletSentDate">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <!--Drafter Questions and SubQuestionsList-->
+        @*<span id="_Drafter_ProgressBar"></span>*@
+        <div class="col-md-10">
+            <span id="_Drafter_ProgressBar"></span>
+        </div>
+        <div class="col-md-2">
+            <label for="date" class="date-label">
+                @{
+                    if (!string.IsNullOrEmpty(DraftCompletionDate))
+                    {
+                        <span>@DraftCompletionDate</span>
+                    }
+                    else
+                    {
+                        <span>Date is not set yet</span>
+                    }
+                }
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <!--Drafter Questions and SubQuestionsList-->
+        <div class="col-md-6">
+            <span id="_Drafter"></span>
+            <span id="_Drafter_CheckList_ForChecker"></span>
+        </div>
+
+        <!--CheckList-->
+        <div class="col-md-6">
+            <span id="_Checker"></span>
+            <span id="_Checker_CheckList_ForDrafter"></span>
+        </div>
+
+    </div>
+    <div class="row">
+        <!--FixupList-->
+        <div class="col-md-6">
+            <span id="_FixUpList_ForDrafter"></span>
+            <span id="_FixUpList_ForChecker"></span>
+        </div>
+        <!--Fixup Confirm List-->
+        <div class="col-md-6">
+            <span id="_FixUpConfirmList_ForDrafter"></span>
+            <span id="_FixUpConfirmList_ForChecker"></span>
+        </div>
+
+    </div>
+    <!--here is Code-->
+    <!---Close this Code-->
+</div>
+
+
+<script>
+
+    $(document).ready(function(){
+        
+        $.blockUI({
+            css: {
+                border: 'none',
+                padding: '15px',
+                backgroundColor: '#000',
+                '-webkit-border-radius': '10px',
+                '-moz-border-radius': '10px',
+                opacity: .5,
+                color: '#fff'
+            }
+        });
+        ReloadPage();
+        setTimeout($.unblockUI, 6000);
+
+        $('#txtEngineeringDate').change(function(){
+            $.ajax({
+                type: "GET",
+                url: "/Drafting/Update_EnggDate?JobDraftingID="+@Model.ID+"&Date="+ $('#txtEngineeringDate').val() ,
+                contentType: 'application/json',
+                dataType: "json",
+
+                success: function (response) {
+
+                    AlertToast('success', 'Data Added Successfully');
+                },
+                error: function (response) {
+
+                    AlertToast('success', 'Data Added Successfully');
+                    //AlertToast('error', 'Error');
+                    //alert("Error");
+                }
+            })
+        });
+
+        $('#txtBookletDate').change(function(){
+            $.ajax({
+                type: "GET",
+                url: "/Drafting/Update_BookletDate?JobDraftingID="+@Model.ID +"&Date="+ $('#txtBookletDate').val(),
+                contentType: 'application/json',
+                dataType: "json",
+
+                success: function (response) {
+
+                    AlertToast('success', 'Data Added Successfully');
+                },
+                error: function (response) {
+
+                    AlertToast('success', 'Data Added Successfully');
+                    //AlertToast('error', 'Error');
+                    //alert("Error");
+                }
+            })
+        });
+
+    });
+
+    function ReloadPage(){
+
+        var role = '@Role';
+        $("#_Drafter_ProgressBar").load("/Drafting/_Drafter_ProgressBar?JobDraftingID="+ @Model.ID)
+
+        if(role == 'Drafter'){
+
+            $("#_Drafter").load("/Drafting/_Drafter?JobDraftingID="+ @Model.ID)
+            $("#_Checker_CheckList_ForDrafter").load("/Drafting/_Checker_CheckList_ForDrafter?JobDraftingID="+ @Model.ID)
+
+            $("#_FixUpList_ForDrafter").load("/Drafting/_FixUpList_ForDrafter?JobDraftingID="+ @Model.ID)
+            $("#_FixUpConfirmList_ForDrafter").load("/Drafting/_FixUpConfirmList_ForDrafter?JobDraftingID="+ @Model.ID)
+       
+
+        }
+        else{
+
+            $("#_Checker").load("/Drafting/_Checker?JobDraftingID="+ @Model.ID)
+            $("#_Drafter_CheckList_ForChecker").load("/Drafting/_Drafter_CheckList_ForChecker?JobDraftingID="+ @Model.ID)
+
+            $("#_FixUpList_ForChecker").load("/Drafting/_FixUpList_ForChecker?JobDraftingID="+ @Model.ID)
+            $("#_FixUpConfirmList_ForChecker").load("/Drafting/_FixUpConfirmList_ForChecker?JobDraftingID="+ @Model.ID)
+          
+        }
+    }
+
+
+</script>

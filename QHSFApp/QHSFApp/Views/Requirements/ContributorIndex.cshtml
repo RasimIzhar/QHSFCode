@@ -1,0 +1,60 @@
+﻿@model DAL.Model.ViewModels.GetJobsResponse
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row bg-white mt-30">
+    <div class="col-12 text-right mt-40 mb-20">
+        <h3 class="text-left txtstage pull-left mb-0 pt-5">Jobs Assigned to you</h3>
+        <div class="mb-10">
+            @*<div class="breadcome-heading cstm">
+                    <form role="search" class="">
+                        <input type="text" placeholder="Search..." class="form-control cstmform">
+                        <a href="">
+                            <i class="fa fa-search cstm-align"></i>
+                        </a>
+                    </form>
+                </div>*@
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="panel">
+            <div class="panel-body">
+                <table id="myTable" class="table table-condensed table-striped table-bordered" data-role="datatable" data-info="false">
+                    <thead>
+                        <tr>
+                            <th>Job No</th>
+                            <th>Job Title</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            foreach (var items in Model.ModelObject.ToList())
+                            {
+
+                                <tr>
+                                    <td>@items.JobNo</td>
+                                    <td>@items.JobTitle</td>
+                                    <td>@Convert.ToDateTime(items.StartDate).ToString("dd/MMM/yyyy")</td>
+                                    <td>@Convert.ToDateTime(items.EndDate).ToString("dd/MMM/yyyy")</td>
+                                    <td>
+                                        <a href="@Url.Action("ContributorJobDetails", "Requirements", new { ID=items.ID })"><i class="fa fa-file-text-o"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr><td colspan="6">No Record Found</td></tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

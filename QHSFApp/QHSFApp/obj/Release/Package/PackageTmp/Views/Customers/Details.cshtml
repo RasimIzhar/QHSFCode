@@ -1,0 +1,52 @@
+﻿@model DAL.Model.ViewModels.GetCustomerResponse
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="row bg-white mt-30">
+    <div class="col-12 text-right mt-40 mb-20">
+        <h3 class="text-left txtstage pull-left mb-0 pt-5">Details</h3>
+        <div class="mb-10">
+            @*<div class="breadcome-heading cstm">
+                    <form role="search" class="">
+                        <input type="text" placeholder="Search..." class="form-control cstmform">
+                        <a href="">
+                            <i class="fa fa-search cstm-align"></i>
+                        </a>
+                    </form>
+                </div>*@
+            <a href="@Url.Action("Index","Customers")">Go Back</a>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="panel">
+            <div class="panel-body">
+
+                @if (Model.ModelObject != null)
+                {
+                    var Data = Model.ModelObject;
+<pre>
+Customer Name: @Data.CustomerName,
+Business Name: @Data.BusinessName,
+Trading As: @Data.TradingAs,
+Address: @Data.Address,
+Email: @Data.Email,
+ABN: @Data.ABN,
+Xero Reference: @Data.XeroReference,
+CreatedDate: @Data.CreatedDate,
+ModifiedDate: @Data.ModifiedDate,
+UserID: @Data.UserID
+</pre>
+                }
+                else
+                {
+                    <p>No Data Found</p>
+                }
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+

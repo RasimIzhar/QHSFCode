@@ -1,0 +1,94 @@
+﻿@model DAL.Model.ViewModels.Create_JobResponse
+@{
+    Layout = null;
+}
+
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="https:/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+<script type="text/javascript">
+    $(document).on('focus', '.datepicker', function () {
+            $(this).datepicker({
+                todayHighlight:true,
+                format:'yyyy-mm-dd',
+                autoclose:true
+            })
+        });
+</script>
+
+<div class="row bg-white mt-30">
+    <div class="col-12">
+        <div class="panel">
+            <div class="panel-body">
+                <div class="">
+                    <div class="">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label" for="pwd">Assign to Drafting Admin</label>
+                                    <div class="">
+                                        @*This Code for User Assigning*@
+                                        @Html.DropDownListFor(m => m.JobDetails.UserAssignedID,
+                                        new SelectList(ViewBag.DropDownAdmin, "ID", "FirstName"),
+                                        new { @class = "form-control", @id = "DdlAdmin" })
+                                        @*@Html.DropDownList("DropDown", new SelectList(ViewBag.DropDown, "ID", "FirstName"),
+                    new { @class = "customer-sreach job-deatail-page-input" })*@
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+
+                            
+                        </div>
+                       
+
+                    <div class="">
+
+                        <div class="form-group">
+                            <div class="text-right">
+                                <button id="btnCreate" type="button" class="btn btn-default">Assign</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+    function Update_JobStatus(isApproved){
+        var obj = {};
+        obj.JobID = @ViewBag.JobID;
+        obj.CustomerID = @ViewBag.CustomerID;
+        obj.TabID = 4;
+        obj.UserAssignedID = $('#DdlAdmin').val();
+        
+
+        $.ajax({
+            type: "POST",
+            url: "/Estimate/UpdateJobDetails_Estimation",
+            contentType: "application/json",
+            data: JSON.stringify(obj),
+            dataType: "json",
+
+            success: function (response) {
+                AlertToast('success', 'Data Added Successfully');
+            },
+
+            error: function (response) {
+                AlertToast('success', 'Data Added Successfully')
+            }
+        });
+    }
+
+    $('#btnCreate').click(function () {
+        Update_JobStatus(true);
+        window.location.href = "/Estimate/Index";
+    });
+</script>

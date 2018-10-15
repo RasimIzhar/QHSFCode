@@ -1,0 +1,103 @@
+﻿@model DAL.Model.ViewModels.GetDynamicFields_WithValues_Response
+@{
+    ViewBag.Title = "FieldPreview";
+}
+
+<h2>FieldPreview</h2>
+
+<br />
+<br />
+<br />
+
+<hr />
+
+@if (Model.Field != null && Model.Field.Type == "textbox")
+{
+    <div class="form-group">
+        <div class="col-md-6">
+            <label>@Model.Field.Label</label>
+            <input type="@Model.Field.Type" class="@Model.Field.CssClass" placeholder="@Model.Field.Placeholder" />
+            <small>@Model.Field.Note</small>
+        </div>
+    </div>
+
+}
+
+@if (Model.Field != null && Model.Field.Type == "dropdown")
+{
+    <div class="form-group">
+        <p>@Model.Field.Label</p>
+        @if (Model.Values != null && Model.Values.Count > 0)
+        {
+            <select class="form-control" id="exampleFormControlSelect1">
+                @foreach (var item in Model.Values)
+                {
+                    <option>@item.FieldValue</option>
+                }
+            </select>
+        }
+        else
+        {
+            <small>Please add values to this field</small>
+        }
+    </div>
+}
+
+@if (Model.Field != null && Model.Field.Type == "radio")
+{
+    <div class="form-group">
+        @if (Model.Values != null && Model.Values.Count > 0)
+        {
+
+            <p>@Model.Field.Label</p>
+            int rowCount = 0;
+            foreach (var item in Model.Values)
+            {
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="@rowCount" value="@item.FieldValue">
+                    <label class="form-check-label" for="@rowCount">@item.FieldText</label>
+                </div>
+                rowCount = rowCount + 1;
+            }
+        }
+        else
+        {
+            <small>Please add values to this field</small>
+        }
+    </div>
+}
+
+@if (Model.Field != null && Model.Field.Type == "checkbox")
+{
+    <div class="form-group">
+        @if (Model.Values != null && Model.Values.Count > 0)
+        {
+
+            <p>@Model.Field.Label</p>
+            int rowCount = 0;
+            foreach (var item in Model.Values)
+            {
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="@rowCount" value="@item.FieldValue">
+                    <label class="form-check-label" for="@rowCount">@item.FieldText</label>
+                </div>
+                rowCount = rowCount + 1;
+            }
+
+        }
+        else
+        {
+            <small>Please add values to this field</small>
+        }
+    </div>
+}
+
+<hr />
+
+<br />
+<br />
+<br />
+
+<a href="@Url.Action("Index", "DynamicFields")">Go Back</a>
+
+

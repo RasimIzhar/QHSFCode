@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="vt_QSFHModelStoreContainer" CdmEntityContainer="vt_QSFHEntities1">
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="vt_QSFHModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JobDetailsDynamicFields">
+      <EntityTypeMapping TypeName="vt_QSFHModel.JobDetailsDynamicField">
+        <MappingFragment StoreEntitySet="JobDetailsDynamicFields">
+          <ScalarProperty Name="Anwer" ColumnName="Anwer" />
+          <ScalarProperty Name="DynamicFieldID" ColumnName="DynamicFieldID" />
+          <ScalarProperty Name="JobDetailsID" ColumnName="JobDetailsID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JobDetailsStatics">
+      <EntityTypeMapping TypeName="vt_QSFHModel.JobDetailsStatic">
+        <MappingFragment StoreEntitySet="JobDetailsStatic">
+          <ScalarProperty Name="Installation" ColumnName="Installation" />
+          <ScalarProperty Name="StaticFreightSite" ColumnName="StaticFreightSite" />
+          <ScalarProperty Name="StaticEnggForm16" ColumnName="StaticEnggForm16" />
+          <ScalarProperty Name="StaticEnggForm15" ColumnName="StaticEnggForm15" />
+          <ScalarProperty Name="JobDetailsID" ColumnName="JobDetailsID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserRoles">
+      <EntityTypeMapping TypeName="vt_QSFHModel.UserRole">
+        <MappingFragment StoreEntitySet="UserRoles">
+          <ScalarProperty Name="RolesID" ColumnName="RolesID" />
+          <ScalarProperty Name="TabID" ColumnName="TabID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vt_Customers">
+      <EntityTypeMapping TypeName="vt_QSFHModel.Vt_Customers">
+        <MappingFragment StoreEntitySet="Vt_Customers">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+          <ScalarProperty Name="XeroReference" ColumnName="XeroReference" />
+          <ScalarProperty Name="ABN" ColumnName="ABN" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="TradingAs" ColumnName="TradingAs" />
+          <ScalarProperty Name="BusinessName" ColumnName="BusinessName" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vt_DynamicFields">
+      <EntityTypeMapping TypeName="vt_QSFHModel.Vt_DynamicFields">
+        <MappingFragment StoreEntitySet="Vt_DynamicFields">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="JsID" ColumnName="JsID" />
+          <ScalarProperty Name="CssClass" ColumnName="CssClass" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="Placeholder" ColumnName="Placeholder" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Label" ColumnName="Label" />
+          <ScalarProperty Name="TabID" ColumnName="TabID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vt_DynamicFieldsValues">
+      <EntityTypeMapping TypeName="vt_QSFHModel.Vt_DynamicFieldsValues">
+        <MappingFragment StoreEntitySet="Vt_DynamicFieldsValues">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="FieldValue" ColumnName="FieldValue" />
+          <ScalarProperty Name="FieldText" ColumnName="FieldText" />
+          <ScalarProperty Name="DynamicFieldsID" ColumnName="DynamicFieldsID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vt_JobDetails">
+      <EntityTypeMapping TypeName="vt_QSFHModel.Vt_JobDetails">
+        <MappingFragment StoreEntitySet="Vt_JobDetails">
+          <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+          <ScalarProperty Name="UserAssignedID" ColumnName="UserAssignedID" />
+          <ScalarProperty Name="TabID" ColumnName="TabID" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="JobID" ColumnName="JobID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vt_PriceList">
+      <EntityTypeMapping TypeName="vt_QSFHModel.Vt_PriceList">
+        <MappingFragment StoreEntitySet="Vt_PriceList">
+          <ScalarProperty Name="SellPrice" ColumnName="SellPrice" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vt_Products">
+      <EntityTypeMapping TypeName="vt_QSFHModel.Vt_Products">
+        <MappingFragment StoreEntitySet="Vt_Products">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="ModifiiedDate" ColumnName="ModifiiedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="Size" ColumnName="Size" />
+          <ScalarProperty Name="Unit" ColumnName="Unit" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="StageID" ColumnName="StageID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vt_ProductsStages">
+      <EntityTypeMapping TypeName="vt_QSFHModel.Vt_ProductsStages">
+        <MappingFragment StoreEntitySet="Vt_ProductsStages">
+          <ScalarProperty Name="Stage" ColumnName="Stage" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vt_Tabs">
+      <EntityTypeMapping TypeName="vt_QSFHModel.vt_Tabs">
+        <MappingFragment StoreEntitySet="vt_Tabs">
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vt_Users">
+      <EntityTypeMapping TypeName="vt_QSFHModel.Vt_Users">
+        <MappingFragment StoreEntitySet="Vt_Users">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Contact" ColumnName="Contact" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vt_ProductUnit">
+      <EntityTypeMapping TypeName="vt_QSFHModel.vt_ProductUnit">
+        <MappingFragment StoreEntitySet="vt_ProductUnit">
+          <ScalarProperty Name="UnitName" ColumnName="UnitName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vt_JobEstimation">
+      <EntityTypeMapping TypeName="vt_QSFHModel.Vt_JobEstimation">
+        <MappingFragment StoreEntitySet="Vt_JobEstimation">
+          <ScalarProperty Name="MarkupValue" ColumnName="MarkupValue" />
+          <ScalarProperty Name="RevisionNumber" ColumnName="RevisionNumber" />
+          <ScalarProperty Name="QuoteNumber" ColumnName="QuoteNumber" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="JobID" ColumnName="JobID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vt_JobEstimationDetails">
+      <EntityTypeMapping TypeName="vt_QSFHModel.Vt_JobEstimationDetails">
+        <MappingFragment StoreEntitySet="Vt_JobEstimationDetails">
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="MarkupValue" ColumnName="MarkupValue" />
+          <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="StageID" ColumnName="StageID" />
+          <ScalarProperty Name="JobID" ColumnName="JobID" />
+          <ScalarProperty Name="JobEstimationID" ColumnName="JobEstimationID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="vt_QSFHModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="vt_QSFHModel.Store.sp_creatediagram" />
+    <EntitySetMapping Name="Vt_JobDrafting_Checker_Questions">
+      <EntityTypeMapping TypeName="vt_QSFHModel.Vt_JobDrafting_Checker_Questions">
+        <MappingFragment StoreEntitySet="Vt_JobDrafting_Checker_Questions">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CheckerQuestion" ColumnName="CheckerQuestion" />
+          <ScalarProperty Name="Heading" ColumnName="Heading" />
+          <ScalarProperty Name="CheckerQuestionID" ColumnName="CheckerQuestionID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vt_JobDrafting_Drafter_Questions">
+      <EntityTypeMapping TypeName="vt_QSFHModel.Vt_JobDrafting_Drafter_Questions">
+        <MappingFragment StoreEntitySet="Vt_JobDrafting_Drafter_Questions">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="DrafterQuestion" ColumnName="DrafterQuestion" />
+          <ScalarProperty Name="Heading" ColumnName="Heading" />
+          <ScalarProperty Name="DrafterQuestionID" ColumnName="DrafterQuestionID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vt_JobDrafting_Drafter_SubQuestions">
+      <EntityTypeMapping TypeName="vt_QSFHModel.Vt_JobDrafting_Drafter_SubQuestions">
+        <MappingFragment StoreEntitySet="Vt_JobDrafting_Drafter_SubQuestions">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="DrafterSubQuestion" ColumnName="DrafterSubQuestion" />
+          <ScalarProperty Name="Drafting_Drafter_QuestionID" ColumnName="Drafting_Drafter_QuestionID" />
+          <ScalarProperty Name="Drafter_SubQuestionID" ColumnName="Drafter_SubQuestionID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vt_JobDrafting">
+      <EntityTypeMapping TypeName="vt_QSFHModel.Vt_JobDrafting">
+        <MappingFragment StoreEntitySet="Vt_JobDrafting">
+          <ScalarProperty Name="BookletSentDate" ColumnName="BookletSentDate" />
+          <ScalarProperty Name="EngineeringCompletionDate" ColumnName="EngineeringCompletionDate" />
+          <ScalarProperty Name="CheckerCompletionDate" ColumnName="CheckerCompletionDate" />
+          <ScalarProperty Name="DraftingCompletionDate" ColumnName="DraftingCompletionDate" />
+          <ScalarProperty Name="CheckerDueDate" ColumnName="CheckerDueDate" />
+          <ScalarProperty Name="DraftingDueDate" ColumnName="DraftingDueDate" />
+          <ScalarProperty Name="CheckerID" ColumnName="CheckerID" />
+          <ScalarProperty Name="DrafterID" ColumnName="DrafterID" />
+          <ScalarProperty Name="JobNo" ColumnName="JobNo" />
+          <ScalarProperty Name="JobID" ColumnName="JobID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vt_JobDrafting_Drafter_Checklist">
+      <EntityTypeMapping TypeName="vt_QSFHModel.Vt_JobDrafting_Drafter_Checklist">
+        <MappingFragment StoreEntitySet="Vt_JobDrafting_Drafter_Checklist">
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="SubQuestionID" ColumnName="SubQuestionID" />
+          <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+          <ScalarProperty Name="DrafterID" ColumnName="DrafterID" />
+          <ScalarProperty Name="JobDraftingID" ColumnName="JobDraftingID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vt_JobDrafting_Checker_Checklist">
+      <EntityTypeMapping TypeName="vt_QSFHModel.Vt_JobDrafting_Checker_Checklist">
+        <MappingFragment StoreEntitySet="Vt_JobDrafting_Checker_Checklist">
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Drafting_Checker_QuestionID" ColumnName="Drafting_Checker_QuestionID" />
+          <ScalarProperty Name="CheckerID" ColumnName="CheckerID" />
+          <ScalarProperty Name="JobDraftingID" ColumnName="JobDraftingID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vt_ManufacturingOrderDetails">
+      <EntityTypeMapping TypeName="vt_QSFHModel.Vt_ManufacturingOrderDetails">
+        <MappingFragment StoreEntitySet="Vt_ManufacturingOrderDetails">
+          <ScalarProperty Name="Priority" ColumnName="Priority" />
+          <ScalarProperty Name="Class" ColumnName="Class" />
+          <ScalarProperty Name="End" ColumnName="End" />
+          <ScalarProperty Name="Start" ColumnName="Start" />
+          <ScalarProperty Name="JobId" ColumnName="JobId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vt_Roles">
+      <EntityTypeMapping TypeName="vt_QSFHModel.vt_Roles">
+        <MappingFragment StoreEntitySet="vt_Roles">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Researches">
+      <EntityTypeMapping TypeName="vt_QSFHModel.Research">
+        <MappingFragment StoreEntitySet="Research">
+          <ScalarProperty Name="Priority" ColumnName="Priority" />
+          <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+          <ScalarProperty Name="JobDate" ColumnName="JobDate" />
+          <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+          <ScalarProperty Name="ResearchId" ColumnName="ResearchId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vt_Jobs">
+      <EntityTypeMapping TypeName="vt_QSFHModel.Vt_Jobs">
+        <MappingFragment StoreEntitySet="Vt_Jobs">
+          <ScalarProperty Name="AssignedTo" ColumnName="AssignedTo" />
+          <ScalarProperty Name="OfficeContactPhoneNumber" ColumnName="OfficeContactPhoneNumber" />
+          <ScalarProperty Name="OfficeContactName" ColumnName="OfficeContactName" />
+          <ScalarProperty Name="SiteContactPhoneNumber" ColumnName="SiteContactPhoneNumber" />
+          <ScalarProperty Name="SiteContactName" ColumnName="SiteContactName" />
+          <ScalarProperty Name="SiteAddress" ColumnName="SiteAddress" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+          <ScalarProperty Name="JobNo" ColumnName="JobNo" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

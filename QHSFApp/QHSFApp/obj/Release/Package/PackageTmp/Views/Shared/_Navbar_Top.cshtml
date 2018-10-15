@@ -1,0 +1,167 @@
+﻿<header class="topbar" style="">
+    <nav class="navbar top-navbar navbar-expand-md navbar-light">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                <b>
+                    <img src="~/assets/images/Qls.png" alt="homepage" class="dark-logo a">
+                    <img src="~/assets/images/logo-light-icon.png" alt="homepage" class="light-logo b">
+                </b>
+                <span style="display: none;">
+                    <img src="~/assets/images/logosd.png" alt="homepage" class="dark-logo c">
+                    <img src="~/assets/images/logo-light-text.png" class="light-logo d" alt="homepage">
+                </span>
+            </a>
+        </div>
+        <div class="navbar-collapse">
+            <ul class="navbar-nav mr-auto mt-md-0">
+                <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
+                <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler hidden-sm-down text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                @*<li class="nav-item m-l-10"> <a class="nav-link text-muted cstm" href="javascript:void(0)">Menu1</a> </li>
+                    <li class="nav-item m-l-10"> <a class="nav-link text-muted cstm" href="javascript:void(0)">Menu2</a> </li>
+                    <li class="nav-item m-l-10"> <a class="nav-link text-muted cstm" href="javascript:void(0)">Menu3</a> </li>*@
+            </ul>
+            <ul class="navbar-nav my-lg-0">
+                <li class="nav-item dropdown">
+                    <span>Hello, @Session["LogedInuser"]</span>
+                    <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="~/assets/images/users/builder-name.png" alt="user" class="profile-pic"></a>
+                    <div class="dropdown-menu dropdown-menu-right scale-up">
+                        <ul class="dropdown-user">
+                            <li>
+                                <div class="dw-user-box">
+                                    <div class="u-img"><img src="~/assets/images/users/builder-name.png" alt="user"></div>
+                                    <div class="u-text">
+                                        <h4>@Session["LogedInuser"]</h4>
+                                        <p class="text-muted">Howdy !</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            @*<li><a href="#"><i class="ti-user"></i> My Profile</a></li>
+                                <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
+                                <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
+                                <li role="separator" class="divider"></li>*@
+                            <li><a href=@Url.Action("Logout", "Login")><i class="fa fa-power-off"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<aside class="left-sidebar" style="overflow: visible;">
+    <div class="slimScrollDiv" style="position: relative; overflow: visible; width: auto; height: 100%;">
+        <div class="scroll-sidebar" style="overflow: visible hidden; width: auto; height: 100%;">
+            <nav class="sidebar-nav active">
+                <ul id="sidebarnav" class="">
+                    <li class="nav-devider"></li>
+                    <li class="nav-small-cap">DASHBOARD</li>
+
+                    @*<li><a href="index.html"><i class="mdi mdi-book-multiple"></i>Minimal </a></li>
+                        <li><a href="index2.html"><i class="mdi mdi-chart-bubble"></i>Analytical</a></li>
+                        <li><a href="index3.html"><i class="mdi mdi-bullseye"></i>Demographical</a></li>
+                        <li><a href="index4.html"><i class="mdi mdi-gauge"></i>Modern</a></li>*@
+
+                    @{
+                        if (User.Identity != null)
+                        {
+                            var data = User.Identity.Name;
+                            if (data != "SuperAdmin")
+                            {
+                                var useridInt = Convert.ToInt32(data);
+
+                                DAL.DbEntities.vt_QSFHEntities db = new DAL.DbEntities.vt_QSFHEntities();
+                                var gettabs = (from ut in db.vt_Tabs
+                                               join ur in db.UserRoles on ut.ID equals ur.TabID
+                                               where ur.UserID == useridInt && ur.RolesID != 0
+                                               select ut.Title).Distinct().ToList();
+
+                                foreach (var item in gettabs)
+                                {
+                                    <li><a href="/@item"><i class="mdi mdi-book-multiple"></i>@item</a></li>
+
+                                }
+                            }
+                            else
+                            {
+
+                                if (User.IsInRole("SuperAdmin"))
+                                {
+                                    <li><a href="/UserNew"> <i class="fa fa-users"></i>User Management</a></li>
+                                    <li class="">
+                                        <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
+                                            <i class="fa fa-laptop"></i>
+                                            <span class="hide-menu">Tabs Management</span>
+                                        </a>
+                                        <ul aria-expanded="false" class="collapse">
+                                            <li><a href="/DynamicFields"> <i class="@*fa fa-angle-double-right*@"></i> Requirements Tabs</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="/Customers"><i class="mdi mdi-book-multiple"></i>CRM</a></li>
+
+                                    <li class="">
+                                        <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
+                                            <i class="fa fa-truck"></i>
+                                            <span class="hide-menu">Inventory</span>
+                                        </a>
+                                        <ul aria-expanded="false" class="collapse">
+                                            <li><a href="/Products"><i class="@*fa fa-truck*@"></i>Products</a></li>
+                                            <li><a href="/PriceList"><i class="@*fa fa-dollar*@"></i>Set Price</a></li>
+                                        </ul>
+                                    </li>
+
+                                }
+                            }
+                        }
+                    }
+
+                    @*<li class="">
+                            <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
+                                <i class="mdi mdi-gauge"></i><span class="hide-menu">
+                                    User Mangement
+                                    <span class="label label-rouded label-themecolor pull-right">
+                                        2
+                                    </span>
+                                </span>
+                            </a>
+                            <ul aria-expanded="false" class="collapse" style="height: 0px;">
+                                <li><a href="index.html">Minimal </a></li>
+                                <li><a href="index2.html">Analytical</a></li>
+                                <li><a href="index3.html">Demographical</a></li>
+                                <li><a href="index4.html">Modern</a></li>
+                            </ul>
+                        </li>
+                        <li class="">
+                            <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-book-multiple"></i><span class="hide-menu">Lorem Ipsum<span class="label label-rouded label-themecolor pull-right">5</span></span></a>
+                            <ul aria-expanded="false" class="collapse" style="height: 0px;">
+                                <li><a href="index.html">Minimal </a></li>
+                                <li><a href="index2.html">Analytical</a></li>
+                                <li><a href="index3.html">Demographical</a></li>
+                                <li><a href="index4.html">Modern</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="">
+                            <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu">Lorem Ipsum<span class="label label-rouded label-themecolor pull-right">8</span></span></a>
+                            <ul aria-expanded="false" class="collapse" style="height: 0px;">
+                                <li><a href="index.html">Minimal </a></li>
+                                <li><a href="index2.html">Analytical</a></li>
+                                <li><a href="index3.html">Demographical</a></li>
+                                <li><a href="index4.html">Modern</a></li>
+                            </ul>
+                        </li>
+                        <li class="">
+                            <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-bullseye"></i><span class="hide-menu">Lorem Ipsum<span class="label label-rouded label-themecolor pull-right">3</span></span></a>
+                            <ul aria-expanded="false" class="collapse" style="height: 0px;">
+                                <li><a href="index.html">Minimal </a></li>
+                                <li><a href="index2.html">Analytical</a></li>
+                                <li><a href="index3.html">Demographical</a></li>
+                                <li><a href="index4.html">Modern</a></li>
+                            </ul>
+                        </li>*@
+                </ul>
+            </nav>
+        </div><div class="slimScrollBar" style="background: rgb(220, 220, 220); width: 5px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; left: 1px; height: 2571px;"></div><div class="slimScrollRail" style="width: 5px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; left: 1px;"></div>
+    </div>
+</aside>

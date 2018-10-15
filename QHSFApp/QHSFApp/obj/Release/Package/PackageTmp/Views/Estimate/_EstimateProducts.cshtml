@@ -1,0 +1,144 @@
+﻿@model DAL.Model.ViewModels.GetEstimationData
+<div class="col-12 p-30">
+    <div class="card">
+        <div class="card-body padd-0">
+
+            <div class="table-responsive table-scroll">
+                <table id="tblProducts" class="table table-bordered border-bottom-none cstm" style="width:100% !important">
+                    <thead>
+                        <tr>
+                            <th class="vertical-top table-heading-1" width="33%">Item Name</th>
+                            <th class="vertical-top table-heading-1" width="5%" >Unit</th>
+                            <th class="vertical-top table-heading-1" width="20.5%"  >Qty</th>
+                            <th class="vertical-top table-heading-1" width="20.5%" >Rate</th>
+                            <th class="vertical-top table-heading-1" width="20.5%" >Add Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            var ProductData = Model.Estimation;
+
+                            if (ProductData != null)
+                            {
+                                foreach (var item in ProductData.ToList())
+                                {
+                                    <tr>
+                                        <td class="vertical-top" style="display:none">@item.ProductID</td>
+                                        <td class="vertical-top">@item.Title</td>
+                                        <td class="vertical-top">@item.Unit</td>
+                                        <td class="vertical-top">
+                                            @{ int Quantity = 0;
+                                                if (item.Qty != null)
+                                                {
+                                                    Quantity = Convert.ToInt32(item.Qty);
+                                                }
+                                            }
+                                            <input id="Qty" type="number" min="0" class="txtQuantity form-control" value="@Quantity" />
+                                        </td>
+                                        <td class="vertical-top">
+                                            <input id="Rate" type="number" min="0" value="@item.UnitPrice" class="rate form-control" disabled="disabled" />
+                                        </td>
+                                        <td class="add-price vertical-top">
+                                            @{ decimal Total = 0;
+                                                if (item.Price != null)
+                                                {
+                                                    Total = Convert.ToDecimal(item.Price);
+                                                }
+                                            }
+                                            <input id="Price" type="number" value="@Total" class="price form-control" disabled="disabled" />
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        }
+
+                    </tbody>
+
+
+
+
+                </table>
+
+            </div>
+
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1" class="bold">Notes</label>
+                            <textarea class="form-control notes" id="Notes" rows="3"></textarea>
+                        </div>
+
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group mb-10">
+                            <label for="Subtotal" class="bold">Subtotal</label>
+                            <input type="number" class="form-control" id="Subtotal" disabled="disabled">
+                        </div>
+                        <div class="form-group mb-10">
+                            <label for="MarkUp" class="bold">Total Mark Up</label>
+                            @{ var Markup = 0;
+                                if (Model.MarkupValue > 0)
+                                {
+                                    Markup = Model.MarkupValue;
+                                }
+                            }
+                            <input type="number" class="form-control" id="MarkUp" value="@Markup" placeholder="" onchange="CalculateMarkup()">
+                        </div>
+                        <div class="form-group mb-10">
+                            <label for="Total" class="bold">Total</label>
+                            <input type="number" class="form-control" id="Total" disabled="disabled">
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<script type="text/javascript">
+
+
+    function CalculateMarkup() {
+        debugger;
+        var sub_total = $("#Subtotal").val();
+        var markup = $('#MarkUp').val();
+        var permarkup = parseFloat(sub_total) * (parseFloat(markup) / 100);
+
+        var Total = parseFloat(permarkup) + parseFloat(sub_total);
+        $('#Total').val(parseFloat(Total.toFixed(2)));
+    }
+
+    $(function () {
+        //Calculating SubTotal
+        var calculated_total_sum = 0;
+        $("#tblProducts .price").each(function () {
+            var get_textbox_value = $(this).val();
+            calculated_total_sum += parseFloat(get_textbox_value);
+        });
+        $("#Subtotal").val(calculated_total_sum);
+        CalculateMarkup();
+
+    });
+
+    $("#tblProducts").on('input', '.txtQuantity', function () {
+        debugger;
+        var Quantity = Number($(this).val());
+            var Rate = Number($(this).closest('tr').find('#Rate').val());
+            var Price = Quantity * Rate;
+            $(this).closest('tr').find('#Price').val(Price);
+
+            //Calculating SubTotal
+            var calculated_total_sum = 0;
+            $("#tblProducts .price").each(function () {
+                var get_textbox_value = $(this).val();
+                calculated_total_sum += parseFloat(get_textbox_value);
+            });
+            $("#Subtotal").val(calculated_total_sum);
+            CalculateMarkup();
+    });
+
+</script>

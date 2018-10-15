@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QHSFApp", "QHSFApp\QHSFApp.csproj", "{87C3A1DE-FB5A-4874-8FC6-D5316C12AA6E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{E00A42B0-D114-412F-BB76-3C03E7E985C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BAL", "BAL\BAL.csproj", "{4445A456-AB67-4BB7-9748-1DE7ABC0A78A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QHSFApi", "QHSFApi\QHSFApi.csproj", "{B625F533-395E-4DE2-A503-E544A7A9B653}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{87C3A1DE-FB5A-4874-8FC6-D5316C12AA6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87C3A1DE-FB5A-4874-8FC6-D5316C12AA6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87C3A1DE-FB5A-4874-8FC6-D5316C12AA6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87C3A1DE-FB5A-4874-8FC6-D5316C12AA6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E00A42B0-D114-412F-BB76-3C03E7E985C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E00A42B0-D114-412F-BB76-3C03E7E985C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E00A42B0-D114-412F-BB76-3C03E7E985C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E00A42B0-D114-412F-BB76-3C03E7E985C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4445A456-AB67-4BB7-9748-1DE7ABC0A78A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4445A456-AB67-4BB7-9748-1DE7ABC0A78A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4445A456-AB67-4BB7-9748-1DE7ABC0A78A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4445A456-AB67-4BB7-9748-1DE7ABC0A78A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B625F533-395E-4DE2-A503-E544A7A9B653}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B625F533-395E-4DE2-A503-E544A7A9B653}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B625F533-395E-4DE2-A503-E544A7A9B653}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B625F533-395E-4DE2-A503-E544A7A9B653}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://amarmaymon.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = BAL\\BAL.csproj
+		SccProjectName1 = BAL
+		SccLocalPath1 = BAL
+		SccProjectUniqueName2 = DAL\\DAL.csproj
+		SccProjectName2 = DAL
+		SccLocalPath2 = DAL
+		SccProjectUniqueName3 = QHSFApi\\QHSFApi.csproj
+		SccProjectName3 = QHSFApi
+		SccLocalPath3 = QHSFApi
+		SccProjectUniqueName4 = QHSFApp\\QHSFApp.csproj
+		SccProjectName4 = QHSFApp
+		SccLocalPath4 = QHSFApp
+	EndGlobalSection
+EndGlobal

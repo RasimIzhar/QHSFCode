@@ -1,0 +1,180 @@
+﻿@{
+    Layout = null;
+}
+
+@model DAL.Model.ViewModels.Checker_Response
+
+@**@
+<h3 class="mt-20">FixUpList for Drafter</h3>
+<div class="panel-group position-relative">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title back-clr-grey">
+                <a data-toggle="collapse" href="#collapse8">
+                    <i class="fa fa-minus cstm-accordin-icon"
+                       aria-hidden="true"></i>
+                </a>
+            </h4>
+        </div>
+        <div id="collapse8" class="panel-collapse collapse show">
+            <div class="text-center">
+                <label class="back-clr-green label-acordin">Incomplete Items</label>
+                <label class="back-clr-grey label-acordin">@Model.CheckList.Count/@Model.Questions.Count</label>
+            </div>
+            @if (Model != null)
+            {
+                if (Model.Questions.Count > 0)
+                {
+                    <div id="carouselFixUpListForDrafter" class="carousel slide" data-ride="carousel" data-interval="false">
+                        <div class="carousel-inner" role="listbox">
+
+                            @foreach (var item in Model.Questions)
+                            {
+                                var ActiveCarousel = "";
+                                if (item.CheckerQuestionID == Model.Questions.Max(x => x.CheckerQuestionID).Value)
+                                {
+                                    ActiveCarousel = "carousel-item active";
+                                }
+                                else
+                                {
+                                    ActiveCarousel = "carousel-item";
+                                }
+                                <div class="@ActiveCarousel">
+                                    <div class="hide-area mt-10">
+                                        <h5 class="Sub-heading">@item.Heading</h5>
+                                        
+                                        @{
+                                            var itemCheckList = Model.CheckList.Where(x => x.Drafting_Checker_QuestionID == item.CheckerQuestionID).FirstOrDefault();
+                                            var notes = itemCheckList.Notes.Split(',');
+
+
+                                            <!--Zain Work-->
+                                            <div class="back-clr-grey border-radius-4 pb-30">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <ul class="filters pl-10">
+
+                                                            <li>
+                                                                <label>
+                                                                    
+                                                                    <input type="checkbox" class="check" id="FixUpListForDrafter-@item.CheckerQuestionID" onchange="FixUpConfirmed(this,@item.CheckerQuestionID)">
+                                                                    <span class="icon"><i class="fa fa-check cstm"></i></span>
+
+                                                                </label>
+                                                               
+                                                                <label for="FixUpListForDrafter-@item.CheckerQuestionID" class="clr-white pl-10 cstm-heading-wall">
+                                                                    @item.CheckerQuestion
+                                                                </label>
+                                                            </li>
+
+                                                        </ul>
+
+                                                        
+                                                        <div class="reasonclass" style="text-align: left; margin-top: 10px; margin-left: 22px;" id="reason-@item.ID">
+                                                           
+                                                            <input id="txtReason-@item.CheckerQuestionID" type="text" placeholder="Reason" class="cstm-input-area-accordin">
+                                                                <button type="button" class="btn btn-primary mt-10 ml-20 back-clr-green" onclick="CheckUpdate_FixUpConfirmedList('#txtReason-@item.CheckerQuestionID',@item.CheckerQuestionID)">Submit</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                @if (notes.Count() > 0)
+                                                {
+                                                    foreach (var key in notes)
+                                                    {
+                                                        if (key.Trim() != "")
+                                                        {
+                                                            <input type="text" placeholder="Reason" class="cstm-input-area-accordin" value="@key" readonly="readonly"><br />
+                                                        }
+                                                    }
+                                                }
+
+                                            </div>
+                                            <!--Zain Work-->
+                                        }
+                                    </div>
+
+                                </div>
+
+                                            }
+                        </div>
+                        <div class="text-center"></div>
+                        <a class="carousel-control-prev" href="#carouselFixUpListForDrafter" role="button" data-slide="prev">
+                            <button type="button" class="button back-clr-grey mt-20" value="submit">Back</button>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselFixUpListForDrafter" role="button" data-slide="next">
+                            <button type="button" class="button back-clr-green mt-20" value="submit">Next</button>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                                            }
+                                            else
+                                            {
+                                                <p>No Record Found</p>}
+                                            }
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+
+    function CheckUpdate_FixUpConfirmedList(Notes, QuestionID) {
+        var Obj = {
+            //JobDraftingID: 2,
+            JobDraftingID: $('#jobDraftingID').val(),
+            //CheckerID: 50,
+            CheckerID: $('#userID').val(),
+            Drafting_Checker_QuestionID: QuestionID,
+            Status: 'FixUpConfirmed',
+            Notes: 'Drafter: ' + $(Notes).val()
+        };
+        $.blockUI({
+            css: {
+                border: 'none',
+                padding: '15px',
+                backgroundColor: '#000',
+                '-webkit-border-radius': '10px',
+                '-moz-border-radius': '10px',
+                opacity: .5,
+                color: '#fff'
+            }
+        })
+
+        $.ajax({
+            type: "POST",
+            url: "/Drafting/CheckUpdate_FixUpConfirmedList",
+            contentType: 'application/json',
+            data: JSON.stringify(Obj),
+            dataType: "json",
+            success: function (response) {
+                AlertToast('success', 'Data Added Successfully');
+                ReloadPage();
+            },
+            error: function (response) {
+
+                AlertToast('success', 'Data Added Successfully');
+                ReloadPage();
+                setTimeout($.unblockUI,5000);
+            }
+        })
+    }
+
+    function FixUpConfirmed(isChecked, id) {
+        if (isChecked.checked) {
+            $('#reason-' + id).show();
+            $('#txtReason-' + id).show();
+        }
+        else {
+            $('#reason-' + id).hide();
+            $('#txtReason-' + id).hide();
+        }
+    }
+
+    $(document).ready(function () {
+        $('.reasonclass').hide();
+    });
+</script>

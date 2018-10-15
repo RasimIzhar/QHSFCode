@@ -1,0 +1,133 @@
+﻿@model DAL.Model.ViewModels.Get_JobsOverview_Response
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<script src="~/assets/js/jquery-1.12.4.min.js"></script>
+
+<div class="row bg-white mt-30">
+    <div class="col-12 text-right mt-40 mb-20">
+        <h3 class="text-left txtstage pull-left mb-0 pt-5">Jobs OverView</h3>
+
+    </div>
+    <div class="col-12">
+        <div class="panel">
+            <div class="panel-body">
+                <div id="divOverviewJob"></div>
+                @*<table id="myTable" class="table table-condensed table-striped" data-role="datatable" data-info="false">
+                    <thead>
+                        <tr>
+                            <th>Job Number</th>
+                            <th>Job Title</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Phase</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            foreach (var items in Model.ModelObject.ToList())
+                            {
+
+                                <tr>
+                                    <td>@items.JobNumber</td>
+                                    <td>@items.JobTitle</td>
+                                    <td>@items.StartDate</td>
+                                    <td>@items.EndDate</td>
+                                    <td>@items.Phase</td>
+                                    <td>
+                                        <a href="@Url.Action("JobOverViewDetail","Overview",new { JobID=@items.ID })"><i class="fa fa-eye"></i></a>
+
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr><td colspan="6">No Record Found</td></tr>
+                        }
+                    </tbody>
+                </table>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        divOverviewJob();
+    });
+
+
+    function divOverviewJob() {
+        $.ajax({
+            url: '@Url.Action("GetOverviewList", "Overview")',
+            contentType: 'application/json; charset=utf-8',
+            type: 'GET',
+            dataType: 'json',
+            data: {},
+            success: function (result) {
+
+                $.each(result.List, function (key, value) {
+                    if (value.StartDate.startsWith("/Date")) {
+                        result.List[key].StartDate = new Date(parseInt(value.StartDate.substr(6)))
+                    }
+                    if (value.EndDate.startsWith("/Date")) {
+                        result.List[key].EndDate = new Date(parseInt(value.EndDate.substr(6)))
+                    }
+                });
+
+                $("#divOverviewJob").dxDataGrid({
+                    dataSource: result.List,
+                    columnsAutoWidth: true,
+                    paging: {
+                        pageSize: 10
+                    },
+                    filterRow: {
+                        visible: true,
+                        applyFilter: "auto"
+                    },
+                    searchPanel: {
+                        visible: true,
+                        width: 240,
+                        placeholder: "Search..."
+                    },
+                    headerFilter: {
+                        visible: true
+                    },
+                    searchPanel: { visible: true },
+                    columns: ["JobNumber", "JobTitle"
+                                , {
+                                    dataField: "StartDate",
+                                    caption: 'Start Date',
+                                    format: 'yyyy-MM-dd',
+                                    dataType: "date"
+                                }
+                                , {
+                                    dataField: "EndDate",
+                                    caption: 'End Date',
+                                    format: 'yyyy-MM-dd',
+                                    dataType: "date"
+                                }
+                                , "Phase"
+                                , {
+                                    dataField: "ID",
+                                    caption: "Details",
+                                    cellTemplate: function (container, options) {
+                                        container.append("<a class='btn btn-info btn-sm' href='/Overview/JobOverViewDetail?JobID=" + options.value + "'><i class='fa fa-eye'></i></a>")
+                                    }
+                                }
+                                ],
+                    showBorders: true
+                });
+
+            },
+            error: function (result) {
+            }
+        });
+    }
+</script>

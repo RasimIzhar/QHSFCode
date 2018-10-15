@@ -1,0 +1,112 @@
+﻿@model DAL.Model.ViewModels.GetProductResponse
+@{
+    ViewBag.Title = "Edit";
+    Layout = null;
+}
+
+
+<script src="~/Scripts/jquery.form.min.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.form.min.js"></script>
+
+
+<div class="row bg-white mt-30">
+    <div class="col-12">
+        <div class="panel">
+
+            <div class="panel-body">
+                <div class="">
+                    @using (Html.BeginForm("Edit", "Products", FormMethod.Post, new { @class = "frm_full" }))
+                    {
+                        @Html.ValidationSummary(true)
+                        @Html.HiddenFor(m => m.ModelObject.ID)
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="pwd">Product Name</label>
+                                    <div class="">
+                                        @Html.TextBoxFor(m => m.ModelObject.Title, null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="pwd">Unit</label>
+                                    <div class="">
+                                        @Html.DropDownListFor(m => m.ModelObject.Unit,
+                                   new[]{
+                                            new SelectListItem(){ Text = "Pcs", Value = "1"},
+                                            new SelectListItem(){ Text = "Kg", Value = "2"},
+                                            new SelectListItem(){ Text = "Lb", Value = "3"},
+                                            new SelectListItem(){ Text = "mtr", Value = "4"}
+                                            },
+                                            "Select Unit",
+                                            new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="pwd">Size</label>
+                                    <div class="">
+                                        @Html.TextBoxFor(m => m.ModelObject.Size, null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="pwd">Unit Price</label>
+                                    <div class="">
+                                        @Html.TextBoxFor(m => m.ModelObject.UnitPrice, null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="pwd">Description</label>
+                                    <div class="">
+                                        @Html.TextBoxFor(m => m.ModelObject.Description, null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="pwd">Stage</label>
+                                    <div class="">
+                                        @Html.DropDownListFor(m => m.ModelObject.StageID,
+                                   new[]{
+                                            new SelectListItem(){ Text = "Single", Value = "1"},
+                                            new SelectListItem(){ Text = "Double", Value = "2"}
+                                            },
+                                            "Select Stage",
+                                            new { @class = "form-control" })
+
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="">
+
+                            <div class="form-group">
+                                <div class="text-right">
+                                    <input type="submit" value="Update" class="btn btn-default" />
+                                    @*<button id="btnCreate" type="button" class="btn btn-default">Create</button>*@
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

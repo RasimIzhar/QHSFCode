@@ -1,0 +1,670 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="vt_QSFHModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="vt_QSFHEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="vt_QSFHModel.sysdiagram" />
+    <EntitySet Name="JobDetailsDynamicFields" EntityType="vt_QSFHModel.JobDetailsDynamicField" />
+    <EntitySet Name="JobDetailsStatics" EntityType="vt_QSFHModel.JobDetailsStatic" />
+    <EntitySet Name="UserRoles" EntityType="vt_QSFHModel.UserRole" />
+    <EntitySet Name="Vt_Customers" EntityType="vt_QSFHModel.Vt_Customers" />
+    <EntitySet Name="Vt_DynamicFields" EntityType="vt_QSFHModel.Vt_DynamicFields" />
+    <EntitySet Name="Vt_DynamicFieldsValues" EntityType="vt_QSFHModel.Vt_DynamicFieldsValues" />
+    <EntitySet Name="Vt_JobDetails" EntityType="vt_QSFHModel.Vt_JobDetails" />
+    <EntitySet Name="Vt_PriceList" EntityType="vt_QSFHModel.Vt_PriceList" />
+    <EntitySet Name="Vt_Products" EntityType="vt_QSFHModel.Vt_Products" />
+    <EntitySet Name="Vt_ProductsStages" EntityType="vt_QSFHModel.Vt_ProductsStages" />
+    <EntitySet Name="vt_Tabs" EntityType="vt_QSFHModel.vt_Tabs" />
+    <EntitySet Name="Vt_Users" EntityType="vt_QSFHModel.Vt_Users" />
+    <AssociationSet Name="FK_JobDetailsDynamicFields_Vt_DynamicFields" Association="vt_QSFHModel.FK_JobDetailsDynamicFields_Vt_DynamicFields">
+      <End Role="Vt_DynamicFields" EntitySet="Vt_DynamicFields" />
+      <End Role="JobDetailsDynamicField" EntitySet="JobDetailsDynamicFields" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JobDetailsDynamicFields_Vt_JobDetails" Association="vt_QSFHModel.FK_JobDetailsDynamicFields_Vt_JobDetails">
+      <End Role="Vt_JobDetails" EntitySet="Vt_JobDetails" />
+      <End Role="JobDetailsDynamicField" EntitySet="JobDetailsDynamicFields" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JobDetailsStatic_Vt_JobDetails" Association="vt_QSFHModel.FK_JobDetailsStatic_Vt_JobDetails">
+      <End Role="Vt_JobDetails" EntitySet="Vt_JobDetails" />
+      <End Role="JobDetailsStatic" EntitySet="JobDetailsStatics" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vt_JobDetails_Vt_Customers" Association="vt_QSFHModel.FK_Vt_JobDetails_Vt_Customers">
+      <End Role="Vt_Customers" EntitySet="Vt_Customers" />
+      <End Role="Vt_JobDetails" EntitySet="Vt_JobDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vt_PriceList_Vt_Customers" Association="vt_QSFHModel.FK_Vt_PriceList_Vt_Customers">
+      <End Role="Vt_Customers" EntitySet="Vt_Customers" />
+      <End Role="Vt_PriceList" EntitySet="Vt_PriceList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vt_DynamicFieldsValues_Vt_DynamicFields" Association="vt_QSFHModel.FK_Vt_DynamicFieldsValues_Vt_DynamicFields">
+      <End Role="Vt_DynamicFields" EntitySet="Vt_DynamicFields" />
+      <End Role="Vt_DynamicFieldsValues" EntitySet="Vt_DynamicFieldsValues" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vt_PriceList_Vt_Products" Association="vt_QSFHModel.FK_Vt_PriceList_Vt_Products">
+      <End Role="Vt_Products" EntitySet="Vt_Products" />
+      <End Role="Vt_PriceList" EntitySet="Vt_PriceList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vt_Products_Vt_ProductsStages" Association="vt_QSFHModel.FK_Vt_Products_Vt_ProductsStages">
+      <End Role="Vt_ProductsStages" EntitySet="Vt_ProductsStages" />
+      <End Role="Vt_Products" EntitySet="Vt_Products" />
+    </AssociationSet>
+    <EntitySet Name="vt_ProductUnit" EntityType="vt_QSFHModel.vt_ProductUnit" />
+    <EntitySet Name="Vt_JobEstimation" EntityType="vt_QSFHModel.Vt_JobEstimation" />
+    <EntitySet Name="Vt_JobEstimationDetails" EntityType="vt_QSFHModel.Vt_JobEstimationDetails" />
+    <AssociationSet Name="FK_Vt_JobEstimation_Vt_Customers" Association="vt_QSFHModel.FK_Vt_JobEstimation_Vt_Customers">
+      <End Role="Vt_Customers" EntitySet="Vt_Customers" />
+      <End Role="Vt_JobEstimation" EntitySet="Vt_JobEstimation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vt_JobEstimationDetails_Vt_JobEstimation" Association="vt_QSFHModel.FK_Vt_JobEstimationDetails_Vt_JobEstimation">
+      <End Role="Vt_JobEstimation" EntitySet="Vt_JobEstimation" />
+      <End Role="Vt_JobEstimationDetails" EntitySet="Vt_JobEstimationDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vt_JobEstimationDetails_Vt_Products" Association="vt_QSFHModel.FK_Vt_JobEstimationDetails_Vt_Products">
+      <End Role="Vt_Products" EntitySet="Vt_Products" />
+      <End Role="Vt_JobEstimationDetails" EntitySet="Vt_JobEstimationDetails" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <EntitySet Name="Vt_JobDrafting_Checker_Questions" EntityType="vt_QSFHModel.Vt_JobDrafting_Checker_Questions" />
+    <EntitySet Name="Vt_JobDrafting_Drafter_Questions" EntityType="vt_QSFHModel.Vt_JobDrafting_Drafter_Questions" />
+    <EntitySet Name="Vt_JobDrafting_Drafter_SubQuestions" EntityType="vt_QSFHModel.Vt_JobDrafting_Drafter_SubQuestions" />
+    <EntitySet Name="Vt_JobDrafting" EntityType="vt_QSFHModel.Vt_JobDrafting" />
+    <EntitySet Name="Vt_JobDrafting_Drafter_Checklist" EntityType="vt_QSFHModel.Vt_JobDrafting_Drafter_Checklist" />
+    <AssociationSet Name="FK_Vt_JobDrafting_Drafter_Checklist_Vt_JobDrafting" Association="vt_QSFHModel.FK_Vt_JobDrafting_Drafter_Checklist_Vt_JobDrafting">
+      <End Role="Vt_JobDrafting" EntitySet="Vt_JobDrafting" />
+      <End Role="Vt_JobDrafting_Drafter_Checklist" EntitySet="Vt_JobDrafting_Drafter_Checklist" />
+    </AssociationSet>
+    <EntitySet Name="Vt_JobDrafting_Checker_Checklist" EntityType="vt_QSFHModel.Vt_JobDrafting_Checker_Checklist" />
+    <AssociationSet Name="FK_Vt_JobDrafting_Checker_Checklist_Vt_JobDrafting" Association="vt_QSFHModel.FK_Vt_JobDrafting_Checker_Checklist_Vt_JobDrafting">
+      <End Role="Vt_JobDrafting" EntitySet="Vt_JobDrafting" />
+      <End Role="Vt_JobDrafting_Checker_Checklist" EntitySet="Vt_JobDrafting_Checker_Checklist" />
+    </AssociationSet>
+    <EntitySet Name="Vt_ManufacturingOrderDetails" EntityType="vt_QSFHModel.Vt_ManufacturingOrderDetails" />
+    <EntitySet Name="vt_Roles" EntityType="vt_QSFHModel.vt_Roles" />
+    <EntitySet Name="Researches" EntityType="vt_QSFHModel.Research" />
+    <EntitySet Name="Vt_Jobs" EntityType="vt_QSFHModel.Vt_Jobs" />
+    <AssociationSet Name="FK_Vt_JobDetails_Vt_Jobs" Association="vt_QSFHModel.FK_Vt_JobDetails_Vt_Jobs">
+      <End Role="Vt_Jobs" EntitySet="Vt_Jobs" />
+      <End Role="Vt_JobDetails" EntitySet="Vt_JobDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vt_JobDrafting_Vt_Jobs" Association="vt_QSFHModel.FK_Vt_JobDrafting_Vt_Jobs">
+      <End Role="Vt_Jobs" EntitySet="Vt_Jobs" />
+      <End Role="Vt_JobDrafting" EntitySet="Vt_JobDrafting" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vt_JobEstimation_Vt_Jobs" Association="vt_QSFHModel.FK_Vt_JobEstimation_Vt_Jobs">
+      <End Role="Vt_Jobs" EntitySet="Vt_Jobs" />
+      <End Role="Vt_JobEstimation" EntitySet="Vt_JobEstimation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vt_JobEstimationDetails_Vt_Jobs" Association="vt_QSFHModel.FK_Vt_JobEstimationDetails_Vt_Jobs">
+      <End Role="Vt_Jobs" EntitySet="Vt_Jobs" />
+      <End Role="Vt_JobEstimationDetails" EntitySet="Vt_JobEstimationDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vt_ManufacturingOrderDetails_Vt_Jobs" Association="vt_QSFHModel.FK_Vt_ManufacturingOrderDetails_Vt_Jobs">
+      <End Role="Vt_Jobs" EntitySet="Vt_Jobs" />
+      <End Role="Vt_ManufacturingOrderDetails" EntitySet="Vt_ManufacturingOrderDetails" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="JobDetailsDynamicField">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobDetailsID" Type="Int32" />
+    <Property Name="DynamicFieldID" Type="Int32" />
+    <Property Name="Anwer" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Vt_DynamicFields" Relationship="vt_QSFHModel.FK_JobDetailsDynamicFields_Vt_DynamicFields" FromRole="JobDetailsDynamicField" ToRole="Vt_DynamicFields" />
+    <NavigationProperty Name="Vt_JobDetails" Relationship="vt_QSFHModel.FK_JobDetailsDynamicFields_Vt_JobDetails" FromRole="JobDetailsDynamicField" ToRole="Vt_JobDetails" />
+  </EntityType>
+  <EntityType Name="JobDetailsStatic">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobDetailsID" Type="Int32" />
+    <Property Name="StaticEnggForm15" Type="Boolean" />
+    <Property Name="StaticEnggForm16" Type="Boolean" />
+    <Property Name="StaticFreightSite" Type="Boolean" />
+    <Property Name="Installation" Type="Boolean" />
+    <NavigationProperty Name="Vt_JobDetails" Relationship="vt_QSFHModel.FK_JobDetailsStatic_Vt_JobDetails" FromRole="JobDetailsStatic" ToRole="Vt_JobDetails" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="TabID" Type="Int32" Nullable="false" />
+    <Property Name="RolesID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Vt_Customers">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="BusinessName" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="TradingAs" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="ABN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="XeroReference" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="AccountType" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="UserID" Type="Int32" />
+    <NavigationProperty Name="Vt_JobDetails" Relationship="vt_QSFHModel.FK_Vt_JobDetails_Vt_Customers" FromRole="Vt_Customers" ToRole="Vt_JobDetails" />
+    <NavigationProperty Name="Vt_PriceList" Relationship="vt_QSFHModel.FK_Vt_PriceList_Vt_Customers" FromRole="Vt_Customers" ToRole="Vt_PriceList" />
+    <NavigationProperty Name="Vt_JobEstimation" Relationship="vt_QSFHModel.FK_Vt_JobEstimation_Vt_Customers" FromRole="Vt_Customers" ToRole="Vt_JobEstimation" />
+  </EntityType>
+  <EntityType Name="Vt_DynamicFields">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TabID" Type="Int32" />
+    <Property Name="Label" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Placeholder" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Note" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="CssClass" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="JsID" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="UserID" Type="Int32" />
+    <NavigationProperty Name="JobDetailsDynamicFields" Relationship="vt_QSFHModel.FK_JobDetailsDynamicFields_Vt_DynamicFields" FromRole="Vt_DynamicFields" ToRole="JobDetailsDynamicField" />
+    <NavigationProperty Name="Vt_DynamicFieldsValues" Relationship="vt_QSFHModel.FK_Vt_DynamicFieldsValues_Vt_DynamicFields" FromRole="Vt_DynamicFields" ToRole="Vt_DynamicFieldsValues" />
+  </EntityType>
+  <EntityType Name="Vt_DynamicFieldsValues">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DynamicFieldsID" Type="Int32" />
+    <Property Name="FieldText" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="FieldValue" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="Vt_DynamicFields" Relationship="vt_QSFHModel.FK_Vt_DynamicFieldsValues_Vt_DynamicFields" FromRole="Vt_DynamicFieldsValues" ToRole="Vt_DynamicFields" />
+  </EntityType>
+  <EntityType Name="Vt_JobDetails">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobID" Type="Int32" />
+    <Property Name="CustomerID" Type="Int32" />
+    <Property Name="TabID" Type="Int32" />
+    <Property Name="UserAssignedID" Type="Int32" />
+    <Property Name="IsApproved" Type="Boolean" />
+    <NavigationProperty Name="JobDetailsDynamicFields" Relationship="vt_QSFHModel.FK_JobDetailsDynamicFields_Vt_JobDetails" FromRole="Vt_JobDetails" ToRole="JobDetailsDynamicField" />
+    <NavigationProperty Name="JobDetailsStatics" Relationship="vt_QSFHModel.FK_JobDetailsStatic_Vt_JobDetails" FromRole="Vt_JobDetails" ToRole="JobDetailsStatic" />
+    <NavigationProperty Name="Vt_Customers" Relationship="vt_QSFHModel.FK_Vt_JobDetails_Vt_Customers" FromRole="Vt_JobDetails" ToRole="Vt_Customers" />
+    <NavigationProperty Name="Vt_Jobs" Relationship="vt_QSFHModel.FK_Vt_JobDetails_Vt_Jobs" FromRole="Vt_JobDetails" ToRole="Vt_Jobs" />
+  </EntityType>
+  <EntityType Name="Vt_PriceList">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerID" Type="Int32" Nullable="false" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="SellPrice" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="Vt_Customers" Relationship="vt_QSFHModel.FK_Vt_PriceList_Vt_Customers" FromRole="Vt_PriceList" ToRole="Vt_Customers" />
+    <NavigationProperty Name="Vt_Products" Relationship="vt_QSFHModel.FK_Vt_PriceList_Vt_Products" FromRole="Vt_PriceList" ToRole="Vt_Products" />
+  </EntityType>
+  <EntityType Name="Vt_Products">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StageID" Type="Int32" />
+    <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Unit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Size" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiiedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="Vt_PriceList" Relationship="vt_QSFHModel.FK_Vt_PriceList_Vt_Products" FromRole="Vt_Products" ToRole="Vt_PriceList" />
+    <NavigationProperty Name="Vt_ProductsStages" Relationship="vt_QSFHModel.FK_Vt_Products_Vt_ProductsStages" FromRole="Vt_Products" ToRole="Vt_ProductsStages" />
+    <NavigationProperty Name="Vt_JobEstimationDetails" Relationship="vt_QSFHModel.FK_Vt_JobEstimationDetails_Vt_Products" FromRole="Vt_Products" ToRole="Vt_JobEstimationDetails" />
+  </EntityType>
+  <EntityType Name="Vt_ProductsStages">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Stage" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Vt_Products" Relationship="vt_QSFHModel.FK_Vt_Products_Vt_ProductsStages" FromRole="Vt_ProductsStages" ToRole="Vt_Products" />
+  </EntityType>
+  <EntityType Name="vt_Tabs">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Vt_Users">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Contact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" />
+  </EntityType>
+  <Association Name="FK_JobDetailsDynamicFields_Vt_DynamicFields">
+    <End Type="vt_QSFHModel.Vt_DynamicFields" Role="Vt_DynamicFields" Multiplicity="0..1" />
+    <End Type="vt_QSFHModel.JobDetailsDynamicField" Role="JobDetailsDynamicField" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vt_DynamicFields">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="JobDetailsDynamicField">
+        <PropertyRef Name="DynamicFieldID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JobDetailsDynamicFields_Vt_JobDetails">
+    <End Type="vt_QSFHModel.Vt_JobDetails" Role="Vt_JobDetails" Multiplicity="0..1" />
+    <End Type="vt_QSFHModel.JobDetailsDynamicField" Role="JobDetailsDynamicField" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vt_JobDetails">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="JobDetailsDynamicField">
+        <PropertyRef Name="JobDetailsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JobDetailsStatic_Vt_JobDetails">
+    <End Type="vt_QSFHModel.Vt_JobDetails" Role="Vt_JobDetails" Multiplicity="0..1" />
+    <End Type="vt_QSFHModel.JobDetailsStatic" Role="JobDetailsStatic" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vt_JobDetails">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="JobDetailsStatic">
+        <PropertyRef Name="JobDetailsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vt_JobDetails_Vt_Customers">
+    <End Type="vt_QSFHModel.Vt_Customers" Role="Vt_Customers" Multiplicity="0..1" />
+    <End Type="vt_QSFHModel.Vt_JobDetails" Role="Vt_JobDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vt_Customers">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Vt_JobDetails">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vt_PriceList_Vt_Customers">
+    <End Type="vt_QSFHModel.Vt_Customers" Role="Vt_Customers" Multiplicity="1" />
+    <End Type="vt_QSFHModel.Vt_PriceList" Role="Vt_PriceList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vt_Customers">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Vt_PriceList">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vt_DynamicFieldsValues_Vt_DynamicFields">
+    <End Type="vt_QSFHModel.Vt_DynamicFields" Role="Vt_DynamicFields" Multiplicity="0..1" />
+    <End Type="vt_QSFHModel.Vt_DynamicFieldsValues" Role="Vt_DynamicFieldsValues" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vt_DynamicFields">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Vt_DynamicFieldsValues">
+        <PropertyRef Name="DynamicFieldsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vt_PriceList_Vt_Products">
+    <End Type="vt_QSFHModel.Vt_Products" Role="Vt_Products" Multiplicity="1" />
+    <End Type="vt_QSFHModel.Vt_PriceList" Role="Vt_PriceList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vt_Products">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Vt_PriceList">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vt_Products_Vt_ProductsStages">
+    <End Type="vt_QSFHModel.Vt_ProductsStages" Role="Vt_ProductsStages" Multiplicity="0..1" />
+    <End Type="vt_QSFHModel.Vt_Products" Role="Vt_Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vt_ProductsStages">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Vt_Products">
+        <PropertyRef Name="StageID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="vt_ProductUnit">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UnitName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Vt_JobEstimation">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobID" Type="Int32" Nullable="false" />
+    <Property Name="CustomerID" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="QuoteNumber" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="RevisionNumber" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="MarkupValue" Type="Int32" />
+    <NavigationProperty Name="Vt_Customers" Relationship="vt_QSFHModel.FK_Vt_JobEstimation_Vt_Customers" FromRole="Vt_JobEstimation" ToRole="Vt_Customers" />
+    <NavigationProperty Name="Vt_JobEstimationDetails" Relationship="vt_QSFHModel.FK_Vt_JobEstimationDetails_Vt_JobEstimation" FromRole="Vt_JobEstimation" ToRole="Vt_JobEstimationDetails" />
+    <NavigationProperty Name="Vt_Jobs" Relationship="vt_QSFHModel.FK_Vt_JobEstimation_Vt_Jobs" FromRole="Vt_JobEstimation" ToRole="Vt_Jobs" />
+  </EntityType>
+  <EntityType Name="Vt_JobEstimationDetails">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobEstimationID" Type="Int32" Nullable="false" />
+    <Property Name="JobID" Type="Int32" Nullable="false" />
+    <Property Name="StageID" Type="Int32" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="TotalPrice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="MarkupValue" Type="Int32" Nullable="false" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Vt_JobEstimation" Relationship="vt_QSFHModel.FK_Vt_JobEstimationDetails_Vt_JobEstimation" FromRole="Vt_JobEstimationDetails" ToRole="Vt_JobEstimation" />
+    <NavigationProperty Name="Vt_Products" Relationship="vt_QSFHModel.FK_Vt_JobEstimationDetails_Vt_Products" FromRole="Vt_JobEstimationDetails" ToRole="Vt_Products" />
+    <NavigationProperty Name="Vt_Jobs" Relationship="vt_QSFHModel.FK_Vt_JobEstimationDetails_Vt_Jobs" FromRole="Vt_JobEstimationDetails" ToRole="Vt_Jobs" />
+  </EntityType>
+  <Association Name="FK_Vt_JobEstimation_Vt_Customers">
+    <End Type="vt_QSFHModel.Vt_Customers" Role="Vt_Customers" Multiplicity="1" />
+    <End Type="vt_QSFHModel.Vt_JobEstimation" Role="Vt_JobEstimation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vt_Customers">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Vt_JobEstimation">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vt_JobEstimationDetails_Vt_JobEstimation">
+    <End Type="vt_QSFHModel.Vt_JobEstimation" Role="Vt_JobEstimation" Multiplicity="1" />
+    <End Type="vt_QSFHModel.Vt_JobEstimationDetails" Role="Vt_JobEstimationDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vt_JobEstimation">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Vt_JobEstimationDetails">
+        <PropertyRef Name="JobEstimationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vt_JobEstimationDetails_Vt_Products">
+    <End Type="vt_QSFHModel.Vt_Products" Role="Vt_Products" Multiplicity="1" />
+    <End Type="vt_QSFHModel.Vt_JobEstimationDetails" Role="Vt_JobEstimationDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vt_Products">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Vt_JobEstimationDetails">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Vt_JobDrafting_Checker_Questions">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CheckerQuestionID" Type="Int32" />
+    <Property Name="Heading" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="CheckerQuestion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Vt_JobDrafting_Drafter_Questions">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DrafterQuestionID" Type="Int32" />
+    <Property Name="Heading" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="DrafterQuestion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Vt_JobDrafting_Drafter_SubQuestions">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Drafter_SubQuestionID" Type="Int32" />
+    <Property Name="Drafting_Drafter_QuestionID" Type="Int32" />
+    <Property Name="DrafterSubQuestion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Vt_JobDrafting">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobID" Type="Int32" Nullable="false" />
+    <Property Name="JobNo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="DrafterID" Type="Int32" />
+    <Property Name="CheckerID" Type="Int32" />
+    <Property Name="DraftingDueDate" Type="DateTime" Precision="3" />
+    <Property Name="CheckerDueDate" Type="DateTime" Precision="3" />
+    <Property Name="DraftingCompletionDate" Type="DateTime" Precision="3" />
+    <Property Name="CheckerCompletionDate" Type="DateTime" Precision="3" />
+    <Property Name="EngineeringCompletionDate" Type="DateTime" Precision="3" />
+    <Property Name="BookletSentDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Vt_JobDrafting_Drafter_Checklist" Relationship="vt_QSFHModel.FK_Vt_JobDrafting_Drafter_Checklist_Vt_JobDrafting" FromRole="Vt_JobDrafting" ToRole="Vt_JobDrafting_Drafter_Checklist" />
+    <NavigationProperty Name="Vt_JobDrafting_Checker_Checklist" Relationship="vt_QSFHModel.FK_Vt_JobDrafting_Checker_Checklist_Vt_JobDrafting" FromRole="Vt_JobDrafting" ToRole="Vt_JobDrafting_Checker_Checklist" />
+    <NavigationProperty Name="Vt_Jobs" Relationship="vt_QSFHModel.FK_Vt_JobDrafting_Vt_Jobs" FromRole="Vt_JobDrafting" ToRole="Vt_Jobs" />
+  </EntityType>
+  <EntityType Name="Vt_JobDrafting_Drafter_Checklist">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobDraftingID" Type="Int32" />
+    <Property Name="DrafterID" Type="Int32" />
+    <Property Name="QuestionID" Type="Int32" />
+    <Property Name="SubQuestionID" Type="Int32" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Vt_JobDrafting" Relationship="vt_QSFHModel.FK_Vt_JobDrafting_Drafter_Checklist_Vt_JobDrafting" FromRole="Vt_JobDrafting_Drafter_Checklist" ToRole="Vt_JobDrafting" />
+  </EntityType>
+  <Association Name="FK_Vt_JobDrafting_Drafter_Checklist_Vt_JobDrafting">
+    <End Type="vt_QSFHModel.Vt_JobDrafting" Role="Vt_JobDrafting" Multiplicity="0..1" />
+    <End Type="vt_QSFHModel.Vt_JobDrafting_Drafter_Checklist" Role="Vt_JobDrafting_Drafter_Checklist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vt_JobDrafting">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Vt_JobDrafting_Drafter_Checklist">
+        <PropertyRef Name="JobDraftingID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Vt_JobDrafting_Checker_Checklist">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobDraftingID" Type="Int32" Nullable="false" />
+    <Property Name="CheckerID" Type="Int32" />
+    <Property Name="Drafting_Checker_QuestionID" Type="Int32" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Vt_JobDrafting" Relationship="vt_QSFHModel.FK_Vt_JobDrafting_Checker_Checklist_Vt_JobDrafting" FromRole="Vt_JobDrafting_Checker_Checklist" ToRole="Vt_JobDrafting" />
+  </EntityType>
+  <Association Name="FK_Vt_JobDrafting_Checker_Checklist_Vt_JobDrafting">
+    <End Type="vt_QSFHModel.Vt_JobDrafting" Role="Vt_JobDrafting" Multiplicity="1" />
+    <End Type="vt_QSFHModel.Vt_JobDrafting_Checker_Checklist" Role="Vt_JobDrafting_Checker_Checklist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vt_JobDrafting">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Vt_JobDrafting_Checker_Checklist">
+        <PropertyRef Name="JobDraftingID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Vt_ManufacturingOrderDetails">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobId" Type="Int32" Nullable="false" />
+    <Property Name="Start" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="End" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Class" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Priority" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Vt_Jobs" Relationship="vt_QSFHModel.FK_Vt_ManufacturingOrderDetails_Vt_Jobs" FromRole="Vt_ManufacturingOrderDetails" ToRole="Vt_Jobs" />
+  </EntityType>
+  <EntityType Name="vt_Roles">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Research">
+    <Key>
+      <PropertyRef Name="ResearchId" />
+    </Key>
+    <Property Name="ResearchId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobTitle" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="JobDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ClassName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Priority" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Vt_Jobs">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="JobTitle" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="StartDate" Type="DateTime" Precision="3" />
+    <Property Name="EndDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="Owner" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="SiteAddress" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="SiteContactName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="SiteContactPhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="OfficeContactName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="OfficeContactPhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="AssignedTo" Type="Int32" />
+    <NavigationProperty Name="Vt_JobDetails" Relationship="vt_QSFHModel.FK_Vt_JobDetails_Vt_Jobs" FromRole="Vt_Jobs" ToRole="Vt_JobDetails" />
+    <NavigationProperty Name="Vt_JobDrafting" Relationship="vt_QSFHModel.FK_Vt_JobDrafting_Vt_Jobs" FromRole="Vt_Jobs" ToRole="Vt_JobDrafting" />
+    <NavigationProperty Name="Vt_JobEstimation" Relationship="vt_QSFHModel.FK_Vt_JobEstimation_Vt_Jobs" FromRole="Vt_Jobs" ToRole="Vt_JobEstimation" />
+    <NavigationProperty Name="Vt_JobEstimationDetails" Relationship="vt_QSFHModel.FK_Vt_JobEstimationDetails_Vt_Jobs" FromRole="Vt_Jobs" ToRole="Vt_JobEstimationDetails" />
+    <NavigationProperty Name="Vt_ManufacturingOrderDetails" Relationship="vt_QSFHModel.FK_Vt_ManufacturingOrderDetails_Vt_Jobs" FromRole="Vt_Jobs" ToRole="Vt_ManufacturingOrderDetails" />
+  </EntityType>
+  <Association Name="FK_Vt_JobDetails_Vt_Jobs">
+    <End Type="vt_QSFHModel.Vt_Jobs" Role="Vt_Jobs" Multiplicity="0..1" />
+    <End Type="vt_QSFHModel.Vt_JobDetails" Role="Vt_JobDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vt_Jobs">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Vt_JobDetails">
+        <PropertyRef Name="JobID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vt_JobDrafting_Vt_Jobs">
+    <End Type="vt_QSFHModel.Vt_Jobs" Role="Vt_Jobs" Multiplicity="1" />
+    <End Type="vt_QSFHModel.Vt_JobDrafting" Role="Vt_JobDrafting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vt_Jobs">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Vt_JobDrafting">
+        <PropertyRef Name="JobID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vt_JobEstimation_Vt_Jobs">
+    <End Type="vt_QSFHModel.Vt_Jobs" Role="Vt_Jobs" Multiplicity="1" />
+    <End Type="vt_QSFHModel.Vt_JobEstimation" Role="Vt_JobEstimation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vt_Jobs">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Vt_JobEstimation">
+        <PropertyRef Name="JobID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vt_JobEstimationDetails_Vt_Jobs">
+    <End Type="vt_QSFHModel.Vt_Jobs" Role="Vt_Jobs" Multiplicity="1" />
+    <End Type="vt_QSFHModel.Vt_JobEstimationDetails" Role="Vt_JobEstimationDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vt_Jobs">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Vt_JobEstimationDetails">
+        <PropertyRef Name="JobID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vt_ManufacturingOrderDetails_Vt_Jobs">
+    <End Type="vt_QSFHModel.Vt_Jobs" Role="Vt_Jobs" Multiplicity="1" />
+    <End Type="vt_QSFHModel.Vt_ManufacturingOrderDetails" Role="Vt_ManufacturingOrderDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vt_Jobs">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Vt_ManufacturingOrderDetails">
+        <PropertyRef Name="JobId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

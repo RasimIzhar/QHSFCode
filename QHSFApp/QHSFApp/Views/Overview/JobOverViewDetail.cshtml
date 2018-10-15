@@ -1,0 +1,161 @@
+﻿@model DAL.Model.ViewModels.Get_JobOverview_Response
+@{
+    ViewBag.Title = "Job OverView Detail";
+}
+
+<div class="row bg-white mt-30">
+
+    <div class="col-12 text-right mt-40 mb-20">
+        <h3 class="text-left txtstage pull-left mb-0 pt-5">Job OverView Details</h3>
+        <div class="mb-10">
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="panel">
+            <div class="panel-body">
+
+
+
+                <table class="table table-bordered cstm-border">
+                    <thead>
+                        <tr>
+                            <td class="back-none border-left border-top">
+                                <h3>
+                                    Customer
+                                </h3>
+                                <p>
+                                    @Model.ModelObject.CustomerName
+                                </p>
+                            </td>
+                            <td class="back-none border-top">
+                                <h3>
+                                    Customer Contact Details
+                                </h3>
+                                <p>
+                                    @Model.ModelObject.CustomerContactDetails
+                                </p>
+                            </td>
+                            <td class="back-none border-top">
+                                <h3>
+                                    Date Recieved
+                                </h3>
+                                <p>
+
+                                </p>
+                            </td>
+                            <td class="back-none border-top border-right">
+                                <h3>
+                                    Quote Number
+                                </h3>
+                                <p>
+                                    @Model.ModelObject.QuoteNumber
+                                </p>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td scope="row" class="border-left ">
+                                <h3>
+                                    Revision Number
+                                </h3>
+                                <p>
+                                    @Model.ModelObject.RevisionNumber
+                                </p>
+                            </td>
+                            <td>
+                                <h3>
+                                    Stage
+                                </h3>
+                                <p>
+                                    @Model.ModelObject.Stage
+                                </p>
+                            </td>
+                            <td>
+                                <h3>
+                                    Installation
+                                </h3>
+                                <p>
+                                    @Model.ModelObject.Installation
+                                </p>
+                            </td>
+                            <td class="border-right">
+                                <h3>
+                                    Delivery Date
+                                </h3>
+                                <p>
+
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row" class="border-left">
+                                <h3>
+                                    Estimate Amount
+                                </h3>
+                                <p>
+                                    $@Model.ModelObject.EstimateAmount
+                                </p>
+                            </td>
+
+                            <td>
+                                <h3>
+                                    Total Variations Amount
+                                </h3>
+                                <p>
+
+                                </p>
+                            </td>
+                            <td>
+                                <h3>
+                                    Payment
+                                </h3>
+                                <p>
+                                    @Model.ModelObject.Payment
+                                </p>
+                            </td>
+                            <td class="border-right">
+                                <h3>
+                                    Approved Amount
+                                </h3>
+                                <p>
+
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row" class="border-left">
+                                <h3>
+                                    Drafting Complete Date
+                                </h3>
+                                <p>
+                                    @Model.ModelObject.DraftingCompleteDate
+                                </p>
+                            </td>
+                            <td>
+                                <h3>
+                                    Manufacture Complete Date
+                                </h3>
+                                <p>
+
+                                </p>
+                            </td>
+                            <td>
+                                <h3>
+                                    Delivery Date
+                                </h3>
+                                <p>
+
+                                </p>
+                            </td>
+                            <td class="border-right"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+

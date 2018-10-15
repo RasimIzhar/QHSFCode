@@ -1,0 +1,304 @@
+﻿<script src="~/assets/js/jquery-1.12.4.min.js"></script>
+@model DAL.Model.ViewModels.JobModel
+
+@if (User.IsInRole("Admin"))
+{
+    <div class="row bg-white mt-30">
+        <div class="col-12 text-right mt-40 mb-20">
+            <h3 class="text-left txtstage pull-left mb-0 pt-5">Drafting</h3>
+            
+            <div class="mb-10">
+                @*<div class="breadcome-heading cstm">
+                        <form role="search" class="">
+                            <input type="text" placeholder="Search..." class="form-control cstmform">
+                            <a href="">
+                                <i class="fa fa-search cstm-align"></i>
+                            </a>
+                        </form>
+                    </div>*@
+
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="panel">
+                <div class="panel-body">
+                    <div id="divAdmin_DraftingJob"></div>
+                    @*<table id="myTable" class="table table-condensed table-striped" data-role="datatable" data-info="false">
+                        <thead>
+                            <tr>
+                                <th>Job No</th>
+                                <th>Job Title</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Assign</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @if (Model != null)
+                            {
+                                foreach (var items in Model.ListofJobDetails)
+                                {
+                                    <tr>
+                                        <td>@items.Vt_Jobs.JobNo</td>
+                                        <td>@items.Vt_Jobs.JobTitle</td>
+                                        <td>@items.Vt_Jobs.StartDate</td>
+                                        <td>@items.Vt_Jobs.EndDate</td>
+                                        <td>
+                                             <button class="btn btn-primary" id="Edit" onclick="EditModal(@items.JobID)" _id="0" value="submit" data-toggle="modal" data-target="#myModal">
+                                                Assign
+                                            </button>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr><td colspan="5">No Record Found</td></tr>
+                            }
+                        </tbody>
+                    </table>*@
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+        divAdmin_DraftingJob();
+    });
+    
+    function divAdmin_DraftingJob() {
+        $.ajax({
+            url: '@Url.Action("GetJobsList", "Drafting")',
+            contentType: 'application/json; charset=utf-8',
+            type: 'GET',
+            dataType: 'json',
+            data: {},
+            success: function (result) {
+
+                $.each(result.List, function (key, value) {
+                    if (value.Vt_Jobs.StartDate.startsWith("/Date")) {
+                        result.List[key].Vt_Jobs.StartDate = new Date(parseInt(value.Vt_Jobs.StartDate.substr(6)))
+                    }
+                    if (value.Vt_Jobs.EndDate.startsWith("/Date")) {
+                        result.List[key].Vt_Jobs.EndDate = new Date(parseInt(value.Vt_Jobs.EndDate.substr(6)))
+                    }
+                });
+
+                $("#divAdmin_DraftingJob").dxDataGrid({
+                    dataSource: result.List,
+                    columnsAutoWidth: true,
+                    paging: {
+                        pageSize: 10
+                    },
+                    filterRow: {
+                        visible: true,
+                        applyFilter: "auto"
+                    },
+                    searchPanel: {
+                        visible: true,
+                        width: 240,
+                        placeholder: "Search..."
+                    },
+                    headerFilter: {
+                        visible: true
+                    },
+                    searchPanel: { visible: true },
+                    columns: ["ID", "Vt_Jobs.JobNo", "Vt_Jobs.JobTitle"
+                                , {
+                                    dataField: "Vt_Jobs.StartDate",
+                                    caption: 'Start Date',
+                                    format: 'yyyy-MM-dd',
+                                    dataType: "date"
+                                }
+                                , {
+                                    dataField: "Vt_Jobs.EndDate",
+                                    caption: 'End Date',
+                                    format: 'yyyy-MM-dd',
+                                    dataType: "date"
+                                }
+                                , {
+                                    dataField: "Vt_Jobs.ID",
+                                    caption: 'Assign',
+                                    cellTemplate: function (container, options) {
+                                        container.append("<button class='btngrid' title='Edit' type='button' id='Edit' onclick='EditModal(" + options.value + ")' _id='0' value='submit' data-toggle='modal' data-target='#myModal'>Assign</button>")
+                                    }
+                                }],
+                    showBorders: true
+                });
+
+            },
+            error: function (result) {
+            }
+        });
+    }
+    </script>
+
+
+
+}
+else
+{
+
+    <div class="row bg-white mt-30">
+        <div class="col-12 text-right mt-40 mb-20">
+            <h3 class="text-left txtstage pull-left mb-0 pt-5">Drafting</h3>
+
+            <div class="mb-10">
+                @*<div class="breadcome-heading cstm">
+                        <form role="search" class="">
+                            <input type="text" placeholder="Search..." class="form-control cstmform">
+                            <a href="">
+                                <i class="fa fa-search cstm-align"></i>
+                            </a>
+                        </form>
+                    </div>*@
+
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="panel">
+                <div class="panel-body">
+                    <div id="divUser_DraftingJob"></div>
+                    @*<table id="myTable" class="table table-condensed table-striped" data-role="datatable" data-info="false">
+                        <thead>
+                            <tr>
+                                <th>Job No</th>
+                                <th>Job Title</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @if (Model != null)
+                            {
+                                foreach (var items in Model.ListofJobDrafting)
+                                {
+                                    <tr>
+                                        <td>@items.Vt_Jobs.JobNo</td>
+                                        <td>@items.Vt_Jobs.JobTitle</td>
+                                        <td>@items.Vt_Jobs.StartDate</td>
+                                        <td>@items.Vt_Jobs.EndDate</td>
+                                        <td>
+                                            <a href="@Url.Action("DraftingDetails", "Drafting", new { JobID = items.JobID })">Details</a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr><td colspan="5">No Record Found</td></tr>
+                            }
+                        </tbody>
+                    </table>*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+        divUser_DraftingJob();
+    });
+
+    function divUser_DraftingJob() {
+        $.ajax({
+            url: '@Url.Action("GetJobsList", "Drafting")',
+            contentType: 'application/json; charset=utf-8',
+            type: 'GET',
+            dataType: 'json',
+            data: {},
+            success: function (result) {
+
+                $.each(result.List, function (key, value) {
+                    if (value.Vt_Jobs.StartDate.startsWith("/Date")) {
+                        result.List[key].Vt_Jobs.StartDate = new Date(parseInt(value.Vt_Jobs.StartDate.substr(6)))
+                    }
+                    if (value.Vt_Jobs.EndDate.startsWith("/Date")) {
+                        result.List[key].Vt_Jobs.EndDate = new Date(parseInt(value.Vt_Jobs.EndDate.substr(6)))
+                    }
+                });
+                 
+                $("#divUser_DraftingJob").dxDataGrid({
+                    dataSource: result.List,
+                    columnsAutoWidth: true,
+                    paging: {
+                        pageSize: 10
+                    },
+                    filterRow: {
+                        visible: true,
+                        applyFilter: "auto"
+                    },
+                    searchPanel: {
+                        visible: true,
+                        width: 240,
+                        placeholder: "Search..."
+                    },
+                    headerFilter: {
+                        visible: true
+                    },
+                    searchPanel: { visible: true },
+                    columns: ["ID", "Vt_Jobs.JobNo", "Vt_Jobs.JobTitle"
+                                , {
+                                    dataField: "Vt_Jobs.StartDate",
+                                    caption: 'Start Date',
+                                    format: 'yyyy-MM-dd',
+                                    dataType: "date"
+                                }
+                                , {
+                                    dataField: "Vt_Jobs.EndDate",
+                                    caption: 'End Date',
+                                    format: 'yyyy-MM-dd',
+                                    dataType: "date"
+                                }
+                                
+                                , {
+                                    dataField: "Vt_Jobs.ID",
+                                    caption: 'Preview',
+                                    cellTemplate: function (container, options) {
+                                        container.append("<a class='btn btn-info btn-sm' href='/Drafting/DraftingDetails?JobID=" + options.value + "'>Preview</a>")
+                                    }
+                                }],
+                    showBorders: true
+                });
+
+            },
+            error: function (result) {
+            }
+        });
+    }
+    </script>
+}
+
+<!--JOB APPROVAL MODAL-->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Approve Estimation For Drafting</h4>
+                <input type="hidden" id="UserID" />
+            </div>
+            <div class="modal-body">
+            </div>
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-default adduser" id="AddUserscls" >Add User</button>
+                    <button type="button" class="btn btn-default updateuser" id="UpdateUsersClass" _id="0">Update User</button>
+                </div>*@
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function EditModal(a) {
+        $(".modal-body").load("/Drafting/_AssignJob_Drafting?JobID=" + a);
+    }
+
+    </script>

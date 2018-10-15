@@ -1,0 +1,52 @@
+﻿@model DAL.Model.ViewModels.GetDynamicFieldResponse
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="row bg-white mt-30">
+    <div class="col-12 text-right mt-40 mb-20">
+        <h3 class="text-left txtstage pull-left mb-0 pt-5">Details</h3>
+        <div class="mb-10">
+            @*<div class="breadcome-heading cstm">
+                    <form role="search" class="">
+                        <input type="text" placeholder="Search..." class="form-control cstmform">
+                        <a href="">
+                            <i class="fa fa-search cstm-align"></i>
+                        </a>
+                    </form>
+                </div>*@
+            <a href="@Url.Action("Index","DynamicFields")">Go Back</a>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="panel">
+            <div class="panel-body">
+                
+                @if (Model.ModelObject != null)
+                {
+                    var Data = Model.ModelObject;
+<pre>
+Tab ID: @Data.TabID,
+Label: @Data.Label,
+Type: @Data.Type,
+Placeholder: @Data.Placeholder,
+Note: @Data.Note,
+CssClass: @Data.CssClass,
+JsID: @Data.JsID,
+CreatedDate: @Data.CreatedDate,
+ModifiedDate: @Data.ModifiedDate,
+UserID: @Data.UserID
+</pre>
+                }
+                else
+                {
+                    <p>No Data Found</p>
+                }
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+

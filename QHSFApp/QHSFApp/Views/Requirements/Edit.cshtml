@@ -1,0 +1,100 @@
+﻿@model DAL.Model.ViewModels.GetJobResponse
+@{
+    Layout = null;
+    ViewBag.Title = "Edit";
+}
+
+<div class="row bg-white mt-30">
+
+    <div class="col-12">
+        <div class="panel">
+            <div class="panel-body">
+                <div class="">
+                    @using (Html.BeginForm("Edit", "Requirements", FormMethod.Post))
+                    {
+                        @Html.ValidationSummary(true)
+                        @Html.HiddenFor(m => m.ModelObject.ID)
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="pwd">
+                                        Job No
+                                    </label>
+                                    <div class="">
+                                        @Html.TextBoxFor(m => m.ModelObject.JobNo, null, new { @class = "form-control", @readonly = "readonly" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="pwd">Job Title</label>
+                                    <div class="">
+                                        @Html.TextBoxFor(m => m.ModelObject.JobTitle, null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="pwd">Job Description</label>
+                                    <div class="">
+                                        @Html.TextBoxFor(m => m.ModelObject.Description, null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="pwd">Start Date</label>
+                                    <div class="">
+                                        @Html.TextBoxFor(m => m.ModelObject.StartDate, "{0:yyyy-MM-dd}", new { @class = "form-control mdatepicker" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="pwd">End Date</label>
+                                    <div class="">
+                                        @Html.TextBoxFor(m => m.ModelObject.EndDate, "{0:yyyy-MM-dd}", new { @class = "form-control mdatepicker" })
+                                    </div>
+                                </div>
+                            </div>
+                            @*<div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="pwd">User Assigned</label>
+                                    <div class="">
+                                     
+                                        @Html.DropDownListFor(m => m.JobDetails.UserAssignedID,
+                                        new SelectList(ViewBag.DropDown, "ID", "FirstName"),
+                                        new { @class = "select2 form-control custom-select", @style = "width: 100%;" })
+                                    </div>
+                                </div>
+                            </div>*@
+                        </div>
+
+                        <div class="row">
+
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <input type="submit" value="Update" class="btn btn-default" />
+                                    @*<button id="btnCreate" type="button" class="btn btn-default">Create</button>*@
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".select2").select2();
+
+        $('.mdatepicker').bootstrapMaterialDatePicker({ weekStart: 0, time: false });
+    });
+</script>

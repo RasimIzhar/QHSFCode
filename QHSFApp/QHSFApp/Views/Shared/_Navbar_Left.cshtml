@@ -1,0 +1,83 @@
+﻿<style>
+    .sidebar-header {
+    }
+</style>
+
+<div class="left-sidebar-pro">
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <!-- <a href="#"><img src="img/message/1.jpg" alt="" />
+            </a>-->
+
+            <img src="~/Content/_theme_assets/images/pages_images/logoa.png" class="logoclass" alt="QL+" />
+        </div>
+        <div class="left-custom-menu-adp-wrap">
+            <ul class="nav navbar-nav left-sidebar-menu-pro">
+                <li class="nav-item">
+                    <a href="Home/index" title="Dashboard" class="nav-link dropdown-toggle">
+                        <i class="fa big-icon fa-home"></i>
+                        <span class="mini-dn">Dashboard</span>
+                    </a>
+                </li>
+
+                @{
+                                var data = User.Identity.Name;
+                                if (data != "SuperAdmin")
+                                {
+                                    var useridInt = Convert.ToInt32(data);
+
+                                    DAL.DbEntities.vt_QSFHEntities db = new DAL.DbEntities.vt_QSFHEntities();
+                                    var gettabs = (from ut in db.vt_Tabs
+                                                   join ur in db.UserRoles on ut.ID equals ur.TabID
+                                                   where ur.UserID == useridInt && ur.RolesID != 0
+                                                   select ut.Title).Distinct().ToList();
+
+                        
+                                    foreach (var item in gettabs)
+                                    {
+                            <li class="nav-item">
+                                <a href="/@item" title="@item" class="nav-link dropdown-toggle">
+                                    <i class="fa big-icon fa-user"></i>
+                                    <span class="mini-dn">@item</span>
+                                </a>
+                            </li>
+                        }
+                    }
+                    else
+                    {
+
+                        if (User.IsInRole("SuperAdmin"))
+                        {
+                            <li class="nav-item">
+                                <a href="/Users" title="User" class="nav-link dropdown-toggle">
+                                    <i class="fa big-icon fa-user"></i>
+                                    <span class="mini-dn">User Management</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/Users" title="View Schedule" class="nav-link dropdown-toggle">
+                                    <i class="fa big-icon  fa-th-list"></i>
+                                    <span class="mini-dn">Tabs Management</span>
+                                </a>
+                            </li>
+                        }
+                    }
+
+                }
+
+
+
+
+
+                <!-- <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa big-icon fa-envelope"></i> <span class="mini-dn">Mailbox</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a> -->
+                <!-- <div role="menu" class="dropdown-menu left-menu-dropdown animated flipInX"> -->
+                <!-- <a href="inbox.html" class="dropdown-item">Inbox</a> -->
+                <!-- <a href="view-mail.html" class="dropdown-item">View Mail</a> -->
+                <!-- <a href="compose-mail.html" class="dropdown-item">Compose Mail</a> -->
+                <!-- </div> -->
+                <!-- </li> -->
+            </ul>
+        </div>
+    </nav>
+</div>
+

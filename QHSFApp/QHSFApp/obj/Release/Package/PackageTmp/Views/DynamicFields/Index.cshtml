@@ -1,0 +1,348 @@
+﻿@model DAL.Model.ViewModels.GetDynamicFieldsResponse
+@{
+    ViewBag.Title = "Index";
+}
+
+@*<div class="row bg-white mt-30">
+        <div class="col-12 text-right mt-40 mb-20">
+            <h3 class="text-left txtstage pull-left mb-0 pt-5">Dynamic Fields</h3>
+            <div class="mb-10">
+                <a href="@Url.Action("Create", "DynamicFields")" class="btn btn-primary">Add</a>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="panel">
+                <div class="panel-body">
+                    <table id="myTable" class="table table-condensed table-striped table-bordered" data-role="datatable" data-info="false">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Title</th>
+                                <th>Values</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @if (Model != null)
+                            {
+                                foreach (var items in Model.ModelObject.ToList())
+                                {
+
+                                    <tr>
+                                        <td>@items.Type</td>
+                                        <td>@items.Label</td>
+                                        <td>
+                                            @if (items.Type == "radio" || items.Type == "checkbox" || items.Type == "dropdown")
+                                            {
+                                                <a href="@Url.Action("FieldsValues", "DynamicFields", new { ID=items.ID })"
+                                                   class="btn btn-block btn-info btn-sm">Values</a>
+                                            }
+                                            else
+                                            {
+
+                                            }
+                                        </td>
+                                        <td>
+                                            <a href="@Url.Action("Details","DynamicFields",new { ID=items.ID })"><i class="fa fa-file-text-o"></i></a>
+
+                                            <a href="@Url.Action("Edit","DynamicFields",new { ID=items.ID })"><i class="fa fa-edit"></i></a>
+
+                                            <a href="@Url.Action("FieldPreview","DynamicFields",new { ID=items.ID })"><i class="fa fa-eye"></i></a>
+
+                                            <a href="@Url.Action("Delete","DynamicFields",new { ID=items.ID })"><i class="fa fa-trash-o"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr><td colspan="6">No Record Found</td></tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+<div class="row bg-white">
+</div>
+<div class="">
+    <div class="col-md-12 main-heading">
+        <h1>Requirements</h1>
+    </div>
+    @*<div class="col-md-12 heading-field-section">
+        <h3>Heading Feilds</h3>
+        <div class="col-md-12 heading-field-section-first-child">
+            <div class="row">
+                <div class="col-md-9">
+                    <input type="text" placeholder="Search Customer" class="customer-sreach form-control"><i class="fa fa-search customer-sreach-icon"></i>
+                </div>
+                <div class="col-md-1"><h5>OR</h5></div>
+                <div class="col-md-2">
+                    <button class="add-customer btn btn-primary">Add Customer</button>
+                </div>
+            </div>
+            <div class="row cstm-row">
+                <div class="col-md-4">
+                    <input type="text" placeholder="Builder" class="customer-sreach form-control">
+                </div>
+                <div class="col-md-4">
+                    <input type="text" placeholder="Owner" class="customer-sreach form-control">
+                </div>
+                <div class="col-md-4">
+                    <input type="text" placeholder="Site Address" class="customer-sreach form-control">
+                </div>
+            </div>
+            <div class="row cstm-row">
+                <div class="col-md-4">
+                    <input type="text" placeholder="Contact" class="customer-sreach form-control">
+                </div>
+                <div class="col-md-4">
+                    <input type="text" placeholder="Phone Number" class="customer-sreach form-control">
+                </div>
+                <div class="col-md-4">
+                    <input type="text" placeholder="Email Address" class="customer-sreach form-control">
+                </div>
+            </div>
+        </div>
+        <h3>Static Fields</h3>
+        <div class="col-md-12 heading-field-section-first-child second-child">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <span>Engineering Form 15</span>
+                                <span class="cheak-box">
+                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" disabled>
+                                    <label class="form-check-label" for="exampleRadios1">
+                                        Yes
+                                    </label>
+                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" disabled>
+                                    <label class="form-check-label" for="exampleRadios2">
+                                        NO
+                                    </label>
+                                </span>
+                            </div>
+                            <div class="col-md-12">
+                                <span>Freight to site</span>
+                                <span class="cheak-box">
+                                    <input class="form-check-input" type="radio" name="exampleRadios1" id="exampleRadios3" value="option1" disabled>
+                                    <label class="form-check-label" for="exampleRadios3">
+                                        Yes
+                                    </label>
+                                    <input class="form-check-input" type="radio" name="exampleRadios1" id="exampleRadios4" value="option2" disabled>
+                                    <label class="form-check-label" for="exampleRadios4">
+                                        NO
+                                    </label>
+                                </span>
+                            </div>
+                            <div class="col-md-5"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <span>Engineering Form 16</span>
+                                <span class="cheak-box">
+                                    <input class="form-check-input" type="radio" name="exampleRadios2" id="exampleRadios5" value="option1" disabled>
+                                    <label class="form-check-label" for="exampleRadios5">
+                                        Yes
+                                    </label>
+                                    <input class="form-check-input" type="radio" name="exampleRadios2" id="exampleRadios6" value="option2" disabled>
+                                    <label class="form-check-label" for="exampleRadios6">
+                                        NO
+                                    </label>
+                                </span>
+                            </div>
+                            <div class="col-md-12">
+                                <span>Installation</span>
+                                <span class="cheak-box">
+
+                                    <input class="form-check-input" type="radio" name="exampleRadios3" id="exampleRadios7" value="option1" disabled>
+                                    <label class="form-check-label" for="exampleRadios7">
+                                        Yes
+                                    </label>
+                                    <input class="form-check-input" type="radio" name="exampleRadios3" id="exampleRadios8" value="option2" disabled>
+                                    <label class="form-check-label" for="exampleRadios8">
+                                        NO
+                                    </label>
+                                </span>
+                            </div>
+                            <div class="col-md-6"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+    <div class="row bg-white mt-30">
+
+        <div class="col-md-12 heading-field-section pb-20 mt-10">
+            <h3>Heading Feilds</h3>
+            <div class="col-md-12 ">
+                <div class="row">
+
+                    <div class="col-md-9 p-0">
+
+
+                        <select class="customer-sreach job-deatail-page-input  form-control mb-10" id="DdlCustomer" disabled name="Customers" onchange="getCustomer()">
+                            <option value="36">Sunday Customer</option>
+                            
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="javascript:;" class="btn btn-primary float-right">Add Customer</a>
+                    </div>
+                </div>
+                <div class="row cstm-row mb-10">
+                    <div class="col-md-4 p-0">
+                        <label>Business Name</label>
+                        <input type="text" id="txtBusinessName" class="customer-sreach job-deatail-page-input form-control" disabled="">
+                    </div>
+                    <div class="col-md-4">
+                        <label>Trading As</label>
+                        <input type="text" id="txtTradingAs" class="customer-sreach job-deatail-page-input form-control" disabled="">
+                    </div>
+                    <div class="col-md-4">
+                        <label>Site Adress</label>
+                        <input type="text" id="txtSiteAdress" class="customer-sreach job-deatail-page-input form-control" disabled="">
+                    </div>
+                </div>
+                <div class="row cstm-row mb-10">
+                    <div class="col-md-4 p-0">
+                        <label>Email</label>
+                        <input type="text" id="txtEmail" class="customer-sreach job-deatail-page-input form-control" disabled="">
+                    </div>
+                    <div class="col-md-4">
+                        <label>ABN #</label>
+                        <input type="text" id="txtABN" class="customer-sreach job-deatail-page-input form-control" disabled="">
+                    </div>
+                    <div class="col-md-4">
+                        <label>Phone Number</label>
+                        <input type="text" id="txtPhoneNumber" class="customer-sreach job-deatail-page-input form-control" disabled="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row bg-white mt-30 pb-20 mt-10">
+        <div class="col-md-12 heading-field-section">
+            <h3>Static Fields</h3>
+            <div class="row">
+                <div class="col-md-4 pt-20">
+                    <div class="form-check">
+                        <input class="form-check-input StaticEnggForm15" type="checkbox" name="StaticEnggForm15" id="StaticEnggForm15" checked="checked" value="StaticEnggForm15" disabled="">
+                        <label class="form-check-label" for="StaticEnggForm15">
+                            <span>Engineering Form 15</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-md-4 pt-20">
+                    <div class="form-check">
+                        <input class="form-check-input StaticEnggForm16" type="checkbox" name="StaticEnggForm16" id="StaticEnggForm16" value="StaticEnggForm16" disabled="">
+                        <label class="form-check-label" for="StaticEnggForm16">
+                            <span>Engineering Form 16</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-md-4 pt-20">
+                    <div class="form-check">
+                        <input class="form-check-input StaticFreightSite" type="checkbox" name="StaticFreightSite" id="StaticFreightSite" checked="checked" value="StaticFreightSite" disabled="">
+                        <label class="form-check-label" for="StaticFreightSite">
+                            <span>Freight to site</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-md-4 pt-20">
+                    <div class="form-check">
+                        <input class="form-check-input Installation" type="checkbox" name="Installation" id="Installation" value="Installation" disabled="">
+                        <label class="form-check-label" for="Installation">
+                            <span>Installation</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-12 text-right mt-40 mb-0">
+        <h3 class="text-left txtstage pull-left mb-0 pt-5">Dynamic Fields</h3>
+        <div class="mb-10">
+            @*<div class="breadcome-heading cstm">
+                    <form role="search" class="">
+                        <input type="text" placeholder="Search..." class="form-control cstmform"
+                               aria-controls="example23">
+                        <a href="">
+                            <i class="fa fa-search cstm-align"></i>
+                        </a>
+                    </form>
+                </div>*@
+            <a href="@Url.Action("Create", "DynamicFields")" class="btn btn-custon-rounded-four btn-default ads mb-0">Add Fields</a>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="card">
+            <div class="">
+                <div class="panel-body">
+                    <table id="myTable" class="table table-condensed table-striped table-bordered" data-role="datatable" data-info="false">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Title</th>
+                                <th>Values</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @if (Model != null)
+                            {
+                                foreach (var items in Model.ModelObject.ToList())
+                                {
+
+                                    <tr>
+                                        <td>@items.Type</td>
+                                        <td>@items.Label</td>
+                                        <td>
+                                            @if (items.Type == "radio" || items.Type == "checkbox" || items.Type == "dropdown")
+                                            {
+                                                <a href="@Url.Action("FieldsValues", "DynamicFields", new { ID=items.ID })"
+                                                   class="btn btn-block btn-info btn-sm">Values</a>
+                                            }
+                                            else
+                                            {
+
+                                            }
+                                        </td>
+                                        <td>
+                                            @*<a href="@Url.Action("Details","DynamicFields",new { ID=items.ID })"><i class="fa fa-file-text-o"></i></a>*@
+
+                                            <a href="@Url.Action("Edit","DynamicFields",new { ID=items.ID })"><i class="fa fa-edit"></i></a>
+
+                                            <a href="@Url.Action("FieldPreview","DynamicFields",new { ID=items.ID })"><i class="fa fa-eye"></i></a>
+
+                                            @*<a href="@Url.Action("Delete","DynamicFields",new { ID=items.ID })"><i class="fa fa-trash-o"></i></a>*@
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr><td colspan="6">No Record Found</td></tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

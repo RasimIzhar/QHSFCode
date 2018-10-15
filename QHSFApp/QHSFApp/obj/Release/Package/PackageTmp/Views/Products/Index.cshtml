@@ -1,0 +1,89 @@
+﻿@model DAL.Model.ViewModels.GetProductsResponse
+@{
+    ViewBag.Title = "Index";
+}
+
+<script src="~/assets/js/jquery-1.12.4.min.js"></script>
+
+<div class="row bg-white mt-30">
+    <div class="col-12 text-right mt-40 mb-20">
+        <h3 class="text-left txtstage pull-left mb-0 pt-5">Products</h3>
+        <div class="mb-10">
+            <button type="button" id="addBtn" _id="0" class="btn btn-default" value="submit" data-toggle="modal" data-target="#myModal">Add Product</button>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="panel">
+            <div class="panel-body">
+                <table id="myTable" class="table table-condensed table-striped" data-role="datatable" data-info="false">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Unit</th>
+                            <th>Size</th>
+                            <th>Description</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            foreach (var items in Model.ModelObject.ToList())
+                            {
+
+                            <tr>
+                                <td>@items.ID</td>
+                                <td>@items.Title</td>
+                                <td>@items.Unit</td>
+                                <td>@items.Size</td>
+                                <td>@items.Description</td>
+                                <td>
+                                    @*<a href="@Url.Action("Details","Products",new { ID=items.ID })"><i class="fa fa-file-text-o"></i></a>*@
+                                    <button class="btngrid" title="Edit" type="button" id="Edit" onclick="EditModal(@items.ID)" _id="0" value="submit" data-toggle="modal" data-target="#myModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                    @*<a href="@Url.Action("Delete","Products",new { ID=items.ID })"><i class="fa fa-trash-o"></i></a>*@
+                                </td>
+                            </tr>
+                            }
+                        }
+                        else
+                        {
+                        <tr><td colspan="6">No Record Found</td></tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h2 class="modal-title">Product</h2>
+            </div>
+            <div class="modal-body">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+    function EditModal(a) {
+        $(".modal-body").load("/Products/Edit?id=" + a)
+    }
+
+    $("#addBtn").click(function () {
+        $(".modal-body").load("/Products/Create")
+
+    });
+</script>

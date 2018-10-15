@@ -1,0 +1,268 @@
+﻿@model DAL.DbEntities.Vt_JobDetails
+@{
+    ViewBag.Title = "Index";
+}
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+<div class="row job-detail-section-one pb-20">
+    <div class="col-md-4">
+        <div class="row">
+            <div class="col-md-4 job-img-wrap"><img src="~/assets/images/users/job.png" width="100%"></div>
+            <div class="col-md-7 job-content">
+                <h4 class="job-heading-1">JOB NO</h4>
+                <h4 class="job-heading-2">@Model.JobID</h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="row">
+            <div class="col-md-4 job-img-wrap"><img src="~/assets/images/users/builder-name.png" width="100%"></div>
+            <div class="col-md-7 job-content">
+                <h4 class="job-heading-1">JOB TITLE</h4>
+                <h4 class="job-heading-2">@Model.Vt_Jobs.JobTitle</h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="row">
+            <div class="col-md-4 job-img-wrap"><img src="~/assets/images/users/calender.png" width="100%"></div>
+            <div class="col-md-7 job-content">
+                <h4 class="job-heading-1">JOB END DATE</h4>
+                <h4 class="job-heading-2">@Convert.ToDateTime(Model.Vt_Jobs.EndDate).ToString("dd/MMM/yyyy")</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row bg-white">
+</div>
+
+<div class="row bg-white ">
+
+    <div class="col-md-12 heading-field-section pb-20 padd-0">
+        <div class="col-md-12 estimation">
+            <h3>Heading Feilds</h3>
+        </div>
+
+        <div class="col-md-12 ">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-md-12 bold">
+                        <label>Customer</label>
+                    </div>
+                    <div class="col-md-12">
+                        @Html.DropDownListFor(x => x.CustomerID, new SelectList(ViewBag.Customers, "ID", "CustomerName"), new { @class = "form-control", disabled = "disabled" })
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-12  bold">
+                        <label>Date</label>
+                    </div>
+                    <div class="col-md-12">
+                        <input type="date" id="assiging_date" class="form-control datepicker" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-12 pt-10 bold">
+                        <label>Quote Number</label>
+                    </div>
+                    <div class="col-md-12">
+                        <input type="number" min="0" id="quote_number" class="customer-sreach job-deatail-page-input-1" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-12 pt-10 bold">
+                        <label>Revision Number</label>
+                    </div>
+                    <div class="col-md-12">
+                        <input type="number" min="0" id="revesion_number" class="customer-sreach job-deatail-page-input-1" />
+                    </div>
+                </div>
+                <div class="col-md-6 pt-10">
+                    <div class="form-group">
+                        <div class="col-md-12 bold">
+                            <label for="Stage">Stage</label>
+                        </div>
+                        <div class="col-md-12">
+                            @Html.DropDownList("Stage", (SelectList)ViewBag.Stage, "Select Stage", new { @class = "customer-sreach job-deatail-page-input-1 pl-10" })
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- column -->
+    <div id="dvProducts"></div>
+    <div class="col-md-12">
+        <button id="btnAddEstimate" type="button" class="btn btn-primary btn-value pull-right" style="margin-bottom: 10px;">Add Record</button>
+    </div>
+    <!-- column -->
+</div>
+
+<script>
+
+    function GetProductByStages() {
+        debugger;
+        var ID = document.getElementById("Stage").value;
+        var JobID = @Model.JobID;
+
+        $.ajax({
+            type: "GET",
+            url: "/Estimate/GetProductByStages",
+            data: { JobID: JobID, ID: ID, CustomerID: CustomerID },
+            datatype: "string",
+            contentType: "text/plain",
+
+            success: function (result) {
+
+            },
+
+            error: function (result) {
+                alert("error");
+            }
+        });
+    }
+    function GetProductDetails(stageid) {
+
+        debugger;
+        $('#dvProducts').html('');
+        var CustomerID = $('#CustomerID').val();
+        var JobID = @Model.JobID;
+        $('#SelectType').val($('#selectedType').val());
+        $.ajax({
+            type: "GET",
+            url: "/Estimate/GetProductByStages",
+            contentType: "html",
+            data: { "JobID": JobID, "StageID": stageid, "CustomerID": CustomerID },
+            datatype: "json",
+            success: function (response) {
+
+                $('#dvProducts').html(response);
+                $('#btnAddEstimate').show();
+
+            },
+            error: function (response, er) {
+                console.log(er);
+            }
+        });
+    }
+
+
+    $(document).ready(function () {
+
+        //GetProductByStages();
+        $('#btnAddEstimate').hide();
+
+        //$('#tblProducts').DataTable({
+        //    initComplete: function () {
+        //        this.api().columns().every(function () {
+        //            var column = this;
+        //            var select = $('<select><option value=""></option></select>')
+        //                .appendTo($(column.footer()).empty())
+        //                .on('change', function () {
+        //                    var val = $.fn.dataTable.util.escapeRegex(
+        //                        $(this).val()
+        //                    );
+
+        //                    column
+        //                        .search(val ? '^' + val + '$' : '', true, false)
+        //                        .draw();
+        //                });
+
+        //            column.data().unique().sort().each(function (d, j) {
+        //                select.append('<option value="' + d + '">' + d + '</option>')
+        //            });
+        //        });
+        //    }
+        //});
+
+        //$('body').on('blur', '.txtQuantity', function () {
+
+        //    debugger;
+        //    var Quantity = Number($(this).val());
+        //    var Rate = Number($(this).closest('tr').find('#Rate').val());
+        //    var Price = Quantity * Rate;
+        //    $(this).closest('tr').find('#Price').val(Price);
+
+        //    //Calculating SubTotal
+        //    var calculated_total_sum = 0;
+        //    $("#tblProducts .price").each(function () {
+        //        var get_textbox_value = $(this).val();
+        //        calculated_total_sum += parseFloat(get_textbox_value);
+        //    });
+        //    $("#Subtotal").val(calculated_total_sum);
+        //    CalculateMarkup();
+        //});
+
+        //Calculating Markup & Total
+        $('#MarkUp').change(function () {
+        });
+
+        $("#btnAddEstimate").click(function () {
+
+            var GetEstimationData = {};
+            var Estimation = []
+
+            var JobEstimation = {
+                JobID: @Model.JobID,
+                CustomerID: $('#CustomerID').val(),
+                CreatedDate: $('#assiging_date').val(),
+                QuoteNumber: $('#quote_number').val(),
+                RevisionNumber: $('#revesion_number').val(),
+                MarkupValue: $('#MarkUp').val(),
+                Notes: $('#Notes').val()
+            };
+
+            GetEstimationData.JobEstimation = JobEstimation;
+
+            var table = $("#tblProducts tbody");
+            table.find('tr').each(function (i) {
+                var $tds = $(this).find('td'),
+                productid = $tds.eq(0).text(),
+                unit = $tds.eq(2).text(),
+                quantity = $(this).closest('tr').find('.txtQuantity').val(),
+                rate = $(this).closest('tr').find('.rate').val(),
+                price = $(this).closest('tr').find('.price').val();
+
+                var EstimationDetails = {
+                    ProductID: productid,
+                    Qty: quantity,
+                    UnitPrice: rate,
+                    Price: price
+                };
+                Estimation.push(EstimationDetails);
+            });
+
+            GetEstimationData.Estimation = Estimation;
+            GetEstimationData.StageID = $('#Stage').val();
+            GetEstimationData.MarkupValue = $('#MarkUp').val();
+            GetEstimationData.Notes = $('#Notes').val();
+            $.ajax({
+                type: "POST",
+                url: "/Estimate/AddEstimationDetails",
+                contentType: 'application/json',
+                data: JSON.stringify(GetEstimationData),
+                dataType: "json",
+                success: function (response) {
+                    AlertToast('success', 'Data Added Successfully'),
+                    window.location = "@Url.Action("Index", "Estimate")";
+                },
+                error: function (response) {
+                    AlertToast('success', 'Data Added Successfully')
+                }
+
+            })
+
+        });
+
+        $("#Stage").change(function () {
+            GetProductDetails($('#Stage').val());
+        });
+
+    });
+</script>

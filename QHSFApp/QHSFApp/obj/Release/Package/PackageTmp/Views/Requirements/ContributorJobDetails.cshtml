@@ -1,0 +1,555 @@
+﻿@model DAL.Model.ViewModels.GetJobDetailsUpdatedResponse
+@{
+    ViewBag.Title = "Index";
+}
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+@if (Model != null)
+{
+    var Disable = "";
+    bool IsAdmin = false;
+    if (User.IsInRole("Admin"))
+    {
+        IsAdmin = true;
+        Disable = "disabled";
+    }
+
+    <div class="row job-detail-section-one pb-20">
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-4 job-img-wrap"><img src="~/assets/images/users/job.png" width="100%"></div>
+                <div class="col-md-7 job-content">
+                    <h4 class="job-heading-1">JOB NO</h4>
+                    <h4 class="job-heading-2">@Model.Job.JobNo</h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-4 job-img-wrap"><img src="~/assets/images/users/builder-name.png" width="100%"></div>
+                <div class="col-md-7 job-content">
+                    <h4 class="job-heading-1">JOB TITLE</h4>
+                    <h4 class="job-heading-2">@Model.Job.JobTitle</h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-4 job-img-wrap"><img src="~/assets/images/users/calender.png" width="100%"></div>
+                <div class="col-md-7 job-content">
+                    <h4 class="job-heading-1">JOB END DATE</h4>
+                    <h4 class="job-heading-2">@Convert.ToDateTime(Model.Job.EndDate).ToString("dd/MMM/yyyy")</h4>
+                    @* @Html.DisplayFor(x=>x.Job.StartDate)*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3>
+        Requirements
+        @*<span class="float-right"><a href="@Url.Action("ContributorIndex", "Requirements", new { ID = 3 }) @Disable">Go Back</a></span>*@
+    </h3>
+    <div class="row bg-white">
+    </div>
+    <div class="row bg-white mt-30">
+
+        <div class="col-md-12 heading-field-section pb-20 mt-10">
+            <h3>Heading Feilds</h3>
+            <div class="col-md-12 ">
+                <div class="row">
+                    @*<div class="col-md-12">
+                            <label>Search Customer</label>
+                        </div>*@
+                    <div class="col-md-10 p-0">
+                        @*@Html.DropDownList("Customers",
+                            new SelectList(ViewBag.DropDown, "ID", "CustomerName"), "Select Customer",
+                            new { @class = "customer-sreach job-deatail-page-input", @id="DdlCustomer", onchange = "getCustomer()" })*@
+
+                        @Html.DropDownList("Customers",
+                                        (SelectList)ViewBag.DropDown,
+                                        new { @class = "customer-sreach job-deatail-page-input  form-control mb-10", @id = "DdlCustomer", onchange = "getCustomer()" })
+                    </div>
+                    <div class="col-md-2">
+                        <a href="@Url.Action("Index", "Customers")" class="btn btn-primary float-right">Add Customer</a>
+                    </div>
+                </div>
+                <div class="row cstm-row mb-10">
+                    <div class="col-md-4 p-0">
+                        <label>Business Name</label>
+                        <input type="text" id="txtBusinessName" class="customer-sreach job-deatail-page-input form-control" disabled>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Trading As</label>
+                        <input type="text" id="txtTradingAs" class="customer-sreach job-deatail-page-input form-control" disabled>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Site Adress</label>
+                        <input type="text" id="txtSiteAdress" class="customer-sreach job-deatail-page-input form-control" disabled>
+                    </div>
+                </div>
+                <div class="row cstm-row mb-10">
+                    <div class="col-md-4 p-0">
+                        <label>Email</label>
+                        <input type="text" id="txtEmail" class="customer-sreach job-deatail-page-input form-control" disabled>
+                    </div>
+                    <div class="col-md-4">
+                        <label>ABN #</label>
+                        <input type="text" id="txtABN" class="customer-sreach job-deatail-page-input form-control" disabled>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Phone Number</label>
+                        <input type="text" id="txtPhoneNumber" class="customer-sreach job-deatail-page-input form-control" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    if (Model.JobDetailsStatic != null)
+    {
+        <div class="row bg-white mt-30 pb-20 mt-10">
+            <div class="col-md-12 heading-field-section">
+                <h3>Static Fields</h3>
+                <div class="row">
+                    <div class="col-md-4 pt-20">
+                        <div class="form-check">
+                            <input class="form-check-input StaticEnggForm15" type="checkbox" name="StaticEnggForm15" id="StaticEnggForm15"
+                                   checked="@Model.JobDetailsStatic.StaticEnggForm15" value="StaticEnggForm15" @Disable>
+                            <label class="form-check-label" for="StaticEnggForm15">
+                                <span>Engineering Form 15</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 pt-20">
+                        <div class="form-check">
+                            <input class="form-check-input StaticEnggForm16" type="checkbox" name="StaticEnggForm16" id="StaticEnggForm16"
+                                   checked="@Model.JobDetailsStatic.StaticEnggForm16" value="StaticEnggForm16" @Disable>
+                            <label class="form-check-label" for="StaticEnggForm16">
+                                <span>Engineering Form 16</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 pt-20">
+                        <div class="form-check">
+                            <input class="form-check-input StaticFreightSite" type="checkbox" name="StaticFreightSite" id="StaticFreightSite"
+                                   checked="@Model.JobDetailsStatic.StaticFreightSite" value="StaticFreightSite" @Disable>
+                            <label class="form-check-label" for="StaticFreightSite">
+                                <span>Freight to site</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 pt-20">
+                        <div class="form-check">
+                            <input class="form-check-input Installation" type="checkbox" name="Installation" id="Installation"
+                                   checked="@Model.JobDetailsStatic.Installation" value="Installation" @Disable>
+                            <label class="form-check-label" for="Installation">
+                                <span>Installation</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row bg-white mt-30 pb-20 ">
+            <div class="col-md-12 heading-field-section mt-10">
+                <h3>Static Fields</h3>
+                <div class="row">
+                    <div class="col-md-4 pt-20">
+                        <div class="form-check">
+                            <input class="form-check-input StaticEnggForm15" type="checkbox" name="StaticEnggForm15" id="StaticEnggForm15"
+                                   value="StaticEnggForm15" @Disable>
+                            <label class="form-check-label" for="StaticEnggForm15">
+                                <span>Engineering Form 15</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 pt-20">
+                        <div class="form-check">
+                            <input class="form-check-input StaticEnggForm16" type="checkbox" name="StaticEnggForm16" id="StaticEnggForm16"
+                                   value="StaticEnggForm16" @Disable>
+                            <label class="form-check-label" for="StaticEnggForm16">
+                                <span>Engineering Form 16</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 pt-20">
+                        <div class="form-check">
+                            <input class="form-check-input StaticFreightSite" type="checkbox" name="StaticFreightSite" id="StaticFreightSite"
+                                   value="StaticFreightSite" @Disable>
+                            <label class="form-check-label" for="StaticFreightSite">
+                                <span>Freight to site</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 pt-20">
+                        <div class="form-check">
+                            <input class="form-check-input Installation" type="checkbox" name="Installation" id="Installation"
+                                   value="Installation" @Disable>
+                            <label class="form-check-label" for="Installation">
+                                <span>Installation</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    //TESTING
+
+    <div class="row bg-white mt-30 pb-20">
+        <div class="col-md-12 heading-field-section pb-20 ">
+            <h3 class="mt-10">Dynamic Fields</h3>
+            <div class="scroll-wrap">
+                <div class="col-md-12 pt-20 pl-0">
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model.DynamicFieldsWithValues.ToList())
+                        {
+                            <div class="form-group">
+                                @if (item != null && item.Type == "textbox")
+                                {
+                                    //To Assign Value
+                                    string Value = "";
+                                    if (Model.JobDetailsDynamicField != null)
+                                    {
+                                        foreach (var itemValue in Model.JobDetailsDynamicField.ToList())
+                                        {
+
+                                            if (item.ID == itemValue.DynamicFieldID)
+                                            {
+                                                Value = itemValue.Anwer;
+                                            }
+                                        }
+                                    }
+
+                                    <div class="form-group">
+                                        <label>@item.Label</label>
+                                        <input type="@item.Type" class="@item.CssClass" id="DynamicField" placeholder="@item.Placeholder"
+                                               onchange="storeValue('@Model.Job.ID', '@item.ID', this.value)" value="@Value" @Disable />
+                                        <small>@item.Note</small>
+                                    </div>
+                                }
+                                @if (item != null && item.Type == "dropdown")
+                                {
+
+                                    <div class="form-group">
+                                        <p>@item.Label</p>
+                                        @if (item.Vt_DynamicFieldsValues != null && item.Vt_DynamicFieldsValues.Count > 0)
+                                        {
+                                            <select class="form-control" id="exampleFormControlSelect1" @Disable
+                                                    onchange="storeValue('@Model.Job.ID', '@item.ID', this.value)">
+                                                @foreach (var itemValue in item.Vt_DynamicFieldsValues)
+                                                {
+                                                    string IsSelected = "";
+                                                    if (Model.JobDetailsDynamicField != null)
+                                                    {
+                                                        foreach (var dropDownValue in Model.JobDetailsDynamicField.ToList())
+                                                        {
+                                                            if (itemValue.DynamicFieldsID == dropDownValue.DynamicFieldID)
+                                                            {
+                                                                if (itemValue.FieldValue == dropDownValue.Anwer)
+                                                                {
+                                                                    IsSelected = "selected";
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+
+                                                    <option value="@itemValue.FieldValue" @IsSelected>@itemValue.FieldText</option>
+                                                }
+                                            </select>
+                                        }
+                                        else
+                                        {
+                                            <small>Please add values to this field</small>
+                                        }
+                                    </div>
+                                }
+
+                                @if (item != null && item.Type == "radio")
+                                {
+                                    <div class="form-group">
+                                        @if (item.Vt_DynamicFieldsValues != null && item.Vt_DynamicFieldsValues.Count > 0)
+                                        {
+
+                                            <p>@item.Label</p>
+                                            int rowCount = 0;
+                                            foreach (var itemValue in item.Vt_DynamicFieldsValues)
+                                            {
+                                                string IsChecked = "";
+                                                if (Model.JobDetailsDynamicField != null)
+                                                {
+                                                    foreach (var dropDownValue in Model.JobDetailsDynamicField.ToList())
+                                                    {
+                                                        if (itemValue.DynamicFieldsID == dropDownValue.DynamicFieldID)
+                                                        {
+                                                            if (itemValue.FieldValue == dropDownValue.Anwer)
+                                                            {
+                                                                IsChecked = "checked";
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="@item.Label" id="@item.Label@rowCount"
+                                                           @IsChecked value="@itemValue.FieldValue"
+                                                           onchange="storeValue('@Model.Job.ID', '@item.ID', this.value)" @Disable>
+                                                    <label class="form-check-label" for="@item.Label@rowCount">@itemValue.FieldText</label>
+                                                </div>
+                                                rowCount = rowCount + 1;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <small>Please add values to this field</small>
+                                        }
+                                    </div>
+                                }
+
+                                @if (item != null && item.Type == "checkbox")
+                                {
+                                    <div class="form-group">
+                                        @if (item.Vt_DynamicFieldsValues != null && item.Vt_DynamicFieldsValues.Count > 0)
+                                        {
+
+                                            <p>@item.Label</p>
+                                            int rowCount = 0;
+                                            foreach (var itemValue in item.Vt_DynamicFieldsValues)
+                                            {
+                                                string IsChecked = "";
+                                                if (Model.JobDetailsDynamicField != null)
+                                                {
+                                                    foreach (var dropDownValue in Model.JobDetailsDynamicField.ToList())
+                                                    {
+                                                        if (itemValue.FieldValue == dropDownValue.Anwer)
+                                                        {
+                                                            IsChecked = "checked";
+                                                        }
+                                                    }
+                                                }
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="checkbox" id="@rowCount" @IsChecked value="@itemValue.FieldValue"
+                                                           onchange="storeValue('@Model.Job.ID', '@item.ID', this.value)" @Disable>
+                                                    <label class="form-check-label" for="@rowCount">@itemValue.FieldText</label>
+                                                </div>
+                                                rowCount = rowCount + 1;
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            <small>Please add values to this field</small>
+                                        }
+                                    </div>
+                                }
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="btn-wrap col-md-12 text-center ">
+            <span class=" btn-child-wrap">
+                @if (IsAdmin)
+                {
+                    <button class="btn btn-success " id="btnApprove" data-toggle="modal" data-target="#myModal">Approved</button>
+                    @*<button class="btn btn-danger" id="btnUnapprove">Un Approved</button>*@
+                }
+                else
+                {
+                   <button class="job-detail-sumit-btn cstm-btn-submit" id="submit" @Disable>Submit</button>
+                        <button class="job-detail-cencle-btn cstm-btn-cencle">Cancel</button>
+                        
+                        }
+</span>
+        </div>
+    </div>
+
+}
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Users</h4>
+                <input type="hidden" id="UserID" />
+            </div>
+            <div class="modal-body">
+            </div>
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-default adduser" id="AddUserscls" >Add User</button>
+                    <button type="button" class="btn btn-default updateuser" id="UpdateUsersClass" _id="0">Update User</button>
+                </div>*@
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $(document).ready(function(){
+        getCustomer();
+    });
+</script>
+
+<script>
+
+    function Update_JobStatus(isApproved){
+        var obj = {};
+        obj.JobID = @Model.Job.ID;
+        obj.IsApproved = isApproved;
+
+        $.ajax({
+            type: "POST",
+            url: "/Requirements/UpdateJobStatus",
+            contentType: "application/json",
+            data: JSON.stringify(obj),
+            dataType: "json",
+
+            success: function (response) {
+                AlertToast('success', 'Data Added Successfully'),
+                window.location = "@Url.Action("Index", "Requirements")";
+            },
+
+            error: function (response) {
+                AlertToast('error', 'Error Occured ! Something goes wrong')
+            }
+        });
+    }
+
+    function Update_JobDetails(isApproved){
+        var obj = {};
+        obj.JobID = @Model.JobDetails.JobID;
+        obj.IsApproved = isApproved;
+
+        $.ajax({
+            type: "POST",
+            url: "/Requirements/UpdateJobDetails",
+            contentType: "application/json",
+            data: JSON.stringify(obj),
+            dataType: "json",
+
+            success: function (response) {
+                AlertToast('success', 'Data Added Successfully'),
+                window.location = "@Url.Action("Index", "Requirements")";
+            },
+
+            error: function (response) {
+                AlertToast('error', 'Error Occured ! Something goes wrong')
+            }
+        });
+    }
+
+    function getCustomer(){
+        var ID = document.getElementById("DdlCustomer").value;
+
+        $.ajax({
+            type: "GET",
+            url: "/Requirements/GetCustomerData",
+            data: { ID: ID },
+            datatype : "string",
+            contentType: "text/plain",
+
+            success: function (result) {
+                @*var jobID = @Model.Job.ID;
+                var customerID = $('#DdlCustomer').val();
+
+                $('#DdlCustomer').val() =*@
+                $("#txtBusinessName").val(result.BusinessName);
+                $("#txtTradingAs").val(result.TradingAs);
+                $("#txtSiteAdress").val(result.Address);
+                $("#txtEmail").val(result.Email);
+                $("#txtABN").val(result.ABN);
+                $("#txtPhoneNumber").val(result.Phone);
+                //alert("success");
+            },
+
+            error: function (result) {
+                alert("error");
+            }
+        });
+    }
+
+    var jobDetailsDynamic = [];
+
+    function storeValue(JobDetailID, FieldID, FieldValue){
+        var element = {};
+        element.JobDetailsID = JobDetailID;
+        element.DynamicFieldID = FieldID;
+        element.Anwer = FieldValue;
+
+        jobDetailsDynamic.push(element);
+
+    }
+
+    $("#submit").click(function () {
+        //JobID and CustomerID WILL BE DYNAMIC
+        var jobID = @Model.Job.ID;
+        var customerID = $('#DdlCustomer').val();
+        var obj = {};
+
+        var jobDetails = {
+            JobID : jobID,
+            CustomerID : customerID
+        };
+
+        var StaticEnggForm15 = $("#StaticEnggForm15").prop("checked");
+        var StaticEnggForm16 = $("#StaticEnggForm16").prop("checked");
+        var StaticFreightSite = $("#StaticFreightSite").prop("checked");
+        var Installation = $("#Installation").prop("checked");
+
+        var jobDetailsStatic = {
+            //JobDetailsID : 1,
+            StaticEnggForm15: StaticEnggForm15,
+            StaticEnggForm16: StaticEnggForm16,
+            StaticFreightSite: StaticFreightSite,
+            Installation: Installation
+        };
+
+        obj.JobDetails = jobDetails;
+        obj.JobDetailsStatic = jobDetailsStatic;
+        obj.JobDetailsDynamic = jobDetailsDynamic;
+
+        // alert(JSON.stringify(obj));
+
+        $.ajax({
+            type: "POST",
+            url: "/Requirements/CreateJobDetails",
+            contentType: "application/json",
+            data: JSON.stringify(obj),
+            dataType: "json",
+
+            success: function (response) {
+                AlertToast('success', 'Data Added Successfully'),
+                window.location = "@Url.Action("Index", "Requirements")";
+            },
+
+            error: function (response) {
+                AlertToast('error', 'Error Occured ! Something goes wrong')
+            }
+        });
+    });
+
+    $('#btnApprove').click(function(){
+        //Update_JobStatus(true);
+        $(".modal-body").load("/Requirements/_ApproveJob?JobID="+@Model.Job.ID+"&CustomerID="+$('#DdlCustomer').val()+"")
+
+    });
+
+    $('#btnUnapprove').click(function(){
+        Update_JobStatus(false);
+    });
+</script>

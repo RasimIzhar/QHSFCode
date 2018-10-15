@@ -1,0 +1,77 @@
+﻿@model DAL.Model.ViewModels.Create_JobResponse
+@{
+    Layout = null;
+}
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<div class="row bg-white mt-30">
+    <div class="col-12">
+        <div class="panel">
+            <div class="panel-body">
+                <div class="">
+                    <div class="">
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label" for="pwd">Assign Job to Estimator</label>
+                                    <div class="">
+                                        @*This Code for User Assigning*@
+                                        @Html.DropDownListFor(m => m.JobDetails.UserAssignedID,
+                                        new SelectList(ViewBag.DropDown, "ID", "FirstName"),
+                                        new { @class = "customer-sreach job-deatail-page-input form-control", @id = "DdlUserAssigned" })
+                                        @*@Html.DropDownList("DropDown", new SelectList(ViewBag.DropDown, "ID", "FirstName"),
+                                            new { @class = "customer-sreach job-deatail-page-input" })*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="">
+
+                        <div class="form-group">
+                            <div class="text-right">
+                                <button id="btnCreate" type="button" class="btn btn-default">Assign</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function Update_JobStatus(isApproved){
+        var obj = {};
+        obj.JobID = @ViewBag.JobID;
+        obj.CustomerID = @ViewBag.CustomerID;
+        obj.TabID = 3;
+        obj.UserAssigned = $('#DdlUserAssigned').val();
+        obj.IsApproved = isApproved;
+
+        $.ajax({
+            type: "POST",
+            url: "/Requirements/UpdateJobStatus",
+            contentType: "application/json",
+            data: JSON.stringify(obj),
+            dataType: "json",
+
+            success: function (response) {
+                AlertToast('success', 'Data Added Successfully')
+            },
+
+            error: function (response) {
+                AlertToast('error', 'Error Occured ! Something goes wrong')
+            }
+        });
+    }
+
+    $('#btnCreate').click(function () {
+        Update_JobStatus(true);
+        window.location.href = "/Requirements/Index";
+    });
+</script>

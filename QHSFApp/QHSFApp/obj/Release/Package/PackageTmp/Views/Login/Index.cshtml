@@ -1,0 +1,112 @@
+﻿@model DAL.DbEntities.Vt_Users
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>QSHF | Adminpro - Template Shortcode</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- favicon
+        ============================================ -->
+    <link rel="shortcut icon" type="image/x-icon" href="/Content/img/favicon.ico">
+    <!-- Google Fonts
+        ============================================ -->
+    <!-- Bootstrap CSS
+        ============================================ -->
+    <link href="~/Content/_theme_assets/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Bootstrap CSS
+
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <!- adminpro icon CSS-->
+    <link href="~/Content/_theme_assets/css/adminpro-custon-icon.css" rel="stylesheet" />
+
+    <!-- animate CSS
+        ============================================ -->
+    <link href="~/Content/_theme_assets/css/animate.css" rel="stylesheet" />
+    <!-- normalize CSS-->
+    <link href="~/Content/_theme_assets/css/Login.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- <div class="login-bg">
+         <video eq-attached="true" muted loop autoplay>
+             <source src="~/Images/stock-footage-background-with-charts-and-price-quotations.mp4" type="video/mp4">
+           </video>
+         <div class="overlay"></div>
+
+         <div class="login">
+             <div class="container">
+                 <div class="login-content">
+                     @using (Ajax.BeginForm("Index", "Login", new AjaxOptions { OnSuccess = "onSuccess" }))
+                     {
+                         @*<form id="LoginForm">*@
+                         <img src="~/Content/foresight.png" class="forimgforesight" alt="foresight" />
+                         <div class="title">Login</div>
+
+                         @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @title = "Email", Placeholder = "Email", required = "required" })
+
+                         @Html.TextBoxFor(m => m.Password, new { @type = "Password", @class = "form-control", @title = "Password", Placeholder = "Password", required = "required" })
+
+                         <a href="@Url.Content("~/Login/ForgotPassword")" class="forgot_pswrd">Forgot Password</a>
+
+                         @*<input type="text" class="form-control" placeholder="Username" required>
+                             <input type="password" class="form-control" placeholder="Password" required>*@
+                         @*<input type="checkbox" name="fpassword" id="forgetpassword">
+                             <label for="forgetpassword">Forget Password</label>*@
+
+                         <label style="color:red;margin-top:10px;">@ViewBag.CredentialsError</label>
+                         <button type="submit" value="LOGIN"> Sign In </button>
+                         @*</form>*@
+                     }
+                 </div>
+             </div>
+         </div>
+     </div>-->
+
+    <div class="login-page">
+        @using (Ajax.BeginForm("Index", "Login", new AjaxOptions { OnSuccess = "onSuccess" }))
+        {
+
+            <div class="form">
+                <img src="~/Content/_theme_assets/images/pages_images/logo.png" class="img-logo" alt="logoimg" />
+                <h3 class="loginheading">Login To Your Account</h3>
+                <p class="textpara">Fully-managed and hosted database and messaging services on all major clouds in over 60 regions worldwide. Get back to your core business.</p>
+                <form class="login-form" id="LoginForm">
+                    @Html.TextBoxFor(m => m.Email, new { @title = "Username", Placeholder = "Email", required = "required" })
+                    @Html.TextBoxFor(m => m.Password, new { @type = "Password", @title = "Password", Placeholder = "Password", required = "required" })
+                    <label style="color:#bf1e2e">@TempData["Message"]</label> 
+
+                    <button type="submit" value="LOGIN"> Sign In </button>
+                </form>
+            </div>
+        }
+    </div>
+    <script src="~/Scripts/jquery-1.10.2.intellisense.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/main.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+
+    <!--Opening Modal-->
+    <!-- Visual Studio Browser Link -->
+    <script type="application/json" id="__browserLink_initializationData">
+        {
+        "appName": "Chrome",
+        "requestId": "f40ce9922fdf47fb8e9a1b8a99ccc994"
+        }
+    </script>
+    <script type="text/javascript" src="http://localhost:21496/cc75908e9d604ba086bfeddc08e81286/browserLink" async="async"></script>
+    <!-- End Browser Link -->
+
+    <script>
+        $('.message a').click(function () {
+            $('form').animate({ height: "toggle", opacity: "toggle" }, "slow");
+        });
+    </script>
+</body>
+</html>

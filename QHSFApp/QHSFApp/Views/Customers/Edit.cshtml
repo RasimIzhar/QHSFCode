@@ -1,0 +1,131 @@
+﻿@model DAL.Model.ViewModels.GetCustomerResponse
+@{
+    Layout = null;
+    ViewBag.Title = "Edit";
+}
+
+@*<script src="~/Scripts/jquery.form.min.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.form.min.js"></script>*@
+
+<div class="row bg-white mt-30">
+
+    <div class="col-12">
+        <div class="panel">
+
+            <div class="panel-body">
+                <div class="">
+                    @using (Html.BeginForm("Edit", "Customers", FormMethod.Post))
+                    {
+                        @Html.ValidationSummary(true)
+                        @Html.HiddenFor(m => m.ModelObject.ID)
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="pwd">Customer Name</label>
+                                    <div class="">
+                                        @Html.TextBoxFor(m => m.ModelObject.CustomerName, null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="pwd">Business Name</label>
+                                    <div class="">
+                                        @Html.TextBoxFor(m => m.ModelObject.BusinessName, null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="pwd">Trading As</label>
+                                    <div class="">
+                                        @Html.TextBoxFor(m => m.ModelObject.TradingAs, null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="pwd">Address</label>
+                                    <div class="">
+                                        @Html.TextBoxFor(m => m.ModelObject.Address, null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="pwd">Phone</label>
+                                    <div class="">
+                                        @Html.TextBoxFor(m => m.ModelObject.Phone, null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="pwd">Email</label>
+                                    <div class="">
+                                        @Html.TextBoxFor(m => m.ModelObject.Email, null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="pwd">ABN Number</label>
+                                    <div class="">
+                                        @Html.TextBoxFor(m => m.ModelObject.ABN, null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            @*<div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label" for="pwd">Xero Reference</label>
+                                        <div class="">
+                                            @Html.TextBoxFor(m => m.ModelObject.XeroReference, null, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                </div>*@
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="pwd">Account Type</label>
+                                    <div class="">
+                                        @Html.DropDownListFor(m => m.ModelObject.AccountType,
+                                   new[]{
+                                            new SelectListItem(){ Text = "Account", Value = "Account"},
+                                            new SelectListItem(){ Text = "Cash", Value = "Cash"}
+                                            },
+                                            "Select Field Type",
+                                            new { @class = "select2 form-control custom-select", @style = "width: 100%;" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="">
+
+                            <div class="form-group">
+                                <div class="text-right">
+                                    <input type="submit" value="Update" class="btn btn-default" />
+                                    @*<button id="btnCreate" type="button" class="btn btn-default">Create</button>*@
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".select2").select2();
+    });
+</script>

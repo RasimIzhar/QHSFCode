@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0912aa7f3ba744fb856ed75a75f74ded" Name="Diagram1">
+        <EntityTypeShape EntityType="vt_QSFHModel.sysdiagram" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="vt_QSFHModel.JobDetailsDynamicField" Width="1.5" PointX="8.25" PointY="5.5" />
+        <EntityTypeShape EntityType="vt_QSFHModel.JobDetailsStatic" Width="1.5" PointX="9.375" PointY="9.125" />
+        <EntityTypeShape EntityType="vt_QSFHModel.UserRole" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="vt_QSFHModel.Vt_Customers" Width="1.5" PointX="0.75" PointY="5.5" />
+        <EntityTypeShape EntityType="vt_QSFHModel.Vt_DynamicFields" Width="1.5" PointX="6" PointY="9.875" />
+        <EntityTypeShape EntityType="vt_QSFHModel.Vt_DynamicFieldsValues" Width="1.5" PointX="8.75" PointY="12.5" />
+        <EntityTypeShape EntityType="vt_QSFHModel.Vt_JobDetails" Width="1.5" PointX="6" PointY="6.125" />
+        <EntityTypeShape EntityType="vt_QSFHModel.Vt_PriceList" Width="1.5" PointX="3" PointY="6.375" />
+        <EntityTypeShape EntityType="vt_QSFHModel.Vt_Products" Width="1.5" PointX="3" PointY="10.75" />
+        <EntityTypeShape EntityType="vt_QSFHModel.Vt_ProductsStages" Width="1.5" PointX="0.75" PointY="11.75" />
+        <EntityTypeShape EntityType="vt_QSFHModel.vt_Tabs" Width="1.5" PointX="10.75" PointY="6.75" />
+        <EntityTypeShape EntityType="vt_QSFHModel.Vt_Users" Width="1.5" PointX="11.75" PointY="10" />
+        <AssociationConnector Association="vt_QSFHModel.FK_JobDetailsDynamicFields_Vt_DynamicFields" />
+        <AssociationConnector Association="vt_QSFHModel.FK_JobDetailsDynamicFields_Vt_JobDetails" />
+        <AssociationConnector Association="vt_QSFHModel.FK_JobDetailsStatic_Vt_JobDetails" />
+        <AssociationConnector Association="vt_QSFHModel.FK_Vt_JobDetails_Vt_Customers" />
+        <AssociationConnector Association="vt_QSFHModel.FK_Vt_PriceList_Vt_Customers" />
+        <AssociationConnector Association="vt_QSFHModel.FK_Vt_DynamicFieldsValues_Vt_DynamicFields" />
+        <AssociationConnector Association="vt_QSFHModel.FK_Vt_PriceList_Vt_Products" />
+        <AssociationConnector Association="vt_QSFHModel.FK_Vt_Products_Vt_ProductsStages" />
+        <EntityTypeShape EntityType="vt_QSFHModel.vt_ProductUnit" Width="1.5" PointX="12.375" PointY="0.75" />
+        <EntityTypeShape EntityType="vt_QSFHModel.Vt_JobEstimation" Width="1.5" PointX="3" PointY="1.875" />
+        <EntityTypeShape EntityType="vt_QSFHModel.Vt_JobEstimationDetails" Width="1.5" PointX="5.25" PointY="1" />
+        <AssociationConnector Association="vt_QSFHModel.FK_Vt_JobEstimation_Vt_Customers" />
+        <AssociationConnector Association="vt_QSFHModel.FK_Vt_JobEstimationDetails_Vt_JobEstimation" />
+        <AssociationConnector Association="vt_QSFHModel.FK_Vt_JobEstimationDetails_Vt_Products" />
+        <EntityTypeShape EntityType="vt_QSFHModel.Vt_JobDrafting_Checker_Questions" Width="1.5" PointX="13.375" PointY="3.75" />
+        <EntityTypeShape EntityType="vt_QSFHModel.Vt_JobDrafting_Drafter_Questions" Width="1.5" PointX="13.375" PointY="6.75" />
+        <EntityTypeShape EntityType="vt_QSFHModel.Vt_JobDrafting_Drafter_SubQuestions" Width="1.5" PointX="14" PointY="9.75" />
+        <EntityTypeShape EntityType="vt_QSFHModel.Vt_JobDrafting" Width="2.375" PointX="4.375" PointY="18.75" />
+        <EntityTypeShape EntityType="vt_QSFHModel.Vt_JobDrafting_Drafter_Checklist" Width="1.5" PointX="7.5" PointY="19.375" />
+        <AssociationConnector Association="vt_QSFHModel.FK_Vt_JobDrafting_Drafter_Checklist_Vt_JobDrafting" />
+        <EntityTypeShape EntityType="vt_QSFHModel.Vt_JobDrafting_Checker_Checklist" Width="3.125" PointX="7.5" PointY="23.375" />
+        <AssociationConnector Association="vt_QSFHModel.FK_Vt_JobDrafting_Checker_Checklist_Vt_JobDrafting" />
+        <EntityTypeShape EntityType="vt_QSFHModel.Vt_ManufacturingOrderDetails" Width="1.5" PointX="3" PointY="23.75" />
+        <EntityTypeShape EntityType="vt_QSFHModel.vt_Roles" Width="1.5" PointX="14.375" PointY="0.75" />
+        <EntityTypeShape EntityType="vt_QSFHModel.Research" Width="1.5" PointX="10.375" PointY="3.75" />
+        <EntityTypeShape EntityType="vt_QSFHModel.Vt_Jobs" Width="1.5" PointX="0.75" PointY="14.25" />
+        <AssociationConnector Association="vt_QSFHModel.FK_Vt_JobDetails_Vt_Jobs" />
+        <AssociationConnector Association="vt_QSFHModel.FK_Vt_JobDrafting_Vt_Jobs" />
+        <AssociationConnector Association="vt_QSFHModel.FK_Vt_JobEstimation_Vt_Jobs" />
+        <AssociationConnector Association="vt_QSFHModel.FK_Vt_JobEstimationDetails_Vt_Jobs" />
+        <AssociationConnector Association="vt_QSFHModel.FK_Vt_ManufacturingOrderDetails_Vt_Jobs" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
